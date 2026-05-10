@@ -1,9 +1,14 @@
+import logging
+
 from rest_framework import generics, status
 from rest_framework.response import Response
 from django.core.mail import send_mail
 from django.conf import settings
 from .models import ContactSubmission, NewsletterSubscriber
 from .serializers import ContactSubmissionSerializer, NewsletterSubscriberSerializer
+from .telegram import notify_admins_contact
+
+logger = logging.getLogger(__name__)
 
 
 class ContactSubmissionView(generics.CreateAPIView):
@@ -12,7 +17,15 @@ class ContactSubmissionView(generics.CreateAPIView):
 
     def perform_create(self, serializer):
         submission = serializer.save()
-        # Notify admin via email
+
+        # 1) Telegram orqali admin'larga xabar (asosiy kanal)
+        try:
+            notify_admins_contact(submission)
+        except Exception as e:
+            # Telegram fail bo'lsa ham forma yuborilishi davom etsin
+            logger.warning("Telegram notification failed: %s", e)
+
+        # 2) Email zaxira sifatida (token sozlanmagan bo'lsa konsolga yoziladi)
         try:
             send_mail(
                 subject=f"DGD Consulting — Yangi so'rov: {submission.name}",

@@ -153,6 +153,14 @@ ADMIN_EMAIL = config('ADMIN_EMAIL', default='admin@example.com')
 if not EMAIL_HOST_PASSWORD or EMAIL_HOST_PASSWORD == 'your-app-password-here':
     EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 
+# ─── Telegram bot (kontakt formasi xabari) ──────────────────
+TELEGRAM_BOT_TOKEN = config('TELEGRAM_BOT_TOKEN', default='')
+# vergul bilan ajratilgan admin Telegram ID'lari (raqamlar)
+_tg_ids = config('TELEGRAM_ADMIN_IDS', default='')
+TELEGRAM_ADMIN_IDS = [
+    int(x.strip()) for x in _tg_ids.split(',') if x.strip().isdigit()
+]
+
 # ─── Jazzmin (admin theme) ─────────────────────────────────
 JAZZMIN_SETTINGS = {
     'site_title':  'DGD Consulting Admin',
