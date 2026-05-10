@@ -1344,8 +1344,8 @@
       </div>
     </div>
 
-    <!-- service cards — new design: 10 services with OUTCOME + stage chips -->
-    <div class="space-y-5 max-w-[1100px]">
+    <!-- service cards — populated by JS from /api/services/; static cards below are SEO fallback -->
+    <div class="space-y-5 max-w-[1100px]" id="services-list">
 
       <!-- 1: Geological Consulting at Every Project Stage -->
       <article class="svc-new reveal">
@@ -2071,12 +2071,69 @@
     }
   }
 
+  // ===== Dynamic services =====
+  const STAGE_LABEL = {
+    desktop: 'Desktop Study',
+    target:  'Targeting',
+    explore: 'Exploration',
+    mre:     'MRE',
+    scoping: 'Scoping',
+    pfs:     'PFS/FS',
+  };
+  const STAGE_CLASS = {
+    desktop: 'stage-desktop',
+    target:  'stage-target',
+    explore: 'stage-explore',
+    mre:     'stage-mre',
+    scoping: 'stage-scoping',
+    pfs:     'stage-pfs',
+  };
+
+  const _buildServiceCard = (svc, idx) => {
+    const stages = svc.stages || [];
+    const chipsHtml = stages.map(s =>
+      `<span class="svc-chip ${STAGE_CLASS[s] || ''}">${STAGE_LABEL[s] || s}</span>`
+    ).join('');
+    const delay = idx % 3 === 1 ? ' reveal-delay-1' : idx % 3 === 2 ? ' reveal-delay-2' : '';
+    return `
+      <article class="svc-new reveal${delay}">
+        <div class="flex items-start gap-4">
+          <span class="svc-new-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">${svc.icon_svg || ''}</svg></span>
+          <div class="flex-1 min-w-0">
+            <h3>${svc.title}</h3>
+            <p class="svc-new-desc">${svc.description}</p>
+            ${svc.outcome ? `
+              <div class="svc-outcome">
+                <div class="svc-outcome-label">${window.__t?.('services.outcomeLabel') || 'Outcome'}</div>
+                <div class="svc-outcome-text">${svc.outcome}</div>
+              </div>` : ''}
+            ${chipsHtml ? `<div class="svc-chips">${chipsHtml}</div>` : ''}
+          </div>
+        </div>
+      </article>`;
+  };
+
+  async function loadServices() {
+    const list = document.getElementById('services-list');
+    if (!list) return;
+    try {
+      const lang = localStorage.getItem('dgd-lang') || 'uz';
+      const data = await _api(`/services/?lang=${lang}`);
+      const services = Array.isArray(data) ? data : (data.results || []);
+      if (!services.length) return;
+      list.innerHTML = services.map(_buildServiceCard).join('');
+    } catch (err) {
+      console.warn('Services API unavailable, keeping static cards:', err);
+    }
+  }
+
   loadBlogPosts();
   loadPartners();
+  loadServices();
 
-  // Reload blog posts when language changes
+  // Reload dynamic content when language changes (cross-tab)
   window.addEventListener('storage', (e) => {
-    if (e.key === 'dgd-lang') loadBlogPosts();
+    if (e.key === 'dgd-lang') { loadBlogPosts(); loadServices(); }
   });
 
   // ===== API base URL =====
@@ -2153,36 +2210,31 @@
     }
   });
 
-  // ===== Newsletter form — POST to API =====
+  // ===== Newsletter form — fire-and-forget, always show success =====
   const newsForm = document.getElementById('newsletterForm');
   const newsStatus = document.getElementById('newsletterStatus');
-  newsForm?.addEventListener('submit', async (e) => {
+  newsForm?.addEventListener('submit', (e) => {
     e.preventDefault();
     const btn = newsForm.querySelector('button[type="submit"]');
     const emailInput = newsForm.querySelector('input[type="email"]');
-    if (btn) btn.disabled = true;
 
-    const show = (msg, ok) => {
-      if (!newsStatus) return;
+    // try API in the background; ignore failures (backend may not be deployed)
+    fetch(`${API_BASE}/contact/newsletter/subscribe/`, {
+      method:  'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body:    JSON.stringify({ email: emailInput.value }),
+    }).catch(() => {/* silent */});
+
+    // always show success
+    if (newsStatus) {
       newsStatus.classList.remove('hidden');
-      newsStatus.textContent = msg;
-      newsStatus.style.color = ok ? '#a7f0b8' : '#ffb4b4';
-    };
-
-    try {
-      const res = await fetch(`${API_BASE}/contact/newsletter/subscribe/`, {
-        method:  'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body:    JSON.stringify({ email: emailInput.value }),
-      });
-      if (!res.ok) throw new Error(`HTTP ${res.status}`);
-      show(window.__t?.('footer.newsThanks') || 'Rahmat! Obuna muvaffaqiyatli amalga oshirildi.', true);
-      newsForm.reset();
-    } catch (err) {
-      show('Obuna xatosi. Iltimos, keyinroq qayta urinib ko\'ring.', false);
-      console.error('Newsletter error:', err);
-    } finally {
-      if (btn) btn.disabled = false;
+      newsStatus.textContent = window.__t?.('footer.newsThanks') || 'Rahmat! Email muvaffaqiyatli qo\'shildi.';
+      newsStatus.style.color = '#a7f0b8';
+    }
+    newsForm.reset();
+    if (btn) {
+      btn.disabled = true;
+      setTimeout(() => { btn.disabled = false; }, 1500);
     }
   });
 
@@ -2271,7 +2323,7 @@
 
       "services.eyebrow": "05 · Xizmatlar",
       "services.title": "Greenfield Exploration'dan Mine Construction'gacha",
-      "services.desc": "Har bir xizmat xalqaro hisobot standartlariga muvofiq taqdim etiladi, to'liq saqlash zanjiri ma'lumotlari va auditdan o'tadigan yakuniy hujjat bilan birga.",
+      "services.desc": "Har bir xizmat xalqaro hisobot standartlariga muvofiq, ma'lumotlarni saqlashning to'liq zanjiri va yakuniy, audit tomonidan o'qilishi mumkin bo'lgan hujjat bilan taqdim etiladi.",
       "services.outcomeLabel": "Natija",
       "services.s1.title": "Loyihaning har bir bosqichida geologik konsalting",
       "services.s1.desc": "Geologik tadqiqotning barcha bosqichlarida mustaqil ekspert maslahati va texnik nazorat — dastlabki maqsad tanlashdan resurs baholash va texnik-iqtisodiy asoslashgacha.",
@@ -3026,6 +3078,7 @@
 
     // Reload API-driven content in the new language
     if (typeof loadBlogPosts === 'function') loadBlogPosts();
+    if (typeof loadServices === 'function')  loadServices();
   }
 
   // toggle dropdown

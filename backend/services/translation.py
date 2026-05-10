@@ -4,4 +4,4 @@ from .models import Service
 
 @register(Service)
 class ServiceTranslationOptions(TranslationOptions):
-    fields = ('title', 'description')
+    fields = ('title', 'description', 'outcome')

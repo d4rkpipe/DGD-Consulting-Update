@@ -10,6 +10,14 @@ class Service(models.Model):
     )
     title = models.CharField(max_length=200)
     description = models.TextField()
+    outcome = models.TextField(
+        blank=True,
+        help_text="OUTCOME: bu xizmat qanday natijani beradi"
+    )
+    stages = models.CharField(
+        max_length=120, blank=True,
+        help_text="Vergul bilan ajratilgan bosqich kalitlari: desktop,target,explore,mre,scoping,pfs"
+    )
     icon_svg = models.TextField(
         blank=True,
         help_text="SVG markup (path d=..., circle, line, va h.k.)"

@@ -15,6 +15,10 @@ class ServiceAdmin(TabbedTranslationAdmin):
             'fields': ('number', 'parent', 'order', 'is_featured', 'is_active')
         }),
         ('Mazmun', {
-            'fields': ('title', 'description', 'icon_svg'),
+            'fields': ('title', 'description', 'outcome', 'icon_svg'),
+        }),
+        ('Bosqichlar', {
+            'fields': ('stages',),
+            'description': 'Vergul bilan: desktop, target, explore, mre, scoping, pfs'
         }),
     )
