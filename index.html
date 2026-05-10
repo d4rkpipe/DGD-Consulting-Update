@@ -427,6 +427,87 @@
   /* chip */
   .chip{ display:inline-flex; align-items:center; gap:8px; padding:6px 12px; border-radius:999px; font-size:12px; font-family:'JetBrains Mono', monospace; letter-spacing:.05em; }
 
+  /* roadmap cards (loyiha yo'l xaritasi) */
+  .rm-card{
+    background: rgba(255,255,255,0.03);
+    border: 1px solid rgba(255,255,255,0.08);
+    border-radius: 1.5rem;
+    padding: 1.75rem 1.75rem 1.5rem;
+    color: rgba(255,255,255,0.85);
+    transition: border-color .3s ease, transform .3s ease;
+  }
+  .rm-card:hover{ border-color: rgba(255,255,255,0.20); transform: translateY(-2px); }
+  .rm-number{
+    width: 44px; height: 44px;
+    border-radius: 999px;
+    display: grid; place-items: center;
+    font-weight: 700; font-size: 15px;
+    flex-shrink: 0;
+  }
+  .rm-card h3{
+    font-size: clamp(18px, 2.2vw, 22px);
+    font-weight: 700; color: #fff; line-height: 1.25;
+  }
+  .rm-subtitle{
+    color: rgba(255,255,255,0.50);
+    font-size: 13.5px; margin-top: 2px;
+  }
+  .rm-desc{
+    color: rgba(255,255,255,0.78);
+    font-size: 15px; line-height: 1.7; margin-top: 1rem;
+  }
+  .rm-items{
+    list-style: none; padding: 0; margin: 1.25rem 0 0;
+    display: flex; flex-direction: column; gap: 6px;
+  }
+  .rm-items li{
+    padding-left: 1.75rem; position: relative;
+    color: rgba(255,255,255,0.78);
+    font-size: 14.5px; line-height: 1.55;
+  }
+  .rm-items li::before{
+    content: "→"; position: absolute; left: 0;
+    color: rgba(255,255,255,0.45); font-weight: 500;
+  }
+  .rm-result{
+    background: rgba(0,0,0,0.30);
+    border: 1px solid rgba(255,255,255,0.08);
+    border-radius: 14px;
+    padding: 1rem 1.25rem;
+    margin-top: 1.5rem;
+  }
+  .rm-result-label{
+    font-family:'JetBrains Mono', monospace;
+    font-size: 11px; letter-spacing: .15em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.45);
+    margin-bottom: 4px;
+  }
+  .rm-result-text{ color:#fff; font-weight:600; font-size: 15px; line-height: 1.4; }
+  .rm-chips{ display: flex; flex-wrap: wrap; gap: 8px; margin-top: 1.25rem; }
+  .rm-chip{
+    padding: 6px 14px;
+    border-radius: 999px;
+    font-size: 12.5px;
+    font-family:'Plus Jakarta Sans', sans-serif;
+  }
+
+  /* 5 colored variants — number circle + chips */
+  .rm-card-1 .rm-number{ background:#cfe4b8; color:#1f4a1b; }
+  .rm-card-1 .rm-chip  { background: rgba(207,228,184,0.12); border:1px solid rgba(207,228,184,0.30); color:#cfe4b8; }
+
+  .rm-card-2 .rm-number{ background:#f4d4a8; color:#5a3a17; }
+  .rm-card-2 .rm-chip  { background: rgba(244,212,168,0.12); border:1px solid rgba(244,212,168,0.30); color:#f4d4a8; }
+
+  .rm-card-3 .rm-number{ background:#d8edb0; color:#2e4a16; }
+  .rm-card-3 .rm-chip  { background: rgba(216,237,176,0.12); border:1px solid rgba(216,237,176,0.30); color:#d8edb0; }
+
+  .rm-card-4 .rm-number{ background:#bce0d4; color:#0c3a30; }
+  .rm-card-4 .rm-chip  { background: rgba(188,224,212,0.12); border:1px solid rgba(188,224,212,0.30); color:#bce0d4; }
+
+  .rm-card-5 .rm-number{ background:#cdd6f0; color:#1d2e6e; }
+  .rm-card-5 .rm-chip  { background: rgba(205,214,240,0.12); border:1px solid rgba(205,214,240,0.30); color:#cdd6f0; }
+
   /* value cards (qadriyatlar section) — pastel colored */
   .value-card{
     border-radius: 1.5rem; padding: 1.75rem;
@@ -815,6 +896,171 @@
         <div class="v-line my-5" style="height:1px;"></div>
         <p class="v-quote italic text-[13px] leading-[1.5]" data-i18n="values.v3.quote">"Ishonchli ma'lumot — ishonchli hamkorlik."</p>
       </article>
+    </div>
+  </div>
+</section>
+
+<!-- ============== ROADMAP (Loyiha yo'l xaritasi) ============== -->
+<section id="roadmap" class="relative py-24 md:py-32 overflow-hidden" style="background:#0b1410;">
+  <div class="absolute inset-0 pointer-events-none" style="background:
+    radial-gradient(900px 500px at 90% -10%, rgba(22,163,74,0.12), transparent 60%),
+    radial-gradient(700px 500px at 5% 110%, rgba(22,163,74,0.08), transparent 60%);"></div>
+
+  <div class="max-w-[1400px] mx-auto px-6 lg:px-10 relative z-10">
+    <!-- header -->
+    <div class="reveal mb-12 max-w-[820px]">
+      <div class="eyebrow text-white/70 mb-5"><span style="background:#a7d8b2; height:1px; width:28px; display:inline-block;"></span><span data-i18n="roadmap.eyebrow">03 · Loyiha yo'l xaritasi</span></div>
+      <h2 class="font-display font-medium tracking-tight leading-[1.15] text-white" style="font-size: clamp(26px, 4.8vw, 48px);" data-i18n="roadmap.title">Loyiha yo'l xaritasi</h2>
+      <p class="text-white/65 mt-4 leading-[1.65] text-[15.5px]" data-i18n="roadmap.intro">Konsept tug'ilishidan kon qurilishi boshlangunga qadar — har bir bosqichda qaysi ishlar bajariladi va qanday natija beriladi.</p>
+    </div>
+
+    <!-- stages -->
+    <div class="space-y-5 max-w-[1100px]">
+
+      <!-- Stage 1: Desktop Study -->
+      <article class="rm-card rm-card-1 reveal">
+        <div class="flex items-start gap-4">
+          <span class="rm-number">1</span>
+          <div class="flex-1 min-w-0">
+            <h3 data-i18n="roadmap.s1.title">Desktop Study</h3>
+            <p class="rm-subtitle" data-i18n="roadmap.s1.subtitle">Ma'lumotlar tahlili · Ofis bosqichi</p>
+            <p class="rm-desc" data-i18n="roadmap.s1.desc">Yangi loyiha yoki maydon bo'yicha mavjud barcha ma'lumotlar — geologik xaritalar, ilgari o'tkazilgan tadqiqotlar, davlat arxivlari, ilmiy nashrlar — to'planib chuqur tahlil qilinadi.</p>
+            <ul class="rm-items" data-i18n="roadmap.s1.items">
+              <li>Davlat geologik fondidan ma'lumotlar so'rash</li>
+              <li>Mavjud xaritalar, hisobotlar va burg'ilash ma'lumotlarini ko'rib chiqish</li>
+              <li>Regional tektonik va metallogeniya tahlili</li>
+              <li>GIS yordamida anomaliya zonalarini ajratish</li>
+              <li>Raqobatchi va qo'shni loyihalar tahlili</li>
+            </ul>
+            <div class="rm-result">
+              <div class="rm-result-label" data-i18n="roadmap.resultLabel">Natija</div>
+              <div class="rm-result-text" data-i18n="roadmap.s1.result">Maqsad hudud tanlash bo'yicha tavsiya va keyingi bosqich dizayni</div>
+            </div>
+            <div class="rm-chips" data-i18n="roadmap.s1.chips">
+              <span class="rm-chip">Arxiv tahlili</span>
+              <span class="rm-chip">GIS</span>
+              <span class="rm-chip">Regional geologiya</span>
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <!-- Stage 2: Targeting -->
+      <article class="rm-card rm-card-2 reveal reveal-delay-1">
+        <div class="flex items-start gap-4">
+          <span class="rm-number">2</span>
+          <div class="flex-1 min-w-0">
+            <h3 data-i18n="roadmap.s2.title">Targeting</h3>
+            <p class="rm-subtitle" data-i18n="roadmap.s2.subtitle">Maqsad hududlarni aniqlash · Prioritetlashtirish</p>
+            <p class="rm-desc" data-i18n="roadmap.s2.desc">Desktop study xulosalari asosida eng istiqbolli maqsad zonalar — targetlar — belgilanadi. Bu bosqichda dastlabki dala tekshiruvlari, geokimyoviy namunalash va geofizik profiller o'tkaziladi.</p>
+            <ul class="rm-items" data-i18n="roadmap.s2.items">
+              <li>Rekonn geokimyoviy namunalash (stream sediment, float, chip)</li>
+              <li>Geofizik profillash: magnit, gravimetrik</li>
+              <li>Yer usti strukturaviy kuzatuvi</li>
+              <li>Anomaliyalarni ranjirlash va eng muhim targetlarni tanlash</li>
+              <li>Sahaga chiqish logistikasi va xavfsizlik rejasi</li>
+            </ul>
+            <div class="rm-result">
+              <div class="rm-result-label" data-i18n="roadmap.resultLabel">Natija</div>
+              <div class="rm-result-text" data-i18n="roadmap.s2.result">Prioritet targetlar ro'yxati va Exploration dasturi uchun asos</div>
+            </div>
+            <div class="rm-chips" data-i18n="roadmap.s2.chips">
+              <span class="rm-chip">Geokimyo</span>
+              <span class="rm-chip">Geofizika</span>
+              <span class="rm-chip">Rekonn</span>
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <!-- Stage 3: Exploration -->
+      <article class="rm-card rm-card-3 reveal reveal-delay-2">
+        <div class="flex items-start gap-4">
+          <span class="rm-number">3</span>
+          <div class="flex-1 min-w-0">
+            <h3 data-i18n="roadmap.s3.title">Exploration</h3>
+            <p class="rm-subtitle" data-i18n="roadmap.s3.subtitle">Qidiruv · Burg'ilash · Namunalash</p>
+            <p class="rm-desc" data-i18n="roadmap.s3.desc">Targetlangan hududlarda tizimli qidiruv ishlari olib boriladi. Detallanish o'sib boradi: kuzatuvdan burg'ilashgacha. Bu bosqich loyihaning texnik asosini quradi.</p>
+            <ul class="rm-items" data-i18n="roadmap.s3.items">
+              <li>Detallanmagan geologik kartalashtirish (1:5000 – 1:1000)</li>
+              <li>Sistemali geokimyoviy namunalash: trench, chip, channel</li>
+              <li>IP, magnit va boshqa geofizik surovlar</li>
+              <li>Dastlabki scout burg'ilash (auger, RC yoki diamond)</li>
+              <li>Infill burg'ilash: ma'lumotlar zichligi oshirish</li>
+              <li>Yadro namunalarini assay laboratoriyaga yuborish</li>
+              <li>3D geologik model qurish</li>
+            </ul>
+            <div class="rm-result">
+              <div class="rm-result-label" data-i18n="roadmap.resultLabel">Natija</div>
+              <div class="rm-result-text" data-i18n="roadmap.s3.result">Minerallashtirish geometriyasi, sifat parametrlari va MRE uchun ma'lumotlar bazasi</div>
+            </div>
+            <div class="rm-chips" data-i18n="roadmap.s3.chips">
+              <span class="rm-chip">Burg'ilash</span>
+              <span class="rm-chip">Core logging</span>
+              <span class="rm-chip">3D model</span>
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <!-- Stage 4: MRE -->
+      <article class="rm-card rm-card-4 reveal reveal-delay-3">
+        <div class="flex items-start gap-4">
+          <span class="rm-number">4</span>
+          <div class="flex-1 min-w-0">
+            <h3 data-i18n="roadmap.s4.title">Mineral Resource Estimate (MRE)</h3>
+            <p class="rm-subtitle" data-i18n="roadmap.s4.subtitle">JORC / NI 43-101 · Resurs baholash</p>
+            <p class="rm-desc" data-i18n="roadmap.s4.desc">To'plangan ma'lumotlar JORC yoki NI 43-101 xalqaro standarti asosida mustaqil mutaxassis (Competent Person) tomonidan tahlil qilinadi. Kon hajmi, grad va ishonchlilik toifasi e'lon qilinadi.</p>
+            <ul class="rm-items" data-i18n="roadmap.s4.items">
+              <li>Ma'lumotlar sifatini tekshirish: QA/QC, twin holes</li>
+              <li>Statistik tahlil: variogramma, geostatistika</li>
+              <li>Blok model va kriging interpolatsiyasi</li>
+              <li>Tonnaj-grad hisob: Inferred → Indicated → Measured</li>
+              <li>Competent Person tomonidan mustaqil tekshiruv</li>
+              <li>Rasmiy MRE hisoboti nashr etish</li>
+            </ul>
+            <div class="rm-result">
+              <div class="rm-result-label" data-i18n="roadmap.resultLabel">Natija</div>
+              <div class="rm-result-text" data-i18n="roadmap.s4.result">Tasdiqlangan mineral resurs: toifa, tonnaj va grad bo'yicha</div>
+            </div>
+            <div class="rm-chips" data-i18n="roadmap.s4.chips">
+              <span class="rm-chip">JORC</span>
+              <span class="rm-chip">NI 43-101</span>
+              <span class="rm-chip">Geostatistika</span>
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <!-- Stage 5: Scoping Study -->
+      <article class="rm-card rm-card-5 reveal reveal-delay-4">
+        <div class="flex items-start gap-4">
+          <span class="rm-number">5</span>
+          <div class="flex-1 min-w-0">
+            <h3 data-i18n="roadmap.s5.title">Scoping Study</h3>
+            <p class="rm-subtitle" data-i18n="roadmap.s5.subtitle">Dastlabki texnik-iqtisodiy baholash</p>
+            <p class="rm-desc" data-i18n="roadmap.s5.desc">MRE asosida loyihaning umumiy texnik-iqtisodiy maqsadga muvofiqligi tekshiriladi. Aniqlik darajasi past (±35–40%), lekin loyiha PFS'ga o'tishga arziydi-mi degan asosiy savolga javob beradi.</p>
+            <ul class="rm-items" data-i18n="roadmap.s5.items">
+              <li>Qazib olish usuli va kon hajmini taxminiy aniqlash</li>
+              <li>Boyitish texnologiyasi variantlarini ko'rib chiqish</li>
+              <li>Infratuzilma, suv, energiya ehtiyojlarini baholash</li>
+              <li>Capital va operatsion xarajatlarni taxminan hisoblash</li>
+              <li>Ekologik va ijtimoiy risklarni dastlabki baholash</li>
+              <li>NPV, IRR va payback period hisob (±40% aniqlik)</li>
+            </ul>
+            <div class="rm-result">
+              <div class="rm-result-label" data-i18n="roadmap.resultLabel">Natija</div>
+              <div class="rm-result-text" data-i18n="roadmap.s5.result">"Go / No-Go" qarori va PFS uchun texnik vazifa</div>
+            </div>
+            <div class="rm-chips" data-i18n="roadmap.s5.chips">
+              <span class="rm-chip">TEO</span>
+              <span class="rm-chip">±40% aniqlik</span>
+              <span class="rm-chip">Iqtisodiy tahlil</span>
+            </div>
+          </div>
+        </div>
+      </article>
+
     </div>
   </div>
 </section>
@@ -1806,6 +2052,41 @@
       "values.v3.desc": "Dala kuzatishlaridan yakuniy xulosalargacha — barcha natijalar aniq, tekshirilgan va xalqaro standartlarga muvofiq taqdim etiladi.",
       "values.v3.quote": "\"Ishonchli ma'lumot — ishonchli hamkorlik.\"",
 
+      "roadmap.eyebrow": "03 · Loyiha yo'l xaritasi",
+      "roadmap.title": "Loyiha yo'l xaritasi",
+      "roadmap.intro": "Konsept tug'ilishidan kon qurilishi boshlangunga qadar — har bir bosqichda qaysi ishlar bajariladi va qanday natija beriladi.",
+      "roadmap.resultLabel": "Natija",
+      "roadmap.s1.title": "Desktop Study",
+      "roadmap.s1.subtitle": "Ma'lumotlar tahlili · Ofis bosqichi",
+      "roadmap.s1.desc": "Yangi loyiha yoki maydon bo'yicha mavjud barcha ma'lumotlar — geologik xaritalar, ilgari o'tkazilgan tadqiqotlar, davlat arxivlari, ilmiy nashrlar — to'planib chuqur tahlil qilinadi.",
+      "roadmap.s1.items": "<li>Davlat geologik fondidan ma'lumotlar so'rash</li><li>Mavjud xaritalar, hisobotlar va burg'ilash ma'lumotlarini ko'rib chiqish</li><li>Regional tektonik va metallogeniya tahlili</li><li>GIS yordamida anomaliya zonalarini ajratish</li><li>Raqobatchi va qo'shni loyihalar tahlili</li>",
+      "roadmap.s1.result": "Maqsad hudud tanlash bo'yicha tavsiya va keyingi bosqich dizayni",
+      "roadmap.s1.chips": "<span class=\"rm-chip\">Arxiv tahlili</span><span class=\"rm-chip\">GIS</span><span class=\"rm-chip\">Regional geologiya</span>",
+      "roadmap.s2.title": "Targeting",
+      "roadmap.s2.subtitle": "Maqsad hududlarni aniqlash · Prioritetlashtirish",
+      "roadmap.s2.desc": "Desktop study xulosalari asosida eng istiqbolli maqsad zonalar — targetlar — belgilanadi. Bu bosqichda dastlabki dala tekshiruvlari, geokimyoviy namunalash va geofizik profiller o'tkaziladi.",
+      "roadmap.s2.items": "<li>Rekonn geokimyoviy namunalash (stream sediment, float, chip)</li><li>Geofizik profillash: magnit, gravimetrik</li><li>Yer usti strukturaviy kuzatuvi</li><li>Anomaliyalarni ranjirlash va eng muhim targetlarni tanlash</li><li>Sahaga chiqish logistikasi va xavfsizlik rejasi</li>",
+      "roadmap.s2.result": "Prioritet targetlar ro'yxati va Exploration dasturi uchun asos",
+      "roadmap.s2.chips": "<span class=\"rm-chip\">Geokimyo</span><span class=\"rm-chip\">Geofizika</span><span class=\"rm-chip\">Rekonn</span>",
+      "roadmap.s3.title": "Exploration",
+      "roadmap.s3.subtitle": "Qidiruv · Burg'ilash · Namunalash",
+      "roadmap.s3.desc": "Targetlangan hududlarda tizimli qidiruv ishlari olib boriladi. Detallanish o'sib boradi: kuzatuvdan burg'ilashgacha. Bu bosqich loyihaning texnik asosini quradi.",
+      "roadmap.s3.items": "<li>Detallanmagan geologik kartalashtirish (1:5000 – 1:1000)</li><li>Sistemali geokimyoviy namunalash: trench, chip, channel</li><li>IP, magnit va boshqa geofizik surovlar</li><li>Dastlabki scout burg'ilash (auger, RC yoki diamond)</li><li>Infill burg'ilash: ma'lumotlar zichligi oshirish</li><li>Yadro namunalarini assay laboratoriyaga yuborish</li><li>3D geologik model qurish</li>",
+      "roadmap.s3.result": "Minerallashtirish geometriyasi, sifat parametrlari va MRE uchun ma'lumotlar bazasi",
+      "roadmap.s3.chips": "<span class=\"rm-chip\">Burg'ilash</span><span class=\"rm-chip\">Core logging</span><span class=\"rm-chip\">3D model</span>",
+      "roadmap.s4.title": "Mineral Resource Estimate (MRE)",
+      "roadmap.s4.subtitle": "JORC / NI 43-101 · Resurs baholash",
+      "roadmap.s4.desc": "To'plangan ma'lumotlar JORC yoki NI 43-101 xalqaro standarti asosida mustaqil mutaxassis (Competent Person) tomonidan tahlil qilinadi. Kon hajmi, grad va ishonchlilik toifasi e'lon qilinadi.",
+      "roadmap.s4.items": "<li>Ma'lumotlar sifatini tekshirish: QA/QC, twin holes</li><li>Statistik tahlil: variogramma, geostatistika</li><li>Blok model va kriging interpolatsiyasi</li><li>Tonnaj-grad hisob: Inferred → Indicated → Measured</li><li>Competent Person tomonidan mustaqil tekshiruv</li><li>Rasmiy MRE hisoboti nashr etish</li>",
+      "roadmap.s4.result": "Tasdiqlangan mineral resurs: toifa, tonnaj va grad bo'yicha",
+      "roadmap.s4.chips": "<span class=\"rm-chip\">JORC</span><span class=\"rm-chip\">NI 43-101</span><span class=\"rm-chip\">Geostatistika</span>",
+      "roadmap.s5.title": "Scoping Study",
+      "roadmap.s5.subtitle": "Dastlabki texnik-iqtisodiy baholash",
+      "roadmap.s5.desc": "MRE asosida loyihaning umumiy texnik-iqtisodiy maqsadga muvofiqligi tekshiriladi. Aniqlik darajasi past (±35–40%), lekin loyiha PFS'ga o'tishga arziydi-mi degan asosiy savolga javob beradi.",
+      "roadmap.s5.items": "<li>Qazib olish usuli va kon hajmini taxminiy aniqlash</li><li>Boyitish texnologiyasi variantlarini ko'rib chiqish</li><li>Infratuzilma, suv, energiya ehtiyojlarini baholash</li><li>Capital va operatsion xarajatlarni taxminan hisoblash</li><li>Ekologik va ijtimoiy risklarni dastlabki baholash</li><li>NPV, IRR va payback period hisob (±40% aniqlik)</li>",
+      "roadmap.s5.result": "\"Go / No-Go\" qarori va PFS uchun texnik vazifa",
+      "roadmap.s5.chips": "<span class=\"rm-chip\">TEO</span><span class=\"rm-chip\">±40% aniqlik</span><span class=\"rm-chip\">Iqtisodiy tahlil</span>",
+
       "hero.eyebrow": "DGD Consulting · Toshkent, O'zbekiston",
       "hero.title": "Zamonaviy <em class=\"not-italic\">geologik tadqiqot</em> va kon ishlari uchun ilg'or yechimlar",
       "hero.subtitle": "Missiyamiz — xalqaro standartlar asosida istiqbolli maydonlarni ishonchli baholash va yangi konlarni kashf etish orqali mineral-xomashyo sanoatiga hissa qo'shishdir.",
@@ -1826,7 +2107,7 @@
       "about.counter3": "Amalga oshirilayotgan loyihalar",
       "about.counter4": "QA/QC namuna muvofiqligi",
 
-      "services.eyebrow": "03 · Xizmatlar",
+      "services.eyebrow": "04 · Xizmatlar",
       "services.title": "Greenfield Exploration'dan Mine Construction'gacha",
       "services.desc": "Har bir xizmat xalqaro hisobot standartlariga muvofiq taqdim etiladi, to'liq saqlash zanjiri ma'lumotlari va auditdan o'tadigan yakuniy hujjat bilan birga.",
       "services.s1.title": "Geologik konsalting xizmatlari",
@@ -1855,7 +2136,7 @@
       "services.btnContact": "Bog'lanish",
       "services.btnSee": "Qanday ishlashimizni ko'ring",
 
-      "blogs.eyebrow": "04 · Dala yozuvlari",
+      "blogs.eyebrow": "05 · Dala yozuvlari",
       "blogs.title": "Dalalardan so'nggi yangiliklar.",
       "blogs.read": "Maqolani o'qish",
       "blogs.b1.cat": "Metod",
@@ -1871,7 +2152,7 @@
       "blogs.b3.title": "JORC-tayyor: investorlar haqiqatdan ishonadigan MRE hisobotlari",
       "blogs.b3.desc": "Texnik tekshiruvdan o'tadigan MRE hujjatlarini ishlab chiqarish uchun dalada sinovdan o'tgan tekshiruv ro'yxati — ma'lumotlarni tekshirishdan kompetent shaxs ko'rib chiqishigacha.",
 
-      "contact.eyebrow": "05 · Bog'lanish",
+      "contact.eyebrow": "06 · Bog'lanish",
       "contact.title": "Keling, <em class=\"not-italic\" style=\"color:#a7f0b8;\">keyingi kashfiyotni</em> birga xaritalashtiramiz.",
       "contact.desc": "Loyihangiz, zaminingiz va xavfsizlantirmoqchi bo'lgan qaroringiz haqida bizga ayting. Biz bir ish kuni ichida javob beramiz.",
       "contact.phone": "Telefon",
@@ -1943,6 +2224,41 @@
       "values.v3.desc": "От полевых наблюдений до окончательных выводов — все результаты являются точными, проверенными и представлены в соответствии с международными стандартами.",
       "values.v3.quote": "«Надёжные данные — надёжное партнёрство.»",
 
+      "roadmap.eyebrow": "03 · Дорожная карта проекта",
+      "roadmap.title": "Дорожная карта проекта",
+      "roadmap.intro": "От рождения концепции до начала строительства рудника — какие работы выполняются на каждом этапе и какой результат получается.",
+      "roadmap.resultLabel": "Результат",
+      "roadmap.s1.title": "Desktop Study",
+      "roadmap.s1.subtitle": "Анализ данных · Камеральный этап",
+      "roadmap.s1.desc": "По новому проекту или площади собираются и глубоко анализируются все доступные данные — геологические карты, ранее проведённые исследования, государственные архивы, научные публикации.",
+      "roadmap.s1.items": "<li>Запрос данных из государственного геологического фонда</li><li>Анализ существующих карт, отчётов и буровых данных</li><li>Региональный тектонический и металлогенический анализ</li><li>Выделение аномальных зон с помощью ГИС</li><li>Анализ конкурентов и соседних проектов</li>",
+      "roadmap.s1.result": "Рекомендация по выбору целевых участков и дизайн следующего этапа",
+      "roadmap.s1.chips": "<span class=\"rm-chip\">Анализ архивов</span><span class=\"rm-chip\">ГИС</span><span class=\"rm-chip\">Региональная геология</span>",
+      "roadmap.s2.title": "Targeting",
+      "roadmap.s2.subtitle": "Выявление целей · Приоритизация",
+      "roadmap.s2.desc": "На основе выводов Desktop Study определяются наиболее перспективные целевые зоны — таргеты. На этом этапе проводятся первичные полевые проверки, геохимическое опробование и геофизические профили.",
+      "roadmap.s2.items": "<li>Рекогносцировочное геохимическое опробование (донные, флоат, скол)</li><li>Геофизическое профилирование: магнитное, гравиметрическое</li><li>Поверхностное структурное наблюдение</li><li>Ранжирование аномалий и выбор наиболее значимых таргетов</li><li>Логистика полевых работ и план безопасности</li>",
+      "roadmap.s2.result": "Список приоритетных таргетов и основа для программы Exploration",
+      "roadmap.s2.chips": "<span class=\"rm-chip\">Геохимия</span><span class=\"rm-chip\">Геофизика</span><span class=\"rm-chip\">Рекогносцировка</span>",
+      "roadmap.s3.title": "Exploration",
+      "roadmap.s3.subtitle": "Поиски · Бурение · Опробование",
+      "roadmap.s3.desc": "На целевых площадях ведутся систематические поисковые работы. Детальность растёт: от наблюдения до бурения. Этот этап создаёт техническую основу проекта.",
+      "roadmap.s3.items": "<li>Детальное геологическое картирование (1:5000 – 1:1000)</li><li>Систематическое геохимическое опробование: trench, chip, channel</li><li>IP, магнитные и другие геофизические съёмки</li><li>Первичное scout-бурение (auger, RC или diamond)</li><li>Infill-бурение: увеличение плотности данных</li><li>Отправка керновых проб в assay-лабораторию</li><li>Построение 3D геологической модели</li>",
+      "roadmap.s3.result": "Геометрия минерализации, качественные параметры и база данных для MRE",
+      "roadmap.s3.chips": "<span class=\"rm-chip\">Бурение</span><span class=\"rm-chip\">Core logging</span><span class=\"rm-chip\">3D-модель</span>",
+      "roadmap.s4.title": "Mineral Resource Estimate (MRE)",
+      "roadmap.s4.subtitle": "JORC / NI 43-101 · Оценка ресурсов",
+      "roadmap.s4.desc": "Собранные данные анализируются независимым специалистом (Competent Person) по международным стандартам JORC или NI 43-101. Объявляются объём, содержание и категория достоверности.",
+      "roadmap.s4.items": "<li>Проверка качества данных: QA/QC, twin holes</li><li>Статистический анализ: вариограмма, геостатистика</li><li>Блочная модель и интерполяция кригингом</li><li>Расчёт тоннажа/содержания: Inferred → Indicated → Measured</li><li>Независимая проверка Competent Person</li><li>Публикация официального MRE-отчёта</li>",
+      "roadmap.s4.result": "Подтверждённый минеральный ресурс: по категории, тоннажу и содержанию",
+      "roadmap.s4.chips": "<span class=\"rm-chip\">JORC</span><span class=\"rm-chip\">NI 43-101</span><span class=\"rm-chip\">Геостатистика</span>",
+      "roadmap.s5.title": "Scoping Study",
+      "roadmap.s5.subtitle": "Предварительная технико-экономическая оценка",
+      "roadmap.s5.desc": "На основе MRE проверяется общая технико-экономическая целесообразность проекта. Точность невысокая (±35–40%), но даёт ответ на главный вопрос: стоит ли переходить к PFS.",
+      "roadmap.s5.items": "<li>Ориентировочный выбор способа добычи и масштаба рудника</li><li>Рассмотрение вариантов технологии обогащения</li><li>Оценка инфраструктуры, водо- и энергопотребления</li><li>Предварительный расчёт капитальных и операционных затрат</li><li>Предварительная оценка экологических и социальных рисков</li><li>Расчёт NPV, IRR и срока окупаемости (±40%)</li>",
+      "roadmap.s5.result": "Решение «Go / No-Go» и техническое задание на PFS",
+      "roadmap.s5.chips": "<span class=\"rm-chip\">ТЭО</span><span class=\"rm-chip\">±40% точность</span><span class=\"rm-chip\">Экономический анализ</span>",
+
       "hero.eyebrow": "DGD Consulting · Ташкент, Узбекистан",
       "hero.title": "Современные решения для <em class=\"not-italic\">геологоразведки</em> и горнодобычи",
       "hero.subtitle": "Наша миссия — внести вклад в развитие минеральной промышленности путём надёжной оценки перспективных площадей и открытия новых месторождений в соответствии с международными стандартами.",
@@ -1963,7 +2279,7 @@
       "about.counter3": "Проекты в стадии реализации",
       "about.counter4": "Соответствие проб QA/QC",
 
-      "services.eyebrow": "03 · Услуги",
+      "services.eyebrow": "04 · Услуги",
       "services.title": "От разведки новых месторождений до строительства рудника",
       "services.desc": "Каждая услуга предоставляется в соответствии с международными стандартами отчётности, с полной цепочкой ответственности за данные и финальным документом, выдерживающим аудит.",
       "services.s1.title": "Геологические консультационные услуги",
@@ -1992,7 +2308,7 @@
       "services.btnContact": "Связаться",
       "services.btnSee": "Как мы работаем",
 
-      "blogs.eyebrow": "04 · Полевые заметки",
+      "blogs.eyebrow": "05 · Полевые заметки",
       "blogs.title": "Свежее с полей.",
       "blogs.read": "Читать статью",
       "blogs.b1.cat": "Метод",
@@ -2008,7 +2324,7 @@
       "blogs.b3.title": "JORC-готовый: MRE-отчёты, которым доверяют инвесторы",
       "blogs.b3.desc": "Полевой чек-лист подготовки документации MRE, выдерживающей техническую проверку — от валидации данных до проверки компетентным лицом.",
 
-      "contact.eyebrow": "05 · Связаться",
+      "contact.eyebrow": "06 · Связаться",
       "contact.title": "Давайте вместе наметим <em class=\"not-italic\" style=\"color:#a7f0b8;\">следующее открытие</em>.",
       "contact.desc": "Расскажите о проекте, рельефе и решении, риски которого вы снижаете. Мы ответим в течение одного рабочего дня.",
       "contact.phone": "Телефон",
@@ -2080,6 +2396,41 @@
       "values.v3.desc": "From field observations to final conclusions, all results are accurate, verified, and presented in accordance with international standards.",
       "values.v3.quote": "\"Reliable data — reliable partnership.\"",
 
+      "roadmap.eyebrow": "03 · Project Roadmap",
+      "roadmap.title": "Project Roadmap",
+      "roadmap.intro": "From concept inception to mine construction — what gets done at each stage and what outcome is delivered.",
+      "roadmap.resultLabel": "Outcome",
+      "roadmap.s1.title": "Desktop Study",
+      "roadmap.s1.subtitle": "Data analysis · Office stage",
+      "roadmap.s1.desc": "For a new project or area, all available data — geological maps, prior studies, state archives, scientific publications — is collected and deeply analyzed.",
+      "roadmap.s1.items": "<li>Requesting data from the state geological fund</li><li>Reviewing existing maps, reports and drilling data</li><li>Regional tectonic and metallogenic analysis</li><li>Identifying anomaly zones using GIS</li><li>Competitor and neighbouring project analysis</li>",
+      "roadmap.s1.result": "Recommendation on target area selection and next-stage design",
+      "roadmap.s1.chips": "<span class=\"rm-chip\">Archive analysis</span><span class=\"rm-chip\">GIS</span><span class=\"rm-chip\">Regional geology</span>",
+      "roadmap.s2.title": "Targeting",
+      "roadmap.s2.subtitle": "Defining target areas · Prioritization",
+      "roadmap.s2.desc": "Based on Desktop Study conclusions, the most promising target zones are defined. At this stage initial field checks, geochemical sampling and geophysical profiles are conducted.",
+      "roadmap.s2.items": "<li>Reconnaissance geochemical sampling (stream sediment, float, chip)</li><li>Geophysical profiling: magnetic, gravimetric</li><li>Surface structural observation</li><li>Anomaly ranking and selection of priority targets</li><li>Field logistics and safety plan</li>",
+      "roadmap.s2.result": "Priority target list and the basis for the Exploration programme",
+      "roadmap.s2.chips": "<span class=\"rm-chip\">Geochemistry</span><span class=\"rm-chip\">Geophysics</span><span class=\"rm-chip\">Reconnaissance</span>",
+      "roadmap.s3.title": "Exploration",
+      "roadmap.s3.subtitle": "Search · Drilling · Sampling",
+      "roadmap.s3.desc": "Systematic search work is carried out in targeted areas. Detail grows: from observation to drilling. This stage builds the technical foundation of the project.",
+      "roadmap.s3.items": "<li>Detailed geological mapping (1:5000 – 1:1000)</li><li>Systematic geochemical sampling: trench, chip, channel</li><li>IP, magnetic and other geophysical surveys</li><li>Initial scout drilling (auger, RC or diamond)</li><li>Infill drilling: data density increase</li><li>Sending core samples to assay laboratory</li><li>Building a 3D geological model</li>",
+      "roadmap.s3.result": "Mineralization geometry, quality parameters and a database for MRE",
+      "roadmap.s3.chips": "<span class=\"rm-chip\">Drilling</span><span class=\"rm-chip\">Core logging</span><span class=\"rm-chip\">3D model</span>",
+      "roadmap.s4.title": "Mineral Resource Estimate (MRE)",
+      "roadmap.s4.subtitle": "JORC / NI 43-101 · Resource assessment",
+      "roadmap.s4.desc": "Collected data is analyzed by an independent Competent Person to JORC or NI 43-101 international standards. Deposit volume, grade and confidence category are reported.",
+      "roadmap.s4.items": "<li>Data quality check: QA/QC, twin holes</li><li>Statistical analysis: variogram, geostatistics</li><li>Block model and kriging interpolation</li><li>Tonnage-grade calculation: Inferred → Indicated → Measured</li><li>Independent review by a Competent Person</li><li>Publication of the official MRE report</li>",
+      "roadmap.s4.result": "Confirmed mineral resource: by category, tonnage and grade",
+      "roadmap.s4.chips": "<span class=\"rm-chip\">JORC</span><span class=\"rm-chip\">NI 43-101</span><span class=\"rm-chip\">Geostatistics</span>",
+      "roadmap.s5.title": "Scoping Study",
+      "roadmap.s5.subtitle": "Preliminary technical-economic assessment",
+      "roadmap.s5.desc": "Based on the MRE, the overall technical-economic viability of the project is reviewed. Accuracy is low (±35–40%), but answers the key question: is it worth moving to PFS.",
+      "roadmap.s5.items": "<li>Approximate mining method and pit size</li><li>Review of processing technology options</li><li>Infrastructure, water and energy needs assessment</li><li>Approximate capital and operating cost estimate</li><li>Preliminary environmental and social risk review</li><li>NPV, IRR and payback period calculation (±40%)</li>",
+      "roadmap.s5.result": "\"Go / No-Go\" decision and technical scope for PFS",
+      "roadmap.s5.chips": "<span class=\"rm-chip\">PEA</span><span class=\"rm-chip\">±40% accuracy</span><span class=\"rm-chip\">Economic analysis</span>",
+
       "hero.eyebrow": "DGD Consulting · Tashkent, Uzbekistan",
       "hero.title": "Advanced Solutions for Modern <em class=\"not-italic\">Geological Exploration</em> &amp; Mining",
       "hero.subtitle": "Our mission is to contribute to the mineral industry by reliably assessing promising areas and discovering new deposits based on international standards.",
@@ -2100,7 +2451,7 @@
       "about.counter3": "Projects in progress",
       "about.counter4": "QA/QC sample compliance",
 
-      "services.eyebrow": "03 · Services",
+      "services.eyebrow": "04 · Services",
       "services.title": "From Greenfield Exploration to Mine Construction",
       "services.desc": "Each service is delivered to international reporting standards, paired with full chain-of-custody data and a final document that holds up under audit.",
       "services.s1.title": "Geological consulting services",
@@ -2129,7 +2480,7 @@
       "services.btnContact": "Get in touch",
       "services.btnSee": "See how we work",
 
-      "blogs.eyebrow": "04 · Field notes",
+      "blogs.eyebrow": "05 · Field notes",
       "blogs.title": "Latest from the field.",
       "blogs.read": "Read article",
       "blogs.b1.cat": "Method",
@@ -2145,7 +2496,7 @@
       "blogs.b3.title": "JORC-ready: building MRE reports investors actually trust",
       "blogs.b3.desc": "A field-tested checklist for producing MRE documentation that survives technical due diligence — from data validation to competent-person review.",
 
-      "contact.eyebrow": "05 · Get in touch",
+      "contact.eyebrow": "06 · Get in touch",
       "contact.title": "Let's map the <em class=\"not-italic\" style=\"color:#a7f0b8;\">next discovery</em> together.",
       "contact.desc": "Tell us about your project, your terrain, and the decision you're trying to de-risk. We'll respond within one business day.",
       "contact.phone": "Phone",
@@ -2217,6 +2568,41 @@
       "values.v3.desc": "Saha gözlemlerinden nihai sonuçlara kadar — tüm sonuçlar doğru, doğrulanmış ve uluslararası standartlara uygun olarak sunulur.",
       "values.v3.quote": "\"Güvenilir veri — güvenilir ortaklık.\"",
 
+      "roadmap.eyebrow": "03 · Proje Yol Haritası",
+      "roadmap.title": "Proje Yol Haritası",
+      "roadmap.intro": "Konsept doğuşundan maden inşaatının başlamasına kadar — her aşamada hangi işlerin yapıldığı ve hangi sonucun elde edildiği.",
+      "roadmap.resultLabel": "Sonuç",
+      "roadmap.s1.title": "Desktop Study",
+      "roadmap.s1.subtitle": "Veri analizi · Ofis aşaması",
+      "roadmap.s1.desc": "Yeni bir proje veya saha için tüm mevcut veriler — jeolojik haritalar, geçmiş araştırmalar, devlet arşivleri, bilimsel yayınlar — toplanır ve derinlemesine analiz edilir.",
+      "roadmap.s1.items": "<li>Devlet jeoloji fonundan veri talebi</li><li>Mevcut haritalar, raporlar ve sondaj verilerinin incelenmesi</li><li>Bölgesel tektonik ve metalojenik analiz</li><li>GIS ile anomali bölgelerinin belirlenmesi</li><li>Rakip ve komşu projelerin analizi</li>",
+      "roadmap.s1.result": "Hedef alan seçimi için öneri ve sonraki aşama tasarımı",
+      "roadmap.s1.chips": "<span class=\"rm-chip\">Arşiv analizi</span><span class=\"rm-chip\">GIS</span><span class=\"rm-chip\">Bölgesel jeoloji</span>",
+      "roadmap.s2.title": "Targeting",
+      "roadmap.s2.subtitle": "Hedef alanların belirlenmesi · Önceliklendirme",
+      "roadmap.s2.desc": "Desktop Study sonuçlarına göre en umut verici hedef bölgeler belirlenir. Bu aşamada ön saha kontrolleri, jeokimyasal örnekleme ve jeofizik profiller yapılır.",
+      "roadmap.s2.items": "<li>Keşif jeokimyasal örnekleme (stream sediment, float, chip)</li><li>Jeofizik profilleme: manyetik, gravimetrik</li><li>Yüzey yapısal gözlem</li><li>Anomalilerin sıralanması ve öncelikli hedeflerin seçimi</li><li>Saha lojistiği ve güvenlik planı</li>",
+      "roadmap.s2.result": "Öncelikli hedefler listesi ve Exploration programı için temel",
+      "roadmap.s2.chips": "<span class=\"rm-chip\">Jeokimya</span><span class=\"rm-chip\">Jeofizik</span><span class=\"rm-chip\">Keşif</span>",
+      "roadmap.s3.title": "Exploration",
+      "roadmap.s3.subtitle": "Arama · Sondaj · Numune alma",
+      "roadmap.s3.desc": "Hedeflenen alanlarda sistematik arama çalışmaları yapılır. Detay artar: gözlemden sondaja kadar. Bu aşama projenin teknik temelini kurar.",
+      "roadmap.s3.items": "<li>Detaylı jeolojik haritalama (1:5000 – 1:1000)</li><li>Sistematik jeokimyasal örnekleme: trench, chip, channel</li><li>IP, manyetik ve diğer jeofizik araştırmalar</li><li>İlk scout sondaj (auger, RC veya diamond)</li><li>Infill sondaj: veri yoğunluğunun artırılması</li><li>Karot numunelerinin assay laboratuvarına gönderilmesi</li><li>3D jeolojik model oluşturma</li>",
+      "roadmap.s3.result": "Mineralleşme geometrisi, kalite parametreleri ve MRE için veritabanı",
+      "roadmap.s3.chips": "<span class=\"rm-chip\">Sondaj</span><span class=\"rm-chip\">Core logging</span><span class=\"rm-chip\">3D model</span>",
+      "roadmap.s4.title": "Mineral Resource Estimate (MRE)",
+      "roadmap.s4.subtitle": "JORC / NI 43-101 · Kaynak değerlendirmesi",
+      "roadmap.s4.desc": "Toplanan veriler bağımsız Yetkili Kişi (Competent Person) tarafından JORC veya NI 43-101 uluslararası standartlarına göre analiz edilir. Yatak hacmi, tenor ve güvenilirlik kategorisi açıklanır.",
+      "roadmap.s4.items": "<li>Veri kalite kontrolü: QA/QC, twin holes</li><li>İstatistiksel analiz: variogram, jeoistatistik</li><li>Blok model ve kriging enterpolasyonu</li><li>Tonaj-tenor hesabı: Inferred → Indicated → Measured</li><li>Yetkili Kişi tarafından bağımsız inceleme</li><li>Resmi MRE raporunun yayımlanması</li>",
+      "roadmap.s4.result": "Onaylanmış mineral kaynak: kategori, tonaj ve tenor bazında",
+      "roadmap.s4.chips": "<span class=\"rm-chip\">JORC</span><span class=\"rm-chip\">NI 43-101</span><span class=\"rm-chip\">Jeoistatistik</span>",
+      "roadmap.s5.title": "Scoping Study",
+      "roadmap.s5.subtitle": "Ön teknik-ekonomik değerlendirme",
+      "roadmap.s5.desc": "MRE temelinde projenin genel teknik-ekonomik uygulanabilirliği incelenir. Doğruluk düşüktür (±35–40%), ancak temel soruya cevap verir: PFS'e geçmeye değer mi?",
+      "roadmap.s5.items": "<li>Maden çıkarma yöntemi ve ölçek tahmini</li><li>Cevher hazırlama teknolojisi seçeneklerinin değerlendirilmesi</li><li>Altyapı, su ve enerji ihtiyaçlarının değerlendirilmesi</li><li>Sermaye ve işletme maliyetlerinin yaklaşık hesabı</li><li>Çevresel ve sosyal risklerin ön değerlendirmesi</li><li>NPV, IRR ve geri ödeme süresi hesabı (±40% doğruluk)</li>",
+      "roadmap.s5.result": "\"Go / No-Go\" kararı ve PFS için teknik şartname",
+      "roadmap.s5.chips": "<span class=\"rm-chip\">PEA</span><span class=\"rm-chip\">±40% doğruluk</span><span class=\"rm-chip\">Ekonomik analiz</span>",
+
       "hero.eyebrow": "DGD Consulting · Taşkent, Özbekistan",
       "hero.title": "Modern <em class=\"not-italic\">jeolojik araştırma</em> ve madencilik için ileri çözümler",
       "hero.subtitle": "Misyonumuz — uluslararası standartlara dayalı olarak umut vaat eden alanları güvenilir biçimde değerlendirmek ve yeni yataklar keşfederek maden sanayisine katkı sağlamaktır.",
@@ -2237,7 +2623,7 @@
       "about.counter3": "Devam eden projeler",
       "about.counter4": "QA/QC numune uyumluluğu",
 
-      "services.eyebrow": "03 · Hizmetler",
+      "services.eyebrow": "04 · Hizmetler",
       "services.title": "Yeşil Saha Keşfinden Maden İnşaatına",
       "services.desc": "Her hizmet uluslararası raporlama standartlarına göre sunulur, tam veri zinciri ve denetimden geçecek nihai belge eşliğinde.",
       "services.s1.title": "Jeolojik danışmanlık hizmetleri",
@@ -2266,7 +2652,7 @@
       "services.btnContact": "İletişime geç",
       "services.btnSee": "Nasıl çalıştığımızı gör",
 
-      "blogs.eyebrow": "04 · Saha notları",
+      "blogs.eyebrow": "05 · Saha notları",
       "blogs.title": "Sahadan en yeni içerikler.",
       "blogs.read": "Makaleyi oku",
       "blogs.b1.cat": "Yöntem",
@@ -2282,7 +2668,7 @@
       "blogs.b3.title": "JORC'a hazır: yatırımcıların gerçekten güvendiği MRE raporları oluşturma",
       "blogs.b3.desc": "Teknik incelemeden geçen MRE belgelerini üretmek için sahada test edilmiş bir kontrol listesi — veri doğrulamadan yetkili kişi incelemesine.",
 
-      "contact.eyebrow": "05 · İletişim",
+      "contact.eyebrow": "06 · İletişim",
       "contact.title": "<em class=\"not-italic\" style=\"color:#a7f0b8;\">Bir sonraki keşfi</em> birlikte haritalayalım.",
       "contact.desc": "Projeniz, araziniz ve risklerini azaltmaya çalıştığınız karar hakkında bize anlatın. Bir iş günü içinde yanıt veriyoruz.",
       "contact.phone": "Telefon",
