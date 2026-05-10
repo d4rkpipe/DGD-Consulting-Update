@@ -427,6 +427,65 @@
   /* chip */
   .chip{ display:inline-flex; align-items:center; gap:8px; padding:6px 12px; border-radius:999px; font-size:12px; font-family:'JetBrains Mono', monospace; letter-spacing:.05em; }
 
+  /* NEW services cards — outcome + stage chips */
+  .svc-new{
+    background: rgba(255,255,255,0.03);
+    border: 1px solid rgba(255,255,255,0.08);
+    border-radius: 1.5rem;
+    padding: 1.75rem 1.75rem 1.5rem;
+    transition: border-color .3s ease, transform .3s ease;
+  }
+  .svc-new:hover{ border-color: rgba(255,255,255,0.20); transform: translateY(-2px); }
+  .svc-new-icon{
+    width:48px; height:48px; border-radius:14px;
+    background: rgba(255,255,255,0.05);
+    border: 1px solid rgba(255,255,255,0.10);
+    display: grid; place-items: center;
+    color: rgba(255,255,255,0.90);
+    flex-shrink: 0;
+    transition: transform .5s cubic-bezier(.2,.7,.2,1);
+  }
+  .svc-new:hover .svc-new-icon{ transform: rotate(-6deg) scale(1.06); }
+  .svc-new h3{
+    font-size: clamp(18px, 2.2vw, 22px);
+    font-weight: 700; color: #fff; line-height: 1.25;
+  }
+  .svc-new-desc{
+    color: rgba(255,255,255,0.75);
+    font-size: 15px; line-height: 1.7; margin-top: 1rem;
+  }
+  .svc-outcome{
+    background: rgba(0,0,0,0.32);
+    border: 1px solid rgba(255,255,255,0.08);
+    border-radius: 14px;
+    padding: 1rem 1.25rem;
+    margin-top: 1.25rem;
+  }
+  .svc-outcome-label{
+    font-family:'JetBrains Mono', monospace;
+    font-size: 11px; letter-spacing: .15em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.45);
+    margin-bottom: 4px;
+  }
+  .svc-outcome-text{ color:#fff; font-weight:600; font-size:15px; line-height:1.4; }
+
+  .svc-chips{ display:flex; flex-wrap:wrap; gap:8px; margin-top:1.25rem; }
+  .svc-chip{
+    padding: 5px 13px;
+    border-radius: 999px;
+    font-size: 12.5px;
+    font-weight: 500;
+    font-family:'Plus Jakarta Sans', sans-serif;
+  }
+  /* stage chip color variants (match roadmap palette) */
+  .svc-chip.stage-desktop  { background: rgba(207,228,184,0.06); border:1px solid rgba(207,228,184,0.40); color:#cfe4b8; }
+  .svc-chip.stage-target   { background: rgba(244,212,168,0.06); border:1px solid rgba(244,212,168,0.50); color:#f4d4a8; }
+  .svc-chip.stage-explore  { background: rgba(216,237,176,0.06); border:1px solid rgba(216,237,176,0.50); color:#d8edb0; }
+  .svc-chip.stage-mre      { background: rgba(188,224,212,0.06); border:1px solid rgba(188,224,212,0.50); color:#bce0d4; }
+  .svc-chip.stage-scoping  { background: rgba(205,214,240,0.06); border:1px solid rgba(205,214,240,0.50); color:#cdd6f0; }
+  .svc-chip.stage-pfs      { background: rgba(173,200,240,0.06); border:1px solid rgba(173,200,240,0.50); color:#adc8f0; }
+
   /* roadmap cards (loyiha yo'l xaritasi) */
   .rm-card{
     background: rgba(255,255,255,0.03);
@@ -1105,183 +1164,169 @@
       </div>
     </div>
 
-    <!-- service grid -->
-    <div class="grid grid-cols-1 gap-5 md:grid-cols-12 md:gap-6">
-      <!-- 1 -->
-      <article class="svc-card glow-hover md:col-span-6 lg:col-span-4 reveal glass-dark rounded-3xl p-7 relative">
-        <div class="flex items-start justify-between mb-7">
-          <div class="svc-icon" style="background: linear-gradient(135deg, rgba(167,216,178,0.15), rgba(167,216,178,0.04)); border-color: rgba(167,216,178,0.2); color:#cdeed5;">
-            <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M21 15a4 4 0 0 1-4 4H8l-5 3V6a4 4 0 0 1 4-4h10a4 4 0 0 1 4 4v9z"/><circle cx="9" cy="11" r="1"/><circle cx="13" cy="11" r="1"/><circle cx="17" cy="11" r="1"/></svg>
-          </div>
-          <span class="font-mono text-[11px] uppercase tracking-widest text-white/40">01</span>
-        </div>
-        <h3 class="font-display text-2xl font-medium leading-tight mb-3" data-i18n="services.s1.title">Geological consulting services</h3>
-        <p class="text-white/65 text-[14.5px] leading-[1.65]" data-i18n="services.s1.desc">Strategic advisory across project lifecycle — from concept screening and concession due diligence to data-room reviews and independent technical opinion.</p>
-      </article>
+    <!-- service cards — new design: 10 services with OUTCOME + stage chips -->
+    <div class="space-y-5 max-w-[1100px]">
 
-      <!-- 2 -->
-      <article class="svc-card glow-hover md:col-span-6 lg:col-span-4 reveal reveal-delay-1 glass-dark rounded-3xl p-7 relative">
-        <div class="flex items-start justify-between mb-7">
-          <div class="svc-icon" style="background: linear-gradient(135deg, rgba(167,216,178,0.15), rgba(167,216,178,0.04)); border-color: rgba(167,216,178,0.2); color:#cdeed5;">
-            <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6M9 13h6M9 17h6"/></svg>
-          </div>
-          <span class="font-mono text-[11px] uppercase tracking-widest text-white/40">02</span>
-        </div>
-        <h3 class="font-display text-2xl font-medium leading-tight mb-3" data-i18n="services.s2.title">Preparation of comprehensive projects</h3>
-        <p class="text-white/65 text-[14.5px] leading-[1.65]" data-i18n="services.s2.desc">End-to-end exploration project files — geological models, drilling layouts, sampling protocols, budgets and timelines — packaged for permitting and investor review.</p>
-      </article>
-
-      <!-- 3 -->
-      <article class="svc-card glow-hover md:col-span-6 lg:col-span-4 reveal reveal-delay-2 glass-dark rounded-3xl p-7 relative">
-        <div class="flex items-start justify-between mb-7">
-          <div class="svc-icon" style="background: linear-gradient(135deg, rgba(167,216,178,0.15), rgba(167,216,178,0.04)); border-color: rgba(167,216,178,0.2); color:#cdeed5;">
-            <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 2L4 7v10l8 5 8-5V7z"/><path d="M12 22V12M4 7l8 5 8-5"/></svg>
-          </div>
-          <span class="font-mono text-[11px] uppercase tracking-widest text-white/40">03</span>
-        </div>
-        <h3 class="font-display text-2xl font-medium leading-tight mb-3" data-i18n="services.s3.title">Efficient geological exploration works</h3>
-        <p class="text-white/65 text-[14.5px] leading-[1.65]" data-i18n="services.s3.desc">Field execution and supervision of trenching, mapping, and drilling programs — optimized for cost-per-discovery and accelerated decision points.</p>
-      </article>
-
-      <!-- 4 -->
-      <article class="svc-card glow-hover md:col-span-6 lg:col-span-4 reveal glass-dark rounded-3xl p-7 relative">
-        <div class="flex items-start justify-between mb-7">
-          <div class="svc-icon" style="background: linear-gradient(135deg, rgba(167,216,178,0.15), rgba(167,216,178,0.04)); border-color: rgba(167,216,178,0.2); color:#cdeed5;">
-            <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M3 3v18h18"/><path d="M7 14l4-4 4 4 5-6"/></svg>
-          </div>
-          <span class="font-mono text-[11px] uppercase tracking-widest text-white/40">04</span>
-        </div>
-        <h3 class="font-display text-2xl font-medium leading-tight mb-3" data-i18n="services.s4.title">MRE report preparation</h3>
-        <p class="text-white/65 text-[14.5px] leading-[1.65]" data-i18n="services.s4.desc">Mineral Resource Estimation reports prepared to JORC / CIM standards — block modeling, classification, sensitivity analysis and competent-person sign-off.</p>
-      </article>
-
-      <!-- 5 — large card with sub-services -->
-      <article class="svc-card glow-hover md:col-span-12 lg:col-span-8 reveal reveal-delay-1 glass-dark rounded-3xl p-7 relative">
-        <div class="flex items-start justify-between mb-6">
-          <div class="flex items-center gap-4">
-            <div class="svc-icon" style="background: linear-gradient(135deg, rgba(167,216,178,0.15), rgba(167,216,178,0.04)); border-color: rgba(167,216,178,0.2); color:#cdeed5;">
-              <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7S2 12 2 12z"/><circle cx="12" cy="12" r="3"/></svg>
+      <!-- 1: Geological Consulting at Every Project Stage -->
+      <article class="svc-new reveal">
+        <div class="flex items-start gap-4">
+          <span class="svc-new-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="8" y="3" width="8" height="4" rx="1"/><path d="M16 5h2a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V7a2 2 0 0 1 2-2h2"/><path d="m9 13 2 2 4-4"/></svg></span>
+          <div class="flex-1 min-w-0">
+            <h3 data-i18n="services.s1.title">Geological Consulting at Every Project Stage</h3>
+            <p class="svc-new-desc" data-i18n="services.s1.desc">Independent expert advice and technical supervision throughout all phases of geological study — from early-stage target selection through to resource estimation and feasibility.</p>
+            <div class="svc-outcome">
+              <div class="svc-outcome-label" data-i18n="services.outcomeLabel">Outcome</div>
+              <div class="svc-outcome-text" data-i18n="services.s1.outcome">Informed decisions at each milestone; risk reduction through independent technical oversight.</div>
             </div>
-            <h3 class="font-display text-2xl font-medium leading-tight" data-i18n="services.s5.title">Special geological research works</h3>
-          </div>
-          <span class="font-mono text-[11px] uppercase tracking-widest text-white/40">05</span>
-        </div>
-        <p class="text-white/65 text-[14.5px] leading-[1.65] mb-6 max-w-[640px]" data-i18n="services.s5.desc">Specialist studies that complement standard exploration — sharpening targets and de-risking interpretations through multi-method evidence.</p>
-
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
-          <!-- 5.1 -->
-          <div class="rounded-2xl p-4 border border-white/10 bg-white/[0.03] flex items-center gap-4 transition hover:border-white/25 hover:bg-white/[0.06]">
-            <span class="font-mono text-[11px] text-white/40 w-10">5.1</span>
-            <div class="flex-1">
-              <div class="text-white text-[15px] font-medium" data-i18n="services.s5.sub1.title">Geochemical research</div>
-              <div class="text-white/55 text-[13px]" data-i18n="services.s5.sub1.desc">Soil, stream-sediment & rock-chip surveys with multi-element ICP-MS interpretation.</div>
-            </div>
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#cdeed5" stroke-width="1.6"><path d="M9 3h6v4l4 4v8a3 3 0 0 1-3 3H8a3 3 0 0 1-3-3v-8l4-4z"/></svg>
-          </div>
-          <!-- 5.2 -->
-          <div class="rounded-2xl p-4 border border-white/10 bg-white/[0.03] flex items-center gap-4 transition hover:border-white/25 hover:bg-white/[0.06]">
-            <span class="font-mono text-[11px] text-white/40 w-10">5.2</span>
-            <div class="flex-1">
-              <div class="text-white text-[15px] font-medium" data-i18n="services.s5.sub2.title">Geophysical research</div>
-              <div class="text-white/55 text-[13px]" data-i18n="services.s5.sub2.desc">Magnetic, IP/Resistivity, and gravity surveys for sub-surface targeting.</div>
-            </div>
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#cdeed5" stroke-width="1.6"><path d="M3 12h3l3-9 4 18 3-9h5"/></svg>
-          </div>
-          <!-- 5.3 -->
-          <div class="rounded-2xl p-4 border border-white/10 bg-white/[0.03] flex items-center gap-4 transition hover:border-white/25 hover:bg-white/[0.06]">
-            <span class="font-mono text-[11px] text-white/40 w-10">5.3</span>
-            <div class="flex-1">
-              <div class="text-white text-[15px] font-medium" data-i18n="services.s5.sub3.title">Special structural studies</div>
-              <div class="text-white/55 text-[13px]" data-i18n="services.s5.sub3.desc">Detailed fault, fold and shear-zone mapping to constrain mineralization controls.</div>
-            </div>
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#cdeed5" stroke-width="1.6"><path d="M3 20l6-6 4 4 8-8"/><path d="M14 6h7v7"/></svg>
-          </div>
-          <!-- 5.4 -->
-          <div class="rounded-2xl p-4 border border-white/10 bg-white/[0.03] flex items-center gap-4 transition hover:border-white/25 hover:bg-white/[0.06]">
-            <span class="font-mono text-[11px] text-white/40 w-10">5.4</span>
-            <div class="flex-1">
-              <div class="text-white text-[15px] font-medium" data-i18n="services.s5.sub4.title">Satellite image processing</div>
-              <div class="text-white/55 text-[13px]" data-i18n="services.s5.sub4.desc">Multispectral and SAR analysis for alteration mapping and lineament extraction.</div>
-            </div>
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#cdeed5" stroke-width="1.6"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3a14 14 0 0 1 0 18M12 3a14 14 0 0 0 0 18"/></svg>
-          </div>
-          <!-- 5.5 — AI / ML -->
-          <div class="ai-card md:col-span-2 rounded-2xl p-5 border border-white/10 bg-white/[0.03] flex items-center gap-4 relative overflow-hidden cursor-pointer transition">
-            <div class="ai-glow"></div>
-            <!-- neural net animated bg -->
-            <svg class="neural" viewBox="0 0 600 120" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
-              <defs>
-                <linearGradient id="nnLine" x1="0" y1="0" x2="1" y2="0">
-                  <stop offset="0%" stop-color="#16a34a" stop-opacity="0"/>
-                  <stop offset="50%" stop-color="#a7f0b8" stop-opacity="0.9"/>
-                  <stop offset="100%" stop-color="#16a34a" stop-opacity="0"/>
-                </linearGradient>
-              </defs>
-              <!-- topographic contour lines -->
-              <g stroke="#a7f0b8" stroke-width="0.7" fill="none" opacity="0.25">
-                <path d="M0,40 Q150,20 300,40 T600,40"/>
-                <path d="M0,55 Q150,35 300,55 T600,55"/>
-                <path d="M0,70 Q150,50 300,70 T600,70"/>
-                <path d="M0,85 Q150,65 300,85 T600,85"/>
-                <path d="M0,100 Q150,80 300,100 T600,100"/>
-              </g>
-              <!-- nn layers -->
-              <g stroke="url(#nnLine)" stroke-width="1" fill="none" stroke-dasharray="2 4" class="neural-pulse">
-                <line x1="80"  y1="30" x2="220" y2="20"/>
-                <line x1="80"  y1="30" x2="220" y2="60"/>
-                <line x1="80"  y1="30" x2="220" y2="100"/>
-                <line x1="80"  y1="60" x2="220" y2="20"/>
-                <line x1="80"  y1="60" x2="220" y2="60"/>
-                <line x1="80"  y1="60" x2="220" y2="100"/>
-                <line x1="80"  y1="90" x2="220" y2="20"/>
-                <line x1="80"  y1="90" x2="220" y2="60"/>
-                <line x1="80"  y1="90" x2="220" y2="100"/>
-                <line x1="220" y1="20" x2="380" y2="40"/>
-                <line x1="220" y1="20" x2="380" y2="80"/>
-                <line x1="220" y1="60" x2="380" y2="40"/>
-                <line x1="220" y1="60" x2="380" y2="80"/>
-                <line x1="220" y1="100" x2="380" y2="40"/>
-                <line x1="220" y1="100" x2="380" y2="80"/>
-                <line x1="380" y1="40" x2="520" y2="60"/>
-                <line x1="380" y1="80" x2="520" y2="60"/>
-              </g>
-              <g fill="#a7f0b8">
-                <circle class="neural-node" cx="80"  cy="30"  r="2.4"/>
-                <circle class="neural-node" cx="80"  cy="60"  r="2.4" style="animation-delay:.3s"/>
-                <circle class="neural-node" cx="80"  cy="90"  r="2.4" style="animation-delay:.6s"/>
-                <circle class="neural-node" cx="220" cy="20"  r="2.4" style="animation-delay:.2s"/>
-                <circle class="neural-node" cx="220" cy="60"  r="2.4" style="animation-delay:.5s"/>
-                <circle class="neural-node" cx="220" cy="100" r="2.4" style="animation-delay:.8s"/>
-                <circle class="neural-node" cx="380" cy="40"  r="2.4" style="animation-delay:.4s"/>
-                <circle class="neural-node" cx="380" cy="80"  r="2.4" style="animation-delay:.9s"/>
-                <circle class="neural-node" cx="520" cy="60"  r="3.4" style="animation-delay:1.2s"/>
-              </g>
-            </svg>
-
-            <span class="font-mono text-[11px] text-white/40 w-10 relative z-10">5.5</span>
-            <div class="flex-1 relative z-10">
-              <div class="flex items-center gap-2">
-                <div class="text-white text-[15px] font-medium" data-i18n="services.s5.sub5.title">Prediction of new deposits — AI &amp; ML</div>
-                <span class="chip" style="background: rgba(167,240,184,0.15); color:#a7f0b8; border:1px solid rgba(167,240,184,0.25);" data-i18n="services.s5.sub5.badge">NEW</span>
-              </div>
-              <div class="text-white/60 text-[13px]" data-i18n="services.s5.sub5.desc">Random-forest, CNN and gradient-boosting models trained on multi-source geoscience data to rank prospective targets.</div>
-            </div>
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#a7f0b8" stroke-width="1.6" class="relative z-10"><path d="M12 2v4M12 18v4M2 12h4M18 12h4M5 5l3 3M16 16l3 3M5 19l3-3M16 8l3-3"/><circle cx="12" cy="12" r="3"/></svg>
+            <div class="svc-chips" data-i18n="services.s1.chips"><span class="svc-chip stage-desktop">Desktop Study</span><span class="svc-chip stage-target">Targeting</span><span class="svc-chip stage-explore">Exploration</span><span class="svc-chip stage-mre">MRE</span><span class="svc-chip stage-scoping">Scoping</span><span class="svc-chip stage-pfs">PFS/FS</span></div>
           </div>
         </div>
       </article>
 
-      <!-- 6 -->
-      <article class="svc-card glow-hover md:col-span-12 lg:col-span-4 reveal reveal-delay-2 glass-dark rounded-3xl p-7 relative">
-        <div class="flex items-start justify-between mb-7">
-          <div class="svc-icon" style="background: linear-gradient(135deg, rgba(167,216,178,0.15), rgba(167,216,178,0.04)); border-color: rgba(167,216,178,0.2); color:#cdeed5;">
-            <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M9 12l2 2 4-4"/><path d="M21 12c0 5-4 9-9 9s-9-4-9-9 4-9 9-9c2.4 0 4.6.95 6.2 2.5"/></svg>
+      <!-- 2: Comprehensive Project Documentation -->
+      <article class="svc-new reveal reveal-delay-1">
+        <div class="flex items-start gap-4">
+          <span class="svc-new-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="9" y1="13" x2="15" y2="13"/><line x1="9" y1="17" x2="15" y2="17"/></svg></span>
+          <div class="flex-1 min-w-0">
+            <h3 data-i18n="services.s2.title">Comprehensive Project Documentation</h3>
+            <p class="svc-new-desc" data-i18n="services.s2.desc">Preparation of full project packages including technical programmes, work schedules, budget estimates, and regulatory submissions aligned with national and international requirements.</p>
+            <div class="svc-outcome">
+              <div class="svc-outcome-label" data-i18n="services.outcomeLabel">Outcome</div>
+              <div class="svc-outcome-text" data-i18n="services.s2.outcome">Investment-ready documentation; smooth permitting and stakeholder approval.</div>
+            </div>
+            <div class="svc-chips" data-i18n="services.s2.chips"><span class="svc-chip stage-desktop">Desktop Study</span><span class="svc-chip stage-target">Targeting</span><span class="svc-chip stage-explore">Exploration</span><span class="svc-chip stage-scoping">Scoping</span><span class="svc-chip stage-pfs">PFS/FS</span></div>
           </div>
-          <span class="font-mono text-[11px] uppercase tracking-widest text-white/40">06</span>
         </div>
-        <h3 class="font-display text-2xl font-medium leading-tight mb-3" data-i18n="services.s6.title">QA/QC &amp; CRM support</h3>
-        <p class="text-white/65 text-[14.5px] leading-[1.65]" data-i18n="services.s6.desc">Independent oversight of sampling, lab performance and CRM/blank/duplicate insertion programs — keeping data audit-ready from day one.</p>
       </article>
+
+      <!-- 3: Trenching & Drilling — Exploration Execution -->
+      <article class="svc-new reveal reveal-delay-2">
+        <div class="flex items-start gap-4">
+          <span class="svc-new-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="3" width="12" height="12" rx="2"/><path d="M3 9h6v12H3z"/></svg></span>
+          <div class="flex-1 min-w-0">
+            <h3 data-i18n="services.s3.title">Trenching &amp; Drilling — Exploration Execution</h3>
+            <p class="svc-new-desc" data-i18n="services.s3.desc">End-to-end management of trenching and drilling campaigns: hole design, contractor supervision, safety compliance, and real-time geological control on site.</p>
+            <div class="svc-outcome">
+              <div class="svc-outcome-label" data-i18n="services.outcomeLabel">Outcome</div>
+              <div class="svc-outcome-text" data-i18n="services.s3.outcome">High-quality subsurface data delivered on time and within budget.</div>
+            </div>
+            <div class="svc-chips" data-i18n="services.s3.chips"><span class="svc-chip stage-target">Targeting</span><span class="svc-chip stage-explore">Exploration</span></div>
+          </div>
+        </div>
+      </article>
+
+      <!-- 4: Geological Logging & Sampling (QA/QC) -->
+      <article class="svc-new reveal">
+        <div class="flex items-start gap-4">
+          <span class="svc-new-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3v18h18"/><path d="m7 15 3-3 3 3 5-5"/></svg></span>
+          <div class="flex-1 min-w-0">
+            <h3 data-i18n="services.s4.title">Geological Logging &amp; Sampling (QA/QC)</h3>
+            <p class="svc-new-desc" data-i18n="services.s4.desc">Systematic core and chip logging, structured sampling programmes, and full QA/QC protocols — including standards, blanks, and duplicates — to ensure laboratory data integrity.</p>
+            <div class="svc-outcome">
+              <div class="svc-outcome-label" data-i18n="services.outcomeLabel">Outcome</div>
+              <div class="svc-outcome-text" data-i18n="services.s4.outcome">Audit-ready dataset suitable for JORC / NI 43-101 resource estimation.</div>
+            </div>
+            <div class="svc-chips" data-i18n="services.s4.chips"><span class="svc-chip stage-explore">Exploration</span><span class="svc-chip stage-mre">MRE</span></div>
+          </div>
+        </div>
+      </article>
+
+      <!-- 5: Geochemical Research — Primary & Secondary Halos -->
+      <article class="svc-new reveal reveal-delay-1">
+        <div class="flex items-start gap-4">
+          <span class="svc-new-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M10 2v6.5L4 19a2 2 0 0 0 1.7 3h12.6a2 2 0 0 0 1.7-3L14 8.5V2"/><path d="M8 2h8"/></svg></span>
+          <div class="flex-1 min-w-0">
+            <h3 data-i18n="services.s5.title">Geochemical Research — Primary &amp; Secondary Halos</h3>
+            <p class="svc-new-desc" data-i18n="services.s5.desc">Systematic multi-element geochemical sampling and interpretation of primary (hypogene) and secondary (supergene) dispersion halos to vector towards ore zones.</p>
+            <div class="svc-outcome">
+              <div class="svc-outcome-label" data-i18n="services.outcomeLabel">Outcome</div>
+              <div class="svc-outcome-text" data-i18n="services.s5.outcome">Clear mineralisation targets; reduction of drill-target uncertainty.</div>
+            </div>
+            <div class="svc-chips" data-i18n="services.s5.chips"><span class="svc-chip stage-target">Targeting</span><span class="svc-chip stage-explore">Exploration</span></div>
+          </div>
+        </div>
+      </article>
+
+      <!-- 6: Geophysical Surveys — UAV, Surface & Downhole -->
+      <article class="svc-new reveal reveal-delay-2">
+        <div class="flex items-start gap-4">
+          <span class="svc-new-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12a7 7 0 0 1 7-7"/><path d="M3 12a9 9 0 0 1 9-9"/><circle cx="12" cy="12" r="2"/><path d="M8 16h8"/></svg></span>
+          <div class="flex-1 min-w-0">
+            <h3 data-i18n="services.s6.title">Geophysical Surveys — UAV, Surface &amp; Downhole</h3>
+            <p class="svc-new-desc" data-i18n="services.s6.desc">Airborne (UAV-mounted) magnetics and radiometrics, ground-based IP, gravity and EM surveys, and downhole geophysics for structural and lithological interpretation.</p>
+            <div class="svc-outcome">
+              <div class="svc-outcome-label" data-i18n="services.outcomeLabel">Outcome</div>
+              <div class="svc-outcome-text" data-i18n="services.s6.outcome">Subsurface geological model validated by independent physical measurements.</div>
+            </div>
+            <div class="svc-chips" data-i18n="services.s6.chips"><span class="svc-chip stage-desktop">Desktop Study</span><span class="svc-chip stage-target">Targeting</span><span class="svc-chip stage-explore">Exploration</span></div>
+          </div>
+        </div>
+      </article>
+
+      <!-- 7: Structural Geology & Satellite Image Analysis -->
+      <article class="svc-new reveal">
+        <div class="flex items-start gap-4">
+          <span class="svc-new-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="5" r="2"/><circle cx="5" cy="19" r="2"/><circle cx="19" cy="19" r="2"/><path d="M12 7v3l-5 7M12 10l5 7"/></svg></span>
+          <div class="flex-1 min-w-0">
+            <h3 data-i18n="services.s7.title">Structural Geology &amp; Satellite Image Analysis</h3>
+            <p class="svc-new-desc" data-i18n="services.s7.desc">Detailed structural mapping, kinematic analysis, and remote sensing — including multispectral and hyperspectral satellite imagery processing — to define ore-controlling structures.</p>
+            <div class="svc-outcome">
+              <div class="svc-outcome-label" data-i18n="services.outcomeLabel">Outcome</div>
+              <div class="svc-outcome-text" data-i18n="services.s7.outcome">Structural framework guiding drill targeting and deposit geometry interpretation.</div>
+            </div>
+            <div class="svc-chips" data-i18n="services.s7.chips"><span class="svc-chip stage-desktop">Desktop Study</span><span class="svc-chip stage-target">Targeting</span><span class="svc-chip stage-explore">Exploration</span></div>
+          </div>
+        </div>
+      </article>
+
+      <!-- 8: Thin & Polished Section Preparation & Petrography -->
+      <article class="svc-new reveal reveal-delay-1">
+        <div class="flex items-start gap-4">
+          <span class="svc-new-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="m12 2 8 7-8 13L4 9z"/><path d="m4 9 8 4 8-4M9 6l3 3 3-3"/></svg></span>
+          <div class="flex-1 min-w-0">
+            <h3 data-i18n="services.s8.title">Thin &amp; Polished Section Preparation &amp; Petrography</h3>
+            <p class="svc-new-desc" data-i18n="services.s8.desc">Preparation of thin and polished sections from drill core or surface samples, followed by mineralogical and petrographic analysis under reflected and transmitted light.</p>
+            <div class="svc-outcome">
+              <div class="svc-outcome-label" data-i18n="services.outcomeLabel">Outcome</div>
+              <div class="svc-outcome-text" data-i18n="services.s8.outcome">Mineral paragenesis, alteration zonation, and ore mineralogy characterised.</div>
+            </div>
+            <div class="svc-chips" data-i18n="services.s8.chips"><span class="svc-chip stage-target">Targeting</span><span class="svc-chip stage-explore">Exploration</span><span class="svc-chip stage-mre">MRE</span></div>
+          </div>
+        </div>
+      </article>
+
+      <!-- 9: 3D Geological Modelling -->
+      <article class="svc-new reveal reveal-delay-2">
+        <div class="flex items-start gap-4">
+          <span class="svc-new-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="m12 2 9 5v10l-9 5-9-5V7z"/><path d="M12 22V12M3 7l9 5M21 7l-9 5"/></svg></span>
+          <div class="flex-1 min-w-0">
+            <h3 data-i18n="services.s9.title">3D Geological Modelling</h3>
+            <p class="svc-new-desc" data-i18n="services.s9.desc">Construction of lithological, structural, and mineralisation solid models using industry-standard software (Leapfrog, Surpac or equivalent), integrating all available drill and surface data.</p>
+            <div class="svc-outcome">
+              <div class="svc-outcome-label" data-i18n="services.outcomeLabel">Outcome</div>
+              <div class="svc-outcome-text" data-i18n="services.s9.outcome">Visual and quantitative geological framework; direct input to resource estimation.</div>
+            </div>
+            <div class="svc-chips" data-i18n="services.s9.chips"><span class="svc-chip stage-explore">Exploration</span><span class="svc-chip stage-mre">MRE</span><span class="svc-chip stage-scoping">Scoping</span></div>
+          </div>
+        </div>
+      </article>
+
+      <!-- 10: AI & ML — Predictive Deposit Modelling -->
+      <article class="svc-new reveal reveal-delay-3">
+        <div class="flex items-start gap-4">
+          <span class="svc-new-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2a4 4 0 0 0-4 4 3 3 0 0 0-3 3 3 3 0 0 0 1 5.5A3.5 3.5 0 0 0 9 21h6a3.5 3.5 0 0 0 3-6.5 3 3 0 0 0 1-5.5 3 3 0 0 0-3-3 4 4 0 0 0-4-4z"/><path d="M9 10v2M15 10v2M12 16h.01"/></svg></span>
+          <div class="flex-1 min-w-0">
+            <h3 data-i18n="services.s10.title">AI &amp; ML — Predictive Deposit Modelling</h3>
+            <p class="svc-new-desc" data-i18n="services.s10.desc">Application of machine learning algorithms and AI-driven spatial analysis to predict new deposit locations, rank exploration targets, and optimise drill-hole placement.</p>
+            <div class="svc-outcome">
+              <div class="svc-outcome-label" data-i18n="services.outcomeLabel">Outcome</div>
+              <div class="svc-outcome-text" data-i18n="services.s10.outcome">Data-driven target generation; higher exploration success rate with lower cost per discovery.</div>
+            </div>
+            <div class="svc-chips" data-i18n="services.s10.chips"><span class="svc-chip stage-desktop">Desktop Study</span><span class="svc-chip stage-target">Targeting</span><span class="svc-chip stage-explore">Exploration</span></div>
+          </div>
+        </div>
+      </article>
+
     </div>
 
     <!-- bottom CTA -->
@@ -2110,29 +2155,37 @@
       "services.eyebrow": "04 · Xizmatlar",
       "services.title": "Greenfield Exploration'dan Mine Construction'gacha",
       "services.desc": "Har bir xizmat xalqaro hisobot standartlariga muvofiq taqdim etiladi, to'liq saqlash zanjiri ma'lumotlari va auditdan o'tadigan yakuniy hujjat bilan birga.",
-      "services.s1.title": "Geologik konsalting xizmatlari",
-      "services.s1.desc": "Loyiha hayotiy davri bo'ylab strategik maslahat — kontseptual skrining va konsessiya tekshirishidan tortib data-room sharhlari va mustaqil texnik fikrgacha.",
-      "services.s2.title": "Kompleks loyihalarni tayyorlash",
-      "services.s2.desc": "Tadqiqot loyihalari uchun to'liq fayllar — geologik modellar, burg'ulash sxemalari, namuna olish protokollari, byudjetlar va muddatlar — ruxsat olish va investorlar uchun tayyor.",
-      "services.s3.title": "Samarali geologik tadqiqot ishlari",
-      "services.s3.desc": "Trench ochish, xaritalash va burg'ulash dasturlarini dala bajarish va nazorat qilish — kashfiyot xarajati va tezroq qaror qabul qilish uchun optimallashtirilgan.",
-      "services.s4.title": "MRE hisobot tayyorlash",
-      "services.s4.desc": "JORC / CIM standartlariga muvofiq tayyorlangan Mineral Resurs Baholash hisobotlari — blok modellashtirish, tasniflash, sezgirlik tahlili va kompetent shaxs imzosi.",
-      "services.s5.title": "Maxsus geologik tadqiqot ishlari",
-      "services.s5.desc": "Standart tadqiqotni to'ldiruvchi ixtisoslashgan tadqiqotlar — ko'p usulli dalillar orqali maqsadlarni aniqlashtirish va talqinlarni xavfsizlantirish.",
-      "services.s5.sub1.title": "Geokimyoviy tadqiqot",
-      "services.s5.sub1.desc": "Tuproq, daryo cho'kindi va tosh-bo'lakli surveylar ICP-MS ko'p elementli talqini bilan.",
-      "services.s5.sub2.title": "Geofizik tadqiqot",
-      "services.s5.sub2.desc": "Yer osti maqsadlash uchun magnit, IP/qarshilik va tortishish surveylari.",
-      "services.s5.sub3.title": "Maxsus strukturaviy tadqiqotlar",
-      "services.s5.sub3.desc": "Mineralizatsiya nazoratini cheklash uchun yoriq, burma va siljish zonalarini batafsil xaritalash.",
-      "services.s5.sub4.title": "Sun'iy yo'ldosh tasvirini qayta ishlash",
-      "services.s5.sub4.desc": "O'zgarishlarni xaritalash va lineamentlarni ajratib olish uchun multispektral va SAR tahlili.",
-      "services.s5.sub5.title": "Yangi konlarni bashorat qilish — AI &amp; ML",
-      "services.s5.sub5.badge": "YANGI",
-      "services.s5.sub5.desc": "Ko'p manbali geologiya ma'lumotlarida o'rgatilgan Random-forest, CNN va gradient-boosting modellari istiqbolli maqsadlarni baholash uchun.",
-      "services.s6.title": "QA/QC va CRM qo'llab-quvvatlash",
-      "services.s6.desc": "Namuna olish, laboratoriya samaradorligi va CRM/blank/duplikat dasturlarining mustaqil nazorati — birinchi kundan boshlab auditga tayyor ma'lumotlar.",
+      "services.outcomeLabel": "Natija",
+      "services.s1.title": "Loyihaning har bir bosqichida geologik konsalting",
+      "services.s1.desc": "Geologik tadqiqotning barcha bosqichlarida mustaqil ekspert maslahati va texnik nazorat — dastlabki maqsad tanlashdan resurs baholash va texnik-iqtisodiy asoslashgacha.",
+      "services.s1.outcome": "Har bir bosqichda asoslangan qarorlar; mustaqil texnik nazorat orqali risklarni kamaytirish.",
+      "services.s2.title": "Loyihaning to'liq hujjatlashtirilishi",
+      "services.s2.desc": "Texnik dasturlar, ish jadvallari, byudjet hisoblari va milliy hamda xalqaro talablarga mos ruxsat hujjatlarini o'z ichiga olgan to'liq loyiha paketlarini tayyorlash.",
+      "services.s2.outcome": "Investorlar uchun tayyor hujjatlar; ruxsat olish va manfaatdor tomonlar tasdig'ining oson kechishi.",
+      "services.s3.title": "Trench ochish va burg'ilash — qidiruv ishlarini bajarish",
+      "services.s3.desc": "Trench ochish va burg'ilash kampaniyalarini boshidan oxirigacha boshqarish: quduq dizayni, pudratchini nazorat qilish, xavfsizlik talablariga rioya, dalada real vaqt geologik nazorati.",
+      "services.s3.outcome": "Yuqori sifatli yer osti ma'lumotlari belgilangan muddat va byudjet doirasida.",
+      "services.s4.title": "Geologik logging va namuna olish (QA/QC)",
+      "services.s4.desc": "Tizimli kern va chip logging, tuzilgan namunalash dasturlari va to'liq QA/QC protokollari — standartlar, blanklar va dublikatlar — laboratoriya ma'lumotlari ishonchligini ta'minlash.",
+      "services.s4.outcome": "JORC / NI 43-101 resurs baholash uchun mos, auditga tayyor ma'lumotlar bazasi.",
+      "services.s5.title": "Geokimyoviy tadqiqot — birlamchi va ikkilamchi oreol",
+      "services.s5.desc": "Birlamchi (hypogene) va ikkilamchi (supergene) dispersiya oreollarini aniqlash uchun tizimli ko'p elementli geokimyoviy namunalash va talqin — ruda zonalariga yo'l ko'rsatish.",
+      "services.s5.outcome": "Aniq minerallashtirish maqsadlari; burg'ulash maqsadlarining noaniqligini kamaytirish.",
+      "services.s6.title": "Geofizik tadqiqotlar — UAV, yer usti va quduq ichi",
+      "services.s6.desc": "Havoda (UAV-da) magnit va radiometriya, yer usti IP, gravitatsion va EM tadqiqotlari, struktura va litologiyani talqin qilish uchun quduq ichi geofizikasi.",
+      "services.s6.outcome": "Mustaqil fizik o'lchovlar bilan tasdiqlangan yer osti geologik modeli.",
+      "services.s7.title": "Strukturaviy geologiya va sun'iy yo'ldosh tasvirini tahlili",
+      "services.s7.desc": "Batafsil strukturaviy xaritalash, kinematik tahlil va masofadan zondlash — multispektral va giperspektral sun'iy yo'ldosh tasvirini qayta ishlash — ruda nazorat qiluvchi tuzilmalarni aniqlash.",
+      "services.s7.outcome": "Burg'ulash maqsadini belgilash va kon geometriyasini talqin qilishga yo'l ko'rsatuvchi strukturaviy asos.",
+      "services.s8.title": "Yupqa va silliqlangan kesim tayyorlash va petrografiya",
+      "services.s8.desc": "Burg'ulash kerni yoki yer usti namunalaridan yupqa va silliqlangan kesimlar tayyorlash, so'ngra qaytaruvchi va o'tuvchi yorug'lik ostida mineralogik va petrografik tahlil.",
+      "services.s8.outcome": "Mineral paragenez, o'zgarish zonalanishi va ruda mineralogiyasi tavsiflangan.",
+      "services.s9.title": "3D geologik modellashtirish",
+      "services.s9.desc": "Sanoatda qabul qilingan dasturiy ta'minot (Leapfrog, Surpac yoki ekvivalent) yordamida litologik, strukturaviy va minerallashtirish solid modellarini qurish — barcha mavjud burg'ulash va yer usti ma'lumotlarini integratsiya qilish.",
+      "services.s9.outcome": "Vizual va miqdoriy geologik asos; resurs baholashga bevosita kirish ma'lumoti.",
+      "services.s10.title": "AI va ML — bashoratli kon modellashtirish",
+      "services.s10.desc": "Mashinaviy o'qitish algoritmlari va AI-yo'naltirilgan fazoviy tahlilni qo'llash — yangi kon joylashuvini bashorat qilish, qidiruv maqsadlarini saralash va burg'ulash joyini optimallashtirish.",
+      "services.s10.outcome": "Ma'lumotlarga asoslangan maqsad yaratish; kashfiyot xarajati past, muvaffaqiyat darajasi yuqori.",
       "services.btnContact": "Bog'lanish",
       "services.btnSee": "Qanday ishlashimizni ko'ring",
 
@@ -2282,29 +2335,37 @@
       "services.eyebrow": "04 · Услуги",
       "services.title": "От разведки новых месторождений до строительства рудника",
       "services.desc": "Каждая услуга предоставляется в соответствии с международными стандартами отчётности, с полной цепочкой ответственности за данные и финальным документом, выдерживающим аудит.",
-      "services.s1.title": "Геологические консультационные услуги",
-      "services.s1.desc": "Стратегические консультации на всём жизненном цикле проекта — от концептуального скрининга и due diligence концессий до обзора data-room и независимого технического заключения.",
-      "services.s2.title": "Подготовка комплексных проектов",
-      "services.s2.desc": "Полные файлы разведочных проектов — геологические модели, схемы бурения, протоколы опробования, бюджеты и сроки — упакованные для согласований и инвесторов.",
-      "services.s3.title": "Эффективные геологоразведочные работы",
-      "services.s3.desc": "Полевое выполнение и контроль программ канав, картирования и бурения — оптимизация по стоимости открытия и ускорение точек принятия решений.",
-      "services.s4.title": "Подготовка отчёта MRE",
-      "services.s4.desc": "Отчёты по оценке минеральных ресурсов по стандартам JORC / CIM — блочное моделирование, классификация, анализ чувствительности и подпись компетентного лица.",
-      "services.s5.title": "Специальные геологические исследования",
-      "services.s5.desc": "Специализированные исследования, дополняющие стандартную разведку — уточнение целей и снижение рисков интерпретации через мульти-методические доказательства.",
-      "services.s5.sub1.title": "Геохимические исследования",
-      "services.s5.sub1.desc": "Опробование почв, донных отложений и сколов с многоэлементной интерпретацией ICP-MS.",
-      "services.s5.sub2.title": "Геофизические исследования",
-      "services.s5.sub2.desc": "Магнитная, ВП/сопротивление и гравиразведка для подповерхностного нацеливания.",
-      "services.s5.sub3.title": "Специальные структурные исследования",
-      "services.s5.sub3.desc": "Детальное картирование разломов, складок и зон сдвига для контроля минерализации.",
-      "services.s5.sub4.title": "Обработка спутниковых снимков",
-      "services.s5.sub4.desc": "Мультиспектральный и SAR-анализ для картирования изменений и линеаментов.",
-      "services.s5.sub5.title": "Прогноз новых месторождений — AI &amp; ML",
-      "services.s5.sub5.badge": "НОВОЕ",
-      "services.s5.sub5.desc": "Модели Random-forest, CNN и градиентного бустинга, обученные на мультисурс-данных, для ранжирования перспективных целей.",
-      "services.s6.title": "QA/QC и поддержка CRM",
-      "services.s6.desc": "Независимый надзор за опробованием, лабораторной работой и программами вставок CRM/blank/duplicate — данные готовы к аудиту с первого дня.",
+      "services.outcomeLabel": "Результат",
+      "services.s1.title": "Геологический консалтинг на каждом этапе проекта",
+      "services.s1.desc": "Независимая экспертная консультация и технический надзор на всех этапах геологических работ — от выбора целей на ранней стадии до оценки ресурсов и технико-экономической оценки.",
+      "services.s1.outcome": "Обоснованные решения на каждом этапе; снижение рисков благодаря независимому техническому контролю.",
+      "services.s2.title": "Комплексная проектная документация",
+      "services.s2.desc": "Подготовка полных проектных пакетов: технические программы, графики работ, бюджетные оценки и регуляторные документы, соответствующие национальным и международным требованиям.",
+      "services.s2.outcome": "Документация, готовая к инвестициям; беспрепятственное получение разрешений и одобрения заинтересованных сторон.",
+      "services.s3.title": "Канавы и бурение — выполнение разведки",
+      "services.s3.desc": "Управление кампаниями канавных и буровых работ «под ключ»: проектирование скважин, контроль подрядчиков, соблюдение норм безопасности и геологический контроль в реальном времени.",
+      "services.s3.outcome": "Качественные подповерхностные данные в срок и в рамках бюджета.",
+      "services.s4.title": "Геологическое описание и опробование (QA/QC)",
+      "services.s4.desc": "Систематическое описание керна и шламов, структурированные программы опробования и полные протоколы QA/QC — стандарты, бланки и дубликаты — для обеспечения целостности лабораторных данных.",
+      "services.s4.outcome": "Готовый к аудиту набор данных, пригодный для оценки ресурсов по JORC / NI 43-101.",
+      "services.s5.title": "Геохимические исследования — первичные и вторичные ореолы",
+      "services.s5.desc": "Систематическое многоэлементное геохимическое опробование и интерпретация первичных (гипогенных) и вторичных (супергенных) ореолов рассеяния для выхода на рудные зоны.",
+      "services.s5.outcome": "Чёткие цели минерализации; снижение неопределённости буровых целей.",
+      "services.s6.title": "Геофизические съёмки — БПЛА, наземные и скважинные",
+      "services.s6.desc": "Аэромагнитные и радиометрические съёмки с БПЛА, наземные ВП, гравиметрия и ЭМ, а также скважинная геофизика для структурной и литологической интерпретации.",
+      "services.s6.outcome": "Подповерхностная геологическая модель, подтверждённая независимыми физическими измерениями.",
+      "services.s7.title": "Структурная геология и анализ спутниковых снимков",
+      "services.s7.desc": "Детальное структурное картирование, кинематический анализ и дистанционное зондирование — включая обработку мультиспектральных и гиперспектральных снимков — для определения рудоконтролирующих структур.",
+      "services.s7.outcome": "Структурный каркас, направляющий выбор буровых целей и интерпретацию геометрии месторождения.",
+      "services.s8.title": "Подготовка шлифов, аншлифов и петрография",
+      "services.s8.desc": "Подготовка прозрачных и полированных шлифов из бурового керна или поверхностных проб, с последующим минералогическим и петрографическим анализом в проходящем и отражённом свете.",
+      "services.s8.outcome": "Минеральный парагенезис, зональность изменений и рудная минералогия охарактеризованы.",
+      "services.s9.title": "3D геологическое моделирование",
+      "services.s9.desc": "Построение литологических, структурных и рудных тел в индустриальном ПО (Leapfrog, Surpac или аналоги), интегрируя все доступные буровые и поверхностные данные.",
+      "services.s9.outcome": "Визуальный и количественный геологический каркас; прямой ввод данных для оценки ресурсов.",
+      "services.s10.title": "AI и ML — предиктивное моделирование месторождений",
+      "services.s10.desc": "Применение алгоритмов машинного обучения и AI-пространственного анализа для прогноза новых месторождений, ранжирования целей и оптимизации расположения скважин.",
+      "services.s10.outcome": "Генерация целей на основе данных; более высокий процент успеха при меньшей стоимости открытия.",
       "services.btnContact": "Связаться",
       "services.btnSee": "Как мы работаем",
 
@@ -2454,29 +2515,37 @@
       "services.eyebrow": "04 · Services",
       "services.title": "From Greenfield Exploration to Mine Construction",
       "services.desc": "Each service is delivered to international reporting standards, paired with full chain-of-custody data and a final document that holds up under audit.",
-      "services.s1.title": "Geological consulting services",
-      "services.s1.desc": "Strategic advisory across project lifecycle — from concept screening and concession due diligence to data-room reviews and independent technical opinion.",
-      "services.s2.title": "Preparation of comprehensive projects",
-      "services.s2.desc": "End-to-end exploration project files — geological models, drilling layouts, sampling protocols, budgets and timelines — packaged for permitting and investor review.",
-      "services.s3.title": "Efficient geological exploration works",
-      "services.s3.desc": "Field execution and supervision of trenching, mapping, and drilling programs — optimized for cost-per-discovery and accelerated decision points.",
-      "services.s4.title": "MRE report preparation",
-      "services.s4.desc": "Mineral Resource Estimation reports prepared to JORC / CIM standards — block modeling, classification, sensitivity analysis and competent-person sign-off.",
-      "services.s5.title": "Special geological research works",
-      "services.s5.desc": "Specialist studies that complement standard exploration — sharpening targets and de-risking interpretations through multi-method evidence.",
-      "services.s5.sub1.title": "Geochemical research",
-      "services.s5.sub1.desc": "Soil, stream-sediment & rock-chip surveys with multi-element ICP-MS interpretation.",
-      "services.s5.sub2.title": "Geophysical research",
-      "services.s5.sub2.desc": "Magnetic, IP/Resistivity, and gravity surveys for sub-surface targeting.",
-      "services.s5.sub3.title": "Special structural studies",
-      "services.s5.sub3.desc": "Detailed fault, fold and shear-zone mapping to constrain mineralization controls.",
-      "services.s5.sub4.title": "Satellite image processing",
-      "services.s5.sub4.desc": "Multispectral and SAR analysis for alteration mapping and lineament extraction.",
-      "services.s5.sub5.title": "Prediction of new deposits — AI &amp; ML",
-      "services.s5.sub5.badge": "NEW",
-      "services.s5.sub5.desc": "Random-forest, CNN and gradient-boosting models trained on multi-source geoscience data to rank prospective targets.",
-      "services.s6.title": "QA/QC &amp; CRM support",
-      "services.s6.desc": "Independent oversight of sampling, lab performance and CRM/blank/duplicate insertion programs — keeping data audit-ready from day one.",
+      "services.outcomeLabel": "Outcome",
+      "services.s1.title": "Geological Consulting at Every Project Stage",
+      "services.s1.desc": "Independent expert advice and technical supervision throughout all phases of geological study — from early-stage target selection through to resource estimation and feasibility.",
+      "services.s1.outcome": "Informed decisions at each milestone; risk reduction through independent technical oversight.",
+      "services.s2.title": "Comprehensive Project Documentation",
+      "services.s2.desc": "Preparation of full project packages including technical programmes, work schedules, budget estimates, and regulatory submissions aligned with national and international requirements.",
+      "services.s2.outcome": "Investment-ready documentation; smooth permitting and stakeholder approval.",
+      "services.s3.title": "Trenching &amp; Drilling — Exploration Execution",
+      "services.s3.desc": "End-to-end management of trenching and drilling campaigns: hole design, contractor supervision, safety compliance, and real-time geological control on site.",
+      "services.s3.outcome": "High-quality subsurface data delivered on time and within budget.",
+      "services.s4.title": "Geological Logging &amp; Sampling (QA/QC)",
+      "services.s4.desc": "Systematic core and chip logging, structured sampling programmes, and full QA/QC protocols — including standards, blanks, and duplicates — to ensure laboratory data integrity.",
+      "services.s4.outcome": "Audit-ready dataset suitable for JORC / NI 43-101 resource estimation.",
+      "services.s5.title": "Geochemical Research — Primary &amp; Secondary Halos",
+      "services.s5.desc": "Systematic multi-element geochemical sampling and interpretation of primary (hypogene) and secondary (supergene) dispersion halos to vector towards ore zones.",
+      "services.s5.outcome": "Clear mineralisation targets; reduction of drill-target uncertainty.",
+      "services.s6.title": "Geophysical Surveys — UAV, Surface &amp; Downhole",
+      "services.s6.desc": "Airborne (UAV-mounted) magnetics and radiometrics, ground-based IP, gravity and EM surveys, and downhole geophysics for structural and lithological interpretation.",
+      "services.s6.outcome": "Subsurface geological model validated by independent physical measurements.",
+      "services.s7.title": "Structural Geology &amp; Satellite Image Analysis",
+      "services.s7.desc": "Detailed structural mapping, kinematic analysis, and remote sensing — including multispectral and hyperspectral satellite imagery processing — to define ore-controlling structures.",
+      "services.s7.outcome": "Structural framework guiding drill targeting and deposit geometry interpretation.",
+      "services.s8.title": "Thin &amp; Polished Section Preparation &amp; Petrography",
+      "services.s8.desc": "Preparation of thin and polished sections from drill core or surface samples, followed by mineralogical and petrographic analysis under reflected and transmitted light.",
+      "services.s8.outcome": "Mineral paragenesis, alteration zonation, and ore mineralogy characterised.",
+      "services.s9.title": "3D Geological Modelling",
+      "services.s9.desc": "Construction of lithological, structural, and mineralisation solid models using industry-standard software (Leapfrog, Surpac or equivalent), integrating all available drill and surface data.",
+      "services.s9.outcome": "Visual and quantitative geological framework; direct input to resource estimation.",
+      "services.s10.title": "AI &amp; ML — Predictive Deposit Modelling",
+      "services.s10.desc": "Application of machine learning algorithms and AI-driven spatial analysis to predict new deposit locations, rank exploration targets, and optimise drill-hole placement.",
+      "services.s10.outcome": "Data-driven target generation; higher exploration success rate with lower cost per discovery.",
       "services.btnContact": "Get in touch",
       "services.btnSee": "See how we work",
 
@@ -2626,29 +2695,37 @@
       "services.eyebrow": "04 · Hizmetler",
       "services.title": "Yeşil Saha Keşfinden Maden İnşaatına",
       "services.desc": "Her hizmet uluslararası raporlama standartlarına göre sunulur, tam veri zinciri ve denetimden geçecek nihai belge eşliğinde.",
-      "services.s1.title": "Jeolojik danışmanlık hizmetleri",
-      "services.s1.desc": "Proje yaşam döngüsü boyunca stratejik danışmanlık — kavram taraması ve imtiyaz due diligence'tan veri-odası incelemelerine ve bağımsız teknik görüşe kadar.",
-      "services.s2.title": "Kapsamlı proje hazırlama",
-      "services.s2.desc": "Uçtan uca araştırma proje dosyaları — jeolojik modeller, sondaj düzenleri, numune protokolleri, bütçeler ve zaman çizelgeleri — izin ve yatırımcı incelemesi için paketlenmiş.",
-      "services.s3.title": "Verimli jeolojik araştırma çalışmaları",
-      "services.s3.desc": "Hendek, haritalama ve sondaj programlarının saha uygulaması ve denetimi — keşif başına maliyet ve hızlandırılmış karar noktaları için optimize edilmiş.",
-      "services.s4.title": "MRE rapor hazırlama",
-      "services.s4.desc": "JORC / CIM standartlarına göre hazırlanan Maden Kaynak Tahmini raporları — blok modelleme, sınıflandırma, hassasiyet analizi ve yetkili kişi imzası.",
-      "services.s5.title": "Özel jeolojik araştırma çalışmaları",
-      "services.s5.desc": "Standart araştırmayı tamamlayan uzman çalışmalar — çoklu yöntemli kanıtlar yoluyla hedefleri keskinleştirme ve yorumların risklerini azaltma.",
-      "services.s5.sub1.title": "Jeokimyasal araştırma",
-      "services.s5.sub1.desc": "Toprak, dere sediman ve kaya parçası araştırmaları, çok elementli ICP-MS yorumlamasıyla.",
-      "services.s5.sub2.title": "Jeofizik araştırma",
-      "services.s5.sub2.desc": "Yer altı hedefleme için manyetik, IP/dirençölçüm ve gravite araştırmaları.",
-      "services.s5.sub3.title": "Özel yapısal çalışmalar",
-      "services.s5.sub3.desc": "Mineralleşme kontrollerini sınırlamak için ayrıntılı fay, kıvrım ve makaslama bölgesi haritalaması.",
-      "services.s5.sub4.title": "Uydu görüntü işleme",
-      "services.s5.sub4.desc": "Bozunum haritalaması ve lineament çıkarımı için multispektral ve SAR analizi.",
-      "services.s5.sub5.title": "Yeni yatak tahmini — AI &amp; ML",
-      "services.s5.sub5.badge": "YENİ",
-      "services.s5.sub5.desc": "Çok kaynaklı jeo-bilim verileri üzerinde eğitilmiş Random-forest, CNN ve gradient-boosting modelleri ile umut verici hedefleri sıralama.",
-      "services.s6.title": "QA/QC ve CRM desteği",
-      "services.s6.desc": "Numune alımı, laboratuvar performansı ve CRM/blank/duplicate yerleştirme programlarının bağımsız denetimi — ilk günden itibaren denetime hazır veriler.",
+      "services.outcomeLabel": "Sonuç",
+      "services.s1.title": "Her Proje Aşamasında Jeolojik Danışmanlık",
+      "services.s1.desc": "Erken aşama hedef seçiminden kaynak tahmini ve fizibiliteye kadar tüm jeolojik çalışma aşamalarında bağımsız uzman tavsiyesi ve teknik denetim.",
+      "services.s1.outcome": "Her aşamada bilinçli kararlar; bağımsız teknik gözetim yoluyla risk azaltma.",
+      "services.s2.title": "Kapsamlı Proje Dokümantasyonu",
+      "services.s2.desc": "Teknik programlar, iş takvimleri, bütçe tahminleri ve ulusal ve uluslararası gereksinimlere uygun düzenleyici belgeleri içeren tam proje paketlerinin hazırlanması.",
+      "services.s2.outcome": "Yatırıma hazır dokümantasyon; sorunsuz izin ve paydaş onayı.",
+      "services.s3.title": "Hendek ve Sondaj — Keşif Yürütme",
+      "services.s3.desc": "Hendek ve sondaj kampanyalarının uçtan uca yönetimi: kuyu tasarımı, yüklenici denetimi, güvenlik uyumu ve sahada gerçek zamanlı jeolojik kontrol.",
+      "services.s3.outcome": "Zamanında ve bütçe dahilinde yüksek kaliteli yeraltı verisi.",
+      "services.s4.title": "Jeolojik Loglama ve Örnekleme (QA/QC)",
+      "services.s4.desc": "Sistemli karot ve şlam loglama, yapılandırılmış örnekleme programları ve tam QA/QC protokolleri — standartlar, blanklar ve dubliketler — laboratuvar verisinin bütünlüğünü sağlamak için.",
+      "services.s4.outcome": "JORC / NI 43-101 kaynak tahmini için uygun, denetime hazır veri seti.",
+      "services.s5.title": "Jeokimyasal Araştırma — Birincil ve İkincil Halolar",
+      "services.s5.desc": "Cevher zonlarına yönelmek için sistematik çok elementli jeokimyasal örnekleme ve birincil (hipojen) ve ikincil (süperjen) dağılım halolarının yorumlanması.",
+      "services.s5.outcome": "Net mineralleşme hedefleri; sondaj hedef belirsizliğinin azaltılması.",
+      "services.s6.title": "Jeofizik Araştırmalar — İHA, Yüzey ve Kuyu İçi",
+      "services.s6.desc": "Havadan (İHA) manyetik ve radyometrik ölçümler, yerden IP, gravite ve EM araştırmaları, yapısal ve litolojik yorumlama için kuyu içi jeofizik.",
+      "services.s6.outcome": "Bağımsız fiziksel ölçümlerle doğrulanmış yeraltı jeolojik modeli.",
+      "services.s7.title": "Yapısal Jeoloji ve Uydu Görüntüsü Analizi",
+      "services.s7.desc": "Detaylı yapısal haritalama, kinematik analiz ve uzaktan algılama — multispektral ve hiperspektral uydu görüntüsü işleme dahil — cevher kontrolü yapan yapıları tanımlamak için.",
+      "services.s7.outcome": "Sondaj hedefleme ve yatak geometrisi yorumunu yönlendiren yapısal çerçeve.",
+      "services.s8.title": "İnce ve Parlatılmış Kesit Hazırlama ve Petrografi",
+      "services.s8.desc": "Sondaj karotu veya yüzey numunelerinden ince ve parlatılmış kesitlerin hazırlanması, ardından geçen ve yansıyan ışıkta mineralojik ve petrografik analiz.",
+      "services.s8.outcome": "Mineral parajenezi, alterasyon zonlanması ve cevher mineralojisi karakterize edildi.",
+      "services.s9.title": "3D Jeolojik Modelleme",
+      "services.s9.desc": "Sektör standardı yazılım (Leapfrog, Surpac veya muadili) kullanılarak litolojik, yapısal ve mineralleşme katı modellerinin oluşturulması; tüm sondaj ve yüzey verilerinin entegrasyonu.",
+      "services.s9.outcome": "Görsel ve nicel jeolojik çerçeve; kaynak tahmini için doğrudan girdi.",
+      "services.s10.title": "AI ve ML — Tahminsel Yatak Modelleme",
+      "services.s10.desc": "Yeni yatak konumlarını tahmin etmek, keşif hedeflerini sıralamak ve sondaj konumlarını optimize etmek için makine öğrenmesi algoritmalarının ve AI tabanlı mekansal analizin uygulanması.",
+      "services.s10.outcome": "Veriye dayalı hedef üretimi; daha düşük keşif maliyeti ile daha yüksek başarı oranı.",
       "services.btnContact": "İletişime geç",
       "services.btnSee": "Nasıl çalıştığımızı gör",
 
