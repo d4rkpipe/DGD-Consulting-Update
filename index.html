@@ -567,6 +567,9 @@
   .rm-card-5 .rm-number{ background:#cdd6f0; color:#1d2e6e; }
   .rm-card-5 .rm-chip  { background: rgba(205,214,240,0.12); border:1px solid rgba(205,214,240,0.30); color:#cdd6f0; }
 
+  .rm-card-6 .rm-number{ background:#adc8f0; color:#0a2666; }
+  .rm-card-6 .rm-chip  { background: rgba(173,200,240,0.10); border:1px solid rgba(173,200,240,0.35); color:#adc8f0; }
+
   /* value cards (qadriyatlar section) — pastel colored */
   .value-card{
     border-radius: 1.5rem; padding: 1.75rem;
@@ -1115,6 +1118,38 @@
               <span class="rm-chip">TEO</span>
               <span class="rm-chip">±40% aniqlik</span>
               <span class="rm-chip">Iqtisodiy tahlil</span>
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <!-- Stage 6: Pre-Feasibility & Feasibility Study -->
+      <article class="rm-card rm-card-6 reveal reveal-delay-5">
+        <div class="flex items-start gap-4">
+          <span class="rm-number">6</span>
+          <div class="flex-1 min-w-0">
+            <h3 data-i18n="roadmap.s6.title">Pre-Feasibility &amp; Feasibility Study</h3>
+            <p class="rm-subtitle" data-i18n="roadmap.s6.subtitle">PFS ±25% · FS ±15% · Investitsiya qarori</p>
+            <p class="rm-desc" data-i18n="roadmap.s6.desc">Loyihaning to'liq texnik-iqtisodiy asoslanishi. PFS dastlabki, FS yakuniy aniqlikda bajariladi. FS — bank, investor va hukumat uchun qabul qilinuvchi eng yuqori darajali texnik hujjat. Shu asosda qurilish va moliyalashtirish qarori qabul qilinadi.</p>
+            <ul class="rm-items" data-i18n="roadmap.s6.items">
+              <li>Batafsil geologik va muhandislik loyihalar</li>
+              <li>Boyitish texnologiyasi sinovlari (metallurgical testwork)</li>
+              <li>Infratuzilma, energiya va suv ta'minoti loyihasi</li>
+              <li>Kapital xarajatlar (CAPEX) va operatsion xarajatlar (OPEX) batafsil hisob</li>
+              <li>Ekologik va ijtimoiy ta'sir baholash (ESIA)</li>
+              <li>Risk tahlili: sezgirlik va Monte Carlo</li>
+              <li>Moliyalashtirish rejasi: equity, debt, royalty</li>
+              <li>Rasmiy FID — Final Investment Decision</li>
+            </ul>
+            <div class="rm-result">
+              <div class="rm-result-label" data-i18n="roadmap.resultLabel">Natija</div>
+              <div class="rm-result-text" data-i18n="roadmap.s6.result">Loyihani qurish va ishga tushirish uchun to'liq asoslanma</div>
+            </div>
+            <div class="rm-chips" data-i18n="roadmap.s6.chips">
+              <span class="rm-chip">PFS ±25%</span>
+              <span class="rm-chip">FS ±15%</span>
+              <span class="rm-chip">CAPEX/OPEX</span>
+              <span class="rm-chip">ESIA</span>
             </div>
           </div>
         </div>
@@ -2147,6 +2182,12 @@
       "roadmap.s5.items": "<li>Qazib olish usuli va kon hajmini taxminiy aniqlash</li><li>Boyitish texnologiyasi variantlarini ko'rib chiqish</li><li>Infratuzilma, suv, energiya ehtiyojlarini baholash</li><li>Capital va operatsion xarajatlarni taxminan hisoblash</li><li>Ekologik va ijtimoiy risklarni dastlabki baholash</li><li>NPV, IRR va payback period hisob (±40% aniqlik)</li>",
       "roadmap.s5.result": "\"Go / No-Go\" qarori va PFS uchun texnik vazifa",
       "roadmap.s5.chips": "<span class=\"rm-chip\">TEO</span><span class=\"rm-chip\">±40% aniqlik</span><span class=\"rm-chip\">Iqtisodiy tahlil</span>",
+      "roadmap.s6.title": "Pre-Feasibility &amp; Feasibility Study",
+      "roadmap.s6.subtitle": "PFS ±25% · FS ±15% · Investitsiya qarori",
+      "roadmap.s6.desc": "Loyihaning to'liq texnik-iqtisodiy asoslanishi. PFS dastlabki, FS yakuniy aniqlikda bajariladi. FS — bank, investor va hukumat uchun qabul qilinuvchi eng yuqori darajali texnik hujjat. Shu asosda qurilish va moliyalashtirish qarori qabul qilinadi.",
+      "roadmap.s6.items": "<li>Batafsil geologik va muhandislik loyihalar</li><li>Boyitish texnologiyasi sinovlari (metallurgical testwork)</li><li>Infratuzilma, energiya va suv ta'minoti loyihasi</li><li>Kapital xarajatlar (CAPEX) va operatsion xarajatlar (OPEX) batafsil hisob</li><li>Ekologik va ijtimoiy ta'sir baholash (ESIA)</li><li>Risk tahlili: sezgirlik va Monte Carlo</li><li>Moliyalashtirish rejasi: equity, debt, royalty</li><li>Rasmiy FID — Final Investment Decision</li>",
+      "roadmap.s6.result": "Loyihani qurish va ishga tushirish uchun to'liq asoslanma",
+      "roadmap.s6.chips": "<span class=\"rm-chip\">PFS ±25%</span><span class=\"rm-chip\">FS ±15%</span><span class=\"rm-chip\">CAPEX/OPEX</span><span class=\"rm-chip\">ESIA</span>",
 
       "hero.eyebrow": "DGD Consulting · Toshkent, O'zbekiston",
       "hero.title": "Zamonaviy <em class=\"not-italic\">geologik tadqiqot</em> va kon ishlari uchun ilg'or yechimlar",
@@ -2330,6 +2371,12 @@
       "roadmap.s5.items": "<li>Ориентировочный выбор способа добычи и масштаба рудника</li><li>Рассмотрение вариантов технологии обогащения</li><li>Оценка инфраструктуры, водо- и энергопотребления</li><li>Предварительный расчёт капитальных и операционных затрат</li><li>Предварительная оценка экологических и социальных рисков</li><li>Расчёт NPV, IRR и срока окупаемости (±40%)</li>",
       "roadmap.s5.result": "Решение «Go / No-Go» и техническое задание на PFS",
       "roadmap.s5.chips": "<span class=\"rm-chip\">ТЭО</span><span class=\"rm-chip\">±40% точность</span><span class=\"rm-chip\">Экономический анализ</span>",
+      "roadmap.s6.title": "Pre-Feasibility &amp; Feasibility Study",
+      "roadmap.s6.subtitle": "PFS ±25% · FS ±15% · Инвестиционное решение",
+      "roadmap.s6.desc": "Полное технико-экономическое обоснование проекта. PFS выполняется с предварительной, FS — с окончательной точностью. FS — высший уровень технического документа, принимаемый банками, инвесторами и государством. На этой основе принимается решение о строительстве и финансировании.",
+      "roadmap.s6.items": "<li>Детальное геологическое и инженерное проектирование</li><li>Металлургические испытания обогатительной технологии</li><li>Проект инфраструктуры, энерго- и водоснабжения</li><li>Детальный расчёт капитальных (CAPEX) и операционных (OPEX) затрат</li><li>Оценка экологического и социального воздействия (ESIA)</li><li>Анализ рисков: чувствительность и Монте-Карло</li><li>План финансирования: equity, debt, royalty</li><li>Окончательное инвестиционное решение (FID)</li>",
+      "roadmap.s6.result": "Полное обоснование для строительства и запуска проекта",
+      "roadmap.s6.chips": "<span class=\"rm-chip\">PFS ±25%</span><span class=\"rm-chip\">FS ±15%</span><span class=\"rm-chip\">CAPEX/OPEX</span><span class=\"rm-chip\">ESIA</span>",
 
       "hero.eyebrow": "DGD Consulting · Ташкент, Узбекистан",
       "hero.title": "Современные решения для <em class=\"not-italic\">геологоразведки</em> и горнодобычи",
@@ -2513,6 +2560,12 @@
       "roadmap.s5.items": "<li>Approximate mining method and pit size</li><li>Review of processing technology options</li><li>Infrastructure, water and energy needs assessment</li><li>Approximate capital and operating cost estimate</li><li>Preliminary environmental and social risk review</li><li>NPV, IRR and payback period calculation (±40%)</li>",
       "roadmap.s5.result": "\"Go / No-Go\" decision and technical scope for PFS",
       "roadmap.s5.chips": "<span class=\"rm-chip\">PEA</span><span class=\"rm-chip\">±40% accuracy</span><span class=\"rm-chip\">Economic analysis</span>",
+      "roadmap.s6.title": "Pre-Feasibility &amp; Feasibility Study",
+      "roadmap.s6.subtitle": "PFS ±25% · FS ±15% · Investment decision",
+      "roadmap.s6.desc": "Full technical-economic justification of the project. PFS is performed at preliminary, FS at final accuracy. FS is the highest-grade technical document accepted by banks, investors and governments. On this basis the construction and financing decision is made.",
+      "roadmap.s6.items": "<li>Detailed geological and engineering design</li><li>Metallurgical testwork of the processing technology</li><li>Infrastructure, energy and water supply design</li><li>Detailed CAPEX and OPEX cost calculation</li><li>Environmental and social impact assessment (ESIA)</li><li>Risk analysis: sensitivity and Monte Carlo</li><li>Financing plan: equity, debt, royalty</li><li>Formal Final Investment Decision (FID)</li>",
+      "roadmap.s6.result": "Complete justification for project construction and launch",
+      "roadmap.s6.chips": "<span class=\"rm-chip\">PFS ±25%</span><span class=\"rm-chip\">FS ±15%</span><span class=\"rm-chip\">CAPEX/OPEX</span><span class=\"rm-chip\">ESIA</span>",
 
       "hero.eyebrow": "DGD Consulting · Tashkent, Uzbekistan",
       "hero.title": "Advanced Solutions for Modern <em class=\"not-italic\">Geological Exploration</em> &amp; Mining",
@@ -2696,6 +2749,12 @@
       "roadmap.s5.items": "<li>Maden çıkarma yöntemi ve ölçek tahmini</li><li>Cevher hazırlama teknolojisi seçeneklerinin değerlendirilmesi</li><li>Altyapı, su ve enerji ihtiyaçlarının değerlendirilmesi</li><li>Sermaye ve işletme maliyetlerinin yaklaşık hesabı</li><li>Çevresel ve sosyal risklerin ön değerlendirmesi</li><li>NPV, IRR ve geri ödeme süresi hesabı (±40% doğruluk)</li>",
       "roadmap.s5.result": "\"Go / No-Go\" kararı ve PFS için teknik şartname",
       "roadmap.s5.chips": "<span class=\"rm-chip\">PEA</span><span class=\"rm-chip\">±40% doğruluk</span><span class=\"rm-chip\">Ekonomik analiz</span>",
+      "roadmap.s6.title": "Pre-Feasibility &amp; Feasibility Study",
+      "roadmap.s6.subtitle": "PFS ±25% · FS ±15% · Yatırım kararı",
+      "roadmap.s6.desc": "Projenin tam teknik-ekonomik gerekçelendirilmesi. PFS ön doğrulukta, FS nihai doğrulukta gerçekleştirilir. FS — bankalar, yatırımcılar ve hükümetler tarafından kabul edilen en yüksek dereceli teknik belgedir. Bu temelde inşaat ve finansman kararı verilir.",
+      "roadmap.s6.items": "<li>Detaylı jeolojik ve mühendislik tasarımı</li><li>Cevher hazırlama teknolojisi metalurjik testleri</li><li>Altyapı, enerji ve su temini tasarımı</li><li>CAPEX ve OPEX maliyetlerinin detaylı hesabı</li><li>Çevresel ve sosyal etki değerlendirmesi (ESIA)</li><li>Risk analizi: duyarlılık ve Monte Carlo</li><li>Finansman planı: equity, debt, royalty</li><li>Resmi Nihai Yatırım Kararı (FID)</li>",
+      "roadmap.s6.result": "Projenin inşası ve devreye alınması için tam gerekçelendirme",
+      "roadmap.s6.chips": "<span class=\"rm-chip\">PFS ±25%</span><span class=\"rm-chip\">FS ±15%</span><span class=\"rm-chip\">CAPEX/OPEX</span><span class=\"rm-chip\">ESIA</span>",
 
       "hero.eyebrow": "DGD Consulting · Taşkent, Özbekistan",
       "hero.title": "Modern <em class=\"not-italic\">jeolojik araştırma</em> ve madencilik için ileri çözümler",
