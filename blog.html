@@ -1,0 +1,566 @@
+<!doctype html>
+<html lang="uz">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>DGD Consulting — Blog</title>
+
+<meta name="description" content="DGD Consulting blog — geologik tadqiqot va kon ishlari haqida maqolalar." />
+<meta name="theme-color" content="#062f10" />
+
+<link rel="icon" type="image/png" href="assets/logo.png" />
+<link rel="apple-touch-icon" href="assets/logo.png" />
+
+<script>
+  // restore language ASAP to reduce flash of unlocalized content
+  (function(){
+    try {
+      var l = localStorage.getItem('dgd-lang');
+      if (l) document.documentElement.lang = l;
+    } catch(e){}
+  })();
+</script>
+
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+  tailwind.config = {
+    theme: {
+      extend: {
+        colors: {
+          dgd: {
+            DEFAULT: '#085A1C',
+            900: '#062f10', 800: '#063f15', 700: '#085A1C',
+            600: '#0a7325', 500: '#16a34a',
+            ink: '#0b1410', cream: '#f7f6f1',
+            line: 'rgba(8,90,28,0.12)',
+          }
+        },
+        fontFamily: {
+          sans:    ['"Plus Jakarta Sans"', 'system-ui', 'sans-serif'],
+          display: ['"Plus Jakarta Sans"', 'system-ui', 'sans-serif'],
+          mono:    ['"JetBrains Mono"', 'monospace'],
+        },
+      }
+    }
+  }
+</script>
+
+<style>
+  :root{ --dgd:#085A1C; --dgd-deep:#062f10; --dgd-soft:#0a7325; --cream:#f7f6f1; --paper:#ffffff; --ink:#0b1410; }
+  html,body{ background: var(--cream); color: var(--ink); }
+  html{ scroll-behavior:smooth; overflow-x: hidden; }
+  body{ font-family:'Plus Jakarta Sans', system-ui, sans-serif; -webkit-font-smoothing:antialiased; overflow-x: hidden; max-width: 100%; }
+  h1, h2, h3, h4, p{ overflow-wrap: anywhere; word-break: normal; }
+  .font-display{ font-family:'Plus Jakarta Sans', system-ui, sans-serif; letter-spacing:-0.02em; }
+  .font-mono{ font-family:'JetBrains Mono', monospace; }
+
+  ::selection{ background: rgba(8,90,28,0.85); color:#fff; }
+
+  /* logo image */
+  .logo-img{
+    object-fit: contain;
+    filter: drop-shadow(0 4px 14px rgba(8,90,28,0.45));
+    transition: transform .4s cubic-bezier(.2,.7,.2,1), filter .4s ease;
+  }
+  a:hover .logo-img{ transform: rotate(-6deg) scale(1.06); filter: drop-shadow(0 6px 20px rgba(167,240,184,0.55)); }
+
+  /* phone pill */
+  .phone-pill{ display:inline-flex; align-items:center; gap:10px; padding: 7px 14px 7px 7px; border-radius: 999px; background: rgba(255,255,255,0.06); border:1px solid rgba(255,255,255,0.18); transition: all .25s ease; }
+  .phone-pill:hover{ background: rgba(255,255,255,0.12); border-color: rgba(167,240,184,0.5); }
+  .phone-pill .icon{ width:30px; height:30px; border-radius:999px; background:#a7f0b8; color:#062f10; display:grid; place-items:center; flex-shrink:0; }
+
+  /* language switcher */
+  .lang-switcher{ position: relative; }
+  .lang-btn{ display:inline-flex; align-items:center; gap:8px; padding: 6px 10px 6px 6px; border-radius: 999px; border: 1px solid rgba(255,255,255,0.18); background: rgba(255,255,255,0.04); transition: all .25s ease; font-family:'JetBrains Mono', monospace; }
+  .lang-btn:hover{ background: rgba(255,255,255,0.10); border-color: rgba(255,255,255,0.30); }
+  .lang-flag, .lang-flag-current{ width: 22px; height: 22px; border-radius:999px; overflow:hidden; flex-shrink:0; display:inline-grid; place-items:center; background:#062f10; border:1px solid rgba(255,255,255,0.2); }
+  .lang-flag svg, .lang-flag-current svg{ width:130%; height:130%; display:block; }
+  .lang-arrow{ transition: transform .25s ease; }
+  .lang-switcher.open .lang-arrow{ transform: rotate(180deg); }
+  .lang-dropdown{ position:absolute; right:0; top: calc(100% + 8px); width: 200px; padding: 6px; background: rgba(6,47,16,0.95); backdrop-filter: blur(20px) saturate(140%); -webkit-backdrop-filter: blur(20px) saturate(140%); border: 1px solid rgba(167,240,184,0.18); border-radius: 16px; box-shadow: 0 24px 60px -12px rgba(0,0,0,0.55); visibility: hidden; opacity: 0; transform: translateY(-6px); transition: opacity .2s ease, transform .2s ease, visibility .2s; z-index: 60; }
+  .lang-switcher.open .lang-dropdown{ visibility:visible; opacity:1; transform: translateY(0); }
+  .lang-item{ display:flex; align-items:center; gap:12px; width:100%; padding: 9px 12px; border-radius: 10px; text-align:left; color: rgba(255,255,255,0.85); transition: background .2s ease, color .2s ease; font-size: 14px; }
+  .lang-item:hover{ background: rgba(255,255,255,0.06); color:#fff; }
+  .lang-item.active{ background: rgba(167,240,184,0.10); color:#a7f0b8; }
+  .lang-item .lang-name{ flex:1; }
+  .lang-item .lang-check{ opacity:0; color:#a7f0b8; transition: opacity .2s; }
+  .lang-item.active .lang-check{ opacity:1; }
+  .lang-pill{ padding: 6px 12px; border-radius: 999px; border: 1px solid rgba(255,255,255,0.20); color: rgba(255,255,255,0.85); font-family:'JetBrains Mono', monospace; font-size: 11px; letter-spacing: .08em; text-transform: uppercase; transition: all .2s ease; }
+  .lang-pill:hover{ border-color: rgba(255,255,255,0.40); }
+  .lang-pill.active{ background:#a7f0b8; color:#062f10; border-color:#a7f0b8; }
+
+  /* footer */
+  .footer-divider{ width: 44px; height: 2px; background: #a7f0b8; border-radius: 2px; margin-bottom: 1.25rem; }
+  .footer-link{ color: rgba(255,255,255,0.65); font-size: 14.5px; line-height: 1.5; transition: color .2s ease, padding-left .25s ease; display: inline-block; }
+  .footer-link:hover{ color: #a7f0b8; padding-left: 6px; }
+  .footer-social{ width: 40px; height: 40px; display: grid; place-items: center; border-radius: 10px; background: rgba(167,240,184,0.08); border: 1px solid rgba(167,240,184,0.15); color: #a7f0b8; transition: all .25s ease; }
+  .footer-social:hover{ background: #a7f0b8; border-color: #a7f0b8; color: #062f10; transform: translateY(-2px); box-shadow: 0 8px 18px -6px rgba(167,240,184,0.55); }
+
+  /* underline link */
+  .ulink{ position:relative; }
+  .ulink::after{ content:""; position:absolute; left:0; right:0; bottom:-4px; height:1px; background: currentColor; transform: scaleX(0); transform-origin:left; transition: transform .35s ease; }
+  .ulink:hover::after{ transform: scaleX(1); }
+
+  /* chip */
+  .chip{ display:inline-flex; align-items:center; gap:8px; padding:6px 12px; border-radius:999px; font-size:12px; font-family:'JetBrains Mono', monospace; letter-spacing:.05em; }
+
+  /* ========= ARTICLE PAGE ========= */
+  .article-hero{
+    background: linear-gradient(180deg, #062f10 0%, #073716 100%);
+    padding-top: 120px;
+    padding-bottom: 60px;
+  }
+  .article-back{
+    display: inline-flex; align-items: center; gap: 8px;
+    color: rgba(255,255,255,0.65);
+    font-size: 14px;
+    transition: color .2s ease, padding-left .25s ease;
+  }
+  .article-back:hover{ color: #a7f0b8; padding-left: -4px; }
+  .article-meta{
+    display: flex; flex-wrap: wrap; align-items: center; gap: 14px;
+    margin-bottom: 1.5rem;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px; letter-spacing: .15em; text-transform: uppercase;
+    color: rgba(255,255,255,0.55);
+  }
+  .article-cover{
+    width: 100%; max-height: 480px;
+    border-radius: 24px; overflow: hidden;
+    background: linear-gradient(135deg, #0b3a17, #16a34a 60%, #cdeed5);
+    aspect-ratio: 16/9;
+    object-fit: cover;
+    box-shadow: 0 30px 60px -20px rgba(8,90,28,0.55);
+  }
+
+  /* article body (rich text from CKEditor) */
+  .article-content{
+    font-size: 17px; line-height: 1.75;
+    color: rgba(11,20,16,0.85);
+  }
+  .article-content > *:first-child{ margin-top: 0; }
+  .article-content h1, .article-content h2, .article-content h3, .article-content h4{
+    font-weight: 700; color: var(--dgd-deep); margin: 2em 0 0.6em; line-height: 1.25;
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    letter-spacing: -0.01em;
+  }
+  .article-content h1{ font-size: clamp(28px, 3.5vw, 38px); }
+  .article-content h2{ font-size: clamp(24px, 3vw, 30px); }
+  .article-content h3{ font-size: clamp(20px, 2.5vw, 24px); }
+  .article-content h4{ font-size: 18px; }
+  .article-content p{ margin: 1.1em 0; }
+  .article-content strong{ color: var(--dgd-deep); font-weight: 700; }
+  .article-content em{ font-style: italic; }
+  .article-content ul, .article-content ol{ margin: 1.2em 0; padding-left: 1.5em; }
+  .article-content li{ margin: 0.4em 0; }
+  .article-content ul li{ list-style: disc; }
+  .article-content ol li{ list-style: decimal; }
+  .article-content blockquote{
+    border-left: 3px solid var(--dgd);
+    padding: 0.6em 1.25em;
+    margin: 1.5em 0;
+    font-style: italic;
+    background: rgba(8,90,28,0.04);
+    color: rgba(11,20,16,0.78);
+    border-radius: 0 12px 12px 0;
+  }
+  .article-content a{ color: var(--dgd); text-decoration: underline; text-decoration-thickness: 1.5px; text-underline-offset: 3px; transition: color .2s; }
+  .article-content a:hover{ color: var(--dgd-soft); }
+  .article-content img{ max-width: 100%; height: auto; border-radius: 12px; margin: 1.5em 0; box-shadow: 0 12px 28px -10px rgba(0,0,0,0.18); }
+  .article-content code{
+    background: rgba(8,90,28,0.06);
+    padding: 2px 7px; border-radius: 6px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.92em;
+    color: var(--dgd-deep);
+  }
+  .article-content pre{
+    background: var(--dgd-deep); color: #cdeed5;
+    padding: 1.25em; border-radius: 14px;
+    overflow-x: auto;
+    font-family: 'JetBrains Mono', monospace;
+    margin: 1.5em 0;
+  }
+  .article-content pre code{ background: transparent; padding: 0; color: inherit; }
+  .article-content hr{ border: none; height: 1px; background: rgba(8,90,28,0.12); margin: 2.5em 0; }
+
+  /* skeleton loader */
+  .skeleton{ background: linear-gradient(90deg, rgba(8,90,28,0.05), rgba(8,90,28,0.10), rgba(8,90,28,0.05)); background-size: 200% 100%; animation: skel 1.5s ease-in-out infinite; border-radius: 8px; }
+  @keyframes skel { 0%,100%{background-position: 0% 0%;} 50%{background-position: -100% 0%;} }
+</style>
+</head>
+<body>
+
+<!-- Reusable flag SVG symbols -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <symbol id="flag-uz" viewBox="0 0 30 20"><rect width="30" height="20" fill="#fff"/><rect width="30" height="6.4" fill="#1eb53a" y="13.6"/><rect width="30" height="6.4" fill="#0099b5"/><rect width="30" height="0.5" y="6.4" fill="#ce1126"/><rect width="30" height="0.5" y="13.1" fill="#ce1126"/><circle cx="6.2" cy="3.2" r="1.7" fill="#fff"/><circle cx="6.7" cy="3.2" r="1.6" fill="#0099b5"/></symbol>
+    <symbol id="flag-ru" viewBox="0 0 30 20"><rect width="30" height="6.67" fill="#fff"/><rect width="30" height="6.67" y="6.67" fill="#0039a6"/><rect width="30" height="6.67" y="13.34" fill="#d52b1e"/></symbol>
+    <symbol id="flag-en" viewBox="0 0 30 20"><rect width="30" height="20" fill="#012169"/><path d="M0,0 L30,20 M30,0 L0,20" stroke="#fff" stroke-width="2.5"/><path d="M15,0 V20 M0,10 H30" stroke="#fff" stroke-width="4"/><path d="M15,0 V20 M0,10 H30" stroke="#c8102e" stroke-width="2.2"/></symbol>
+    <symbol id="flag-tr" viewBox="0 0 30 20"><rect width="30" height="20" fill="#e30a17"/><circle cx="11.2" cy="10" r="4.5" fill="#fff"/><circle cx="12.5" cy="10" r="3.6" fill="#e30a17"/><polygon points="16.4,10 14.0,10.85 15.45,8.85 15.45,11.15 14.0,9.15" fill="#fff"/></symbol>
+  </defs>
+</svg>
+
+<!-- ============== HEADER ============== -->
+<header id="site-header" class="fixed top-0 left-0 right-0 z-50 transition-all duration-500" style="background: linear-gradient(180deg, rgba(6,47,16,0.85), rgba(6,47,16,0.55));">
+  <div id="header-inner" class="backdrop-blur-xl">
+    <div class="max-w-[1400px] mx-auto grid grid-cols-2 lg:grid-cols-3 items-center px-6 lg:px-10 py-4">
+      <a href="index.html" class="flex items-center gap-3 group justify-self-start">
+        <img src="assets/logo.png" alt="DGD Consulting" class="logo-img w-11 h-11"/>
+        <span class="text-white font-semibold tracking-tight text-lg leading-tight">DGD <span class="opacity-80 font-normal">Consulting</span></span>
+      </a>
+
+      <nav class="hidden lg:flex items-center justify-center gap-9">
+        <a href="index.html#about" class="text-white/85 hover:text-white text-[15px] ulink" data-i18n="nav.about">About</a>
+        <a href="index.html#values" class="text-white/85 hover:text-white text-[15px] ulink" data-i18n="nav.values">Values</a>
+        <a href="index.html#services" class="text-white/85 hover:text-white text-[15px] ulink" data-i18n="nav.services">Services</a>
+        <a href="index.html#blogs" class="text-white/85 hover:text-white text-[15px] ulink" data-i18n="nav.blogs">Blogs</a>
+        <a href="index.html#contact" class="text-white/85 hover:text-white text-[15px] ulink" data-i18n="nav.contact">Contact</a>
+      </nav>
+
+      <div class="hidden lg:flex items-center gap-4 justify-self-end">
+        <div id="lang-switcher" class="lang-switcher">
+          <button id="lang-btn" type="button" class="lang-btn" aria-haspopup="true" aria-expanded="false">
+            <span class="lang-flag-current"><svg id="current-flag-svg"><use href="#flag-uz"/></svg></span>
+            <span id="current-lang-code" class="text-white/90 text-[11px] uppercase tracking-wider">UZ</span>
+            <svg class="lang-arrow text-white/70" width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
+          </button>
+          <div id="lang-dropdown" class="lang-dropdown" role="menu">
+            <button data-lang="uz" type="button" class="lang-item"><span class="lang-flag"><svg><use href="#flag-uz"/></svg></span><span class="lang-name">O'zbek</span><span class="lang-check"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 13l4 4L19 7"/></svg></span></button>
+            <button data-lang="ru" type="button" class="lang-item"><span class="lang-flag"><svg><use href="#flag-ru"/></svg></span><span class="lang-name">Русский</span><span class="lang-check"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 13l4 4L19 7"/></svg></span></button>
+            <button data-lang="en" type="button" class="lang-item"><span class="lang-flag"><svg><use href="#flag-en"/></svg></span><span class="lang-name">English</span><span class="lang-check"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 13l4 4L19 7"/></svg></span></button>
+            <button data-lang="tr" type="button" class="lang-item"><span class="lang-flag"><svg><use href="#flag-tr"/></svg></span><span class="lang-name">Türkçe</span><span class="lang-check"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 13l4 4L19 7"/></svg></span></button>
+          </div>
+        </div>
+
+        <a href="tel:+998997539095" class="phone-pill text-white" style="white-space:nowrap;">
+          <span class="icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.37 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.33 1.85.57 2.81.7A2 2 0 0 1 22 16.92z"/></svg></span>
+          <span class="font-semibold tracking-tight text-[15.5px]">+998 99 753 90 95</span>
+        </a>
+      </div>
+
+      <button id="menu-btn" class="lg:hidden text-white p-2 justify-self-end" aria-label="Open menu">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
+      </button>
+    </div>
+
+    <div id="mobile-menu" class="lg:hidden hidden border-t border-white/10 bg-[#062f10]">
+      <div class="px-6 py-5 flex flex-col gap-3">
+        <a href="index.html#about"    class="text-white/90 py-2" data-i18n="nav.about">About</a>
+        <a href="index.html#values"   class="text-white/90 py-2" data-i18n="nav.values">Values</a>
+        <a href="index.html#services" class="text-white/90 py-2" data-i18n="nav.services">Services</a>
+        <a href="index.html#blogs"    class="text-white/90 py-2" data-i18n="nav.blogs">Blogs</a>
+        <a href="index.html#contact"  class="text-white/90 py-2" data-i18n="nav.contact">Contact</a>
+        <a href="tel:+998997539095" class="text-white py-2 font-semibold">+998 99 753 90 95</a>
+        <div class="pt-4 mt-1 border-t border-white/10 flex items-center gap-2 flex-wrap">
+          <span class="text-white/50 text-[11px] font-mono uppercase tracking-wider mr-1" data-i18n="nav.lang">Language</span>
+          <button data-lang="uz" type="button" class="lang-pill">UZ</button>
+          <button data-lang="ru" type="button" class="lang-pill">RU</button>
+          <button data-lang="en" type="button" class="lang-pill">EN</button>
+          <button data-lang="tr" type="button" class="lang-pill">TR</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<!-- ============== ARTICLE PAGE ============== -->
+<main>
+  <section class="article-hero text-white relative overflow-hidden">
+    <div class="absolute inset-0 pointer-events-none" style="background: radial-gradient(900px 400px at 50% 0%, rgba(22,163,74,0.18), transparent 60%);"></div>
+    <div class="max-w-[820px] mx-auto px-6 lg:px-10 relative">
+      <a href="index.html#blogs" class="article-back mb-8">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+        <span data-i18n="blog.back">Bloglarga qaytish</span>
+      </a>
+
+      <div id="article-meta" class="article-meta mt-8">
+        <span class="skeleton" style="width: 90px; height: 14px;"></span>
+        <span class="skeleton" style="width: 100px; height: 14px;"></span>
+        <span class="skeleton" style="width: 110px; height: 14px;"></span>
+      </div>
+
+      <h1 id="article-title" class="font-display font-bold tracking-tight leading-[1.15]" style="font-size: clamp(28px, 4.4vw, 48px);">
+        <span class="skeleton block" style="width: 80%; height: 1.2em;"></span>
+        <span class="skeleton block mt-3" style="width: 60%; height: 1.2em;"></span>
+      </h1>
+    </div>
+  </section>
+
+  <section class="py-14 md:py-20">
+    <div class="max-w-[820px] mx-auto px-6 lg:px-10">
+      <img id="article-cover" class="article-cover mb-12 hidden" alt=""/>
+      <div id="article-content" class="article-content">
+        <p class="skeleton" style="width: 100%; height: 1em; margin-bottom: 0.8em;"></p>
+        <p class="skeleton" style="width: 95%; height: 1em; margin-bottom: 0.8em;"></p>
+        <p class="skeleton" style="width: 88%; height: 1em; margin-bottom: 0.8em;"></p>
+        <p class="skeleton" style="width: 90%; height: 1em;"></p>
+      </div>
+
+      <div id="article-error" class="hidden text-center py-12">
+        <div class="text-6xl mb-4">📭</div>
+        <h2 class="font-display font-bold text-dgd-700 text-2xl mb-2" data-i18n="blog.notFound">Maqola topilmadi</h2>
+        <p class="text-dgd-ink/65" data-i18n="blog.notFoundDesc">Ehtimol bu maqola olib tashlangan yoki link noto'g'ri.</p>
+        <a href="index.html#blogs" class="inline-flex items-center gap-2 mt-6 text-dgd-700 font-semibold ulink" data-i18n="blog.back">Bloglarga qaytish
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+        </a>
+      </div>
+
+      <div class="mt-16 pt-10 border-t border-dgd-700/10 flex items-center justify-between gap-4">
+        <a href="index.html#blogs" class="text-dgd-700 font-semibold inline-flex items-center gap-2 ulink">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+          <span data-i18n="blog.back">Bloglarga qaytish</span>
+        </a>
+        <a href="index.html#contact" class="text-dgd-700 font-semibold inline-flex items-center gap-2 ulink" data-i18n="blog.contactCta">Bog'lanish →</a>
+      </div>
+    </div>
+  </section>
+</main>
+
+<!-- ============== FOOTER ============== -->
+<footer id="footer" class="relative bg-[#051e0c] text-white overflow-hidden">
+  <div class="absolute inset-0 pointer-events-none" style="background: radial-gradient(900px 400px at 50% 0%, rgba(22,163,74,0.10), transparent 70%);"></div>
+  <div class="relative max-w-[1400px] mx-auto px-6 lg:px-10 py-16 md:py-20">
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-10 lg:gap-12">
+      <div class="lg:col-span-4">
+        <a href="index.html#top" class="flex items-center gap-3 group mb-5">
+          <img src="assets/logo.png" alt="DGD Consulting" class="logo-img w-12 h-12"/>
+          <span class="font-display font-bold text-2xl tracking-tight">DGD <span class="opacity-80 font-medium">Consulting</span></span>
+        </a>
+        <p class="text-white/60 leading-[1.7] text-[14.5px] max-w-[330px]" data-i18n="footer.about">Geologik tadqiqot va kon ishlari bo'yicha konsalting — Toshkent, O'zbekiston.</p>
+        <div class="flex items-center gap-2.5 mt-7">
+          <a href="https://t.me/ErgashovZafarjonGeo" target="_blank" rel="noopener noreferrer" aria-label="Telegram" class="footer-social">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M21.9 4.5L19 19.3c-.2 1-.8 1.2-1.6.8l-4.4-3.2-2.1 2c-.2.2-.4.4-.9.4l.3-4.5 8.2-7.4c.4-.3-.1-.5-.6-.2L7.7 12.6 3.4 11.3c-.9-.3-.9-.9.2-1.4l16.9-6.5c.8-.3 1.5.2 1.4 1.1z"/></svg>
+          </a>
+          <a href="https://www.linkedin.com/company/dgd-consulting-uzbekistan/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn" class="footer-social">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M4.98 3.5C4.98 4.88 3.87 6 2.5 6S0 4.88 0 3.5 1.12 1 2.5 1s2.48 1.12 2.48 2.5zM.22 8h4.56v14H.22V8zm7.78 0h4.37v1.92h.06c.61-1.15 2.1-2.36 4.32-2.36 4.62 0 5.47 3.04 5.47 7v7.44h-4.56v-6.6c0-1.57-.03-3.6-2.19-3.6-2.2 0-2.54 1.71-2.54 3.49V22H8V8z"/></svg>
+          </a>
+          <a href="https://www.youtube.com/" target="_blank" rel="noopener noreferrer" aria-label="YouTube" class="footer-social">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M23.5 6.5a3 3 0 0 0-2.1-2.1C19.5 4 12 4 12 4s-7.5 0-9.4.4A3 3 0 0 0 .5 6.5C.1 8.4.1 12 .1 12s0 3.6.4 5.5a3 3 0 0 0 2.1 2.1c1.9.4 9.4.4 9.4.4s7.5 0 9.4-.4a3 3 0 0 0 2.1-2.1c.4-1.9.4-5.5.4-5.5s0-3.6-.4-5.5zM9.7 15.6V8.4l6.3 3.6-6.3 3.6z"/></svg>
+          </a>
+        </div>
+      </div>
+
+      <div class="lg:col-span-2">
+        <h4 class="font-display font-bold text-[19px] tracking-tight mb-2" data-i18n="footer.companyTitle">Kompaniya</h4>
+        <div class="footer-divider"></div>
+        <ul class="space-y-3">
+          <li><a href="index.html#about"    class="footer-link" data-i18n="nav.about">Biz haqimizda</a></li>
+          <li><a href="index.html#services" class="footer-link" data-i18n="nav.services">Xizmatlar</a></li>
+          <li><a href="index.html#blogs"    class="footer-link" data-i18n="nav.blogs">Bloglar</a></li>
+          <li><a href="index.html#contact"  class="footer-link" data-i18n="nav.contact">Bog'lanish</a></li>
+        </ul>
+      </div>
+
+      <div class="lg:col-span-3">
+        <h4 class="font-display font-bold text-[19px] tracking-tight mb-2" data-i18n="footer.servicesTitle">Xizmatlar</h4>
+        <div class="footer-divider"></div>
+        <ul class="space-y-3">
+          <li><a href="index.html#services" class="footer-link" data-i18n="footer.svc1">Geologik konsalting</a></li>
+          <li><a href="index.html#services" class="footer-link" data-i18n="footer.svc2">MRE hisobotlar</a></li>
+          <li><a href="index.html#services" class="footer-link" data-i18n="footer.svc3">Geofizik tadqiqot</a></li>
+          <li><a href="index.html#services" class="footer-link" data-i18n="footer.svc4">AI / ML kon bashorati</a></li>
+        </ul>
+      </div>
+
+      <div class="lg:col-span-3">
+        <h4 class="font-display font-bold text-[19px] tracking-tight mb-2" data-i18n="footer.newsTitle">Yangiliklar</h4>
+        <div class="footer-divider"></div>
+        <p class="text-white/60 leading-[1.6] text-[14px]" data-i18n="footer.newsDesc">Eng so'nggi yangiliklarni olish uchun obuna bo'ling.</p>
+        <a href="index.html#footer" class="inline-flex items-center gap-2 mt-4 text-[#a7f0b8] hover:text-white transition text-sm font-medium">
+          <span data-i18n="footer.newsSubmit">Obuna bo'lish</span>
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+        </a>
+      </div>
+    </div>
+
+    <div class="mt-14 pt-7 border-t border-white/10 text-white/50 text-sm">
+      <div data-i18n="footer.copy">© 2026 DGD Consulting LLC — All rights reserved.</div>
+    </div>
+  </div>
+</footer>
+
+<script>
+  // ===== API base =====
+  const API_BASE = (location.hostname === 'localhost' || location.hostname === '127.0.0.1')
+    ? 'http://localhost:8002/api' : '/api';
+
+  // ===== minimal translations (only what's used on this page) =====
+  const translations = {
+    uz: {
+      "nav.about":"Haqimizda","nav.values":"Qadriyatlar","nav.services":"Xizmatlar","nav.blogs":"Bloglar","nav.contact":"Bog'lanish","nav.lang":"Til",
+      "blog.back":"Bloglarga qaytish","blog.notFound":"Maqola topilmadi","blog.notFoundDesc":"Ehtimol bu maqola olib tashlangan yoki link noto'g'ri.","blog.contactCta":"Bog'lanish →","blog.readTime":"daq. o'qish",
+      "footer.about":"Geologik tadqiqot va kon ishlari bo'yicha konsalting — Toshkent, O'zbekiston.","footer.companyTitle":"Kompaniya","footer.servicesTitle":"Xizmatlar","footer.newsTitle":"Yangiliklar","footer.newsDesc":"Eng so'nggi yangiliklarni olish uchun obuna bo'ling.","footer.newsSubmit":"Obuna bo'lish",
+      "footer.svc1":"Geologik konsalting","footer.svc2":"MRE hisobotlar","footer.svc3":"Geofizik tadqiqot","footer.svc4":"AI / ML kon bashorati",
+      "footer.copy":"© 2026 DGD Consulting MChJ — Barcha huquqlar himoyalangan."
+    },
+    ru: {
+      "nav.about":"О нас","nav.values":"Ценности","nav.services":"Услуги","nav.blogs":"Блог","nav.contact":"Контакты","nav.lang":"Язык",
+      "blog.back":"Назад к блогам","blog.notFound":"Статья не найдена","blog.notFoundDesc":"Возможно, статья удалена или ссылка некорректна.","blog.contactCta":"Связаться →","blog.readTime":"мин",
+      "footer.about":"Консалтинг по геологоразведке и горнодобыче — Ташкент, Узбекистан.","footer.companyTitle":"Компания","footer.servicesTitle":"Услуги","footer.newsTitle":"Рассылка","footer.newsDesc":"Подпишитесь, чтобы получать последние новости.","footer.newsSubmit":"Подписаться",
+      "footer.svc1":"Геологический консалтинг","footer.svc2":"Отчёты MRE","footer.svc3":"Геофизические исследования","footer.svc4":"AI / ML прогноз месторождений",
+      "footer.copy":"© 2026 DGD Consulting LLC — Все права защищены."
+    },
+    en: {
+      "nav.about":"About","nav.values":"Values","nav.services":"Services","nav.blogs":"Blogs","nav.contact":"Contact","nav.lang":"Language",
+      "blog.back":"Back to articles","blog.notFound":"Article not found","blog.notFoundDesc":"This article may have been removed or the link is incorrect.","blog.contactCta":"Get in touch →","blog.readTime":"min read",
+      "footer.about":"Geological exploration and mining consulting — Tashkent, Uzbekistan.","footer.companyTitle":"Company","footer.servicesTitle":"Services","footer.newsTitle":"Newsletter","footer.newsDesc":"Subscribe to get the latest news from us.","footer.newsSubmit":"Subscribe",
+      "footer.svc1":"Geological consulting","footer.svc2":"MRE reports","footer.svc3":"Geophysical research","footer.svc4":"AI / ML deposit prediction",
+      "footer.copy":"© 2026 DGD Consulting LLC — All rights reserved."
+    },
+    tr: {
+      "nav.about":"Hakkımızda","nav.values":"Değerler","nav.services":"Hizmetler","nav.blogs":"Blog","nav.contact":"İletişim","nav.lang":"Dil",
+      "blog.back":"Bloglara dön","blog.notFound":"Makale bulunamadı","blog.notFoundDesc":"Bu makale kaldırılmış veya bağlantı yanlış olabilir.","blog.contactCta":"İletişime geç →","blog.readTime":"dk okuma",
+      "footer.about":"Jeolojik araştırma ve madencilik danışmanlığı — Taşkent, Özbekistan.","footer.companyTitle":"Şirket","footer.servicesTitle":"Hizmetler","footer.newsTitle":"Bülten","footer.newsDesc":"En son haberleri almak için abone olun.","footer.newsSubmit":"Abone ol",
+      "footer.svc1":"Jeolojik danışmanlık","footer.svc2":"MRE raporları","footer.svc3":"Jeofizik araştırma","footer.svc4":"AI / ML yatak tahmini",
+      "footer.copy":"© 2026 DGD Consulting LLC — Tüm hakları saklıdır."
+    }
+  };
+
+  const LANG_META = {
+    uz:{code:'UZ',name:"O'zbek",flag:'#flag-uz'},
+    ru:{code:'RU',name:'Русский',flag:'#flag-ru'},
+    en:{code:'EN',name:'English',flag:'#flag-en'},
+    tr:{code:'TR',name:'Türkçe',flag:'#flag-tr'}
+  };
+
+  function t(key){
+    const lang = localStorage.getItem('dgd-lang') || 'uz';
+    return (translations[lang] && translations[lang][key]) || (translations.en && translations.en[key]) || '';
+  }
+  window.__t = t;
+
+  function setLanguage(lang){
+    if (!translations[lang]) return;
+    const dict = translations[lang];
+    document.querySelectorAll('[data-i18n]').forEach(el => {
+      const key = el.getAttribute('data-i18n');
+      if (dict[key] !== undefined) el.innerHTML = dict[key];
+    });
+    document.documentElement.lang = lang;
+    const meta = LANG_META[lang];
+    const codeEl = document.getElementById('current-lang-code');
+    const flagSvg = document.getElementById('current-flag-svg');
+    if (codeEl) codeEl.textContent = meta.code;
+    if (flagSvg) flagSvg.innerHTML = '<use href="' + meta.flag + '"/>';
+    document.querySelectorAll('.lang-item, .lang-pill').forEach(b => {
+      b.classList.toggle('active', b.getAttribute('data-lang') === lang);
+    });
+    localStorage.setItem('dgd-lang', lang);
+    // reload article in new language
+    if (currentSlug) loadArticle(currentSlug);
+  }
+
+  // language switcher UI
+  const langSwitcher = document.getElementById('lang-switcher');
+  const langBtn = document.getElementById('lang-btn');
+  langBtn?.addEventListener('click', (e) => {
+    e.stopPropagation();
+    const isOpen = langSwitcher.classList.toggle('open');
+    langBtn.setAttribute('aria-expanded', String(isOpen));
+  });
+  document.addEventListener('click', (e) => {
+    if (langSwitcher && !langSwitcher.contains(e.target)) {
+      langSwitcher.classList.remove('open');
+      langBtn?.setAttribute('aria-expanded', 'false');
+    }
+  });
+  document.querySelectorAll('[data-lang]').forEach(btn => {
+    btn.addEventListener('click', () => {
+      setLanguage(btn.getAttribute('data-lang'));
+      langSwitcher?.classList.remove('open');
+    });
+  });
+
+  // mobile menu
+  const mb = document.getElementById('menu-btn');
+  const mm = document.getElementById('mobile-menu');
+  if (mb) mb.addEventListener('click', () => mm.classList.toggle('hidden'));
+
+  // ===== Article fetch & render =====
+  const params = new URLSearchParams(location.search);
+  const currentSlug = params.get('slug');
+
+  const fmtDate = (iso, readTime) => {
+    if (!iso) return '';
+    const d = new Date(iso);
+    const lang = localStorage.getItem('dgd-lang') || 'uz';
+    const months = {
+      uz:['Yanvar','Fevral','Mart','Aprel','May','Iyun','Iyul','Avgust','Sentyabr','Oktyabr','Noyabr','Dekabr'],
+      ru:['Января','Февраля','Марта','Апреля','Мая','Июня','Июля','Августа','Сентября','Октября','Ноября','Декабря'],
+      en:['January','February','March','April','May','June','July','August','September','October','November','December'],
+      tr:['Ocak','Şubat','Mart','Nisan','Mayıs','Haziran','Temmuz','Ağustos','Eylül','Ekim','Kasım','Aralık'],
+    };
+    const m = (months[lang] || months.uz)[d.getMonth()];
+    return { date: `${d.getDate()} ${m} ${d.getFullYear()}`, readTime: `${readTime} ${t('blog.readTime')}` };
+  };
+
+  async function loadArticle(slug){
+    const titleEl   = document.getElementById('article-title');
+    const metaEl    = document.getElementById('article-meta');
+    const coverEl   = document.getElementById('article-cover');
+    const contentEl = document.getElementById('article-content');
+    const errorEl   = document.getElementById('article-error');
+
+    if (!slug) {
+      // no slug — show error
+      titleEl.style.display = 'none';
+      metaEl.style.display = 'none';
+      contentEl.classList.add('hidden');
+      errorEl.classList.remove('hidden');
+      return;
+    }
+
+    const lang = localStorage.getItem('dgd-lang') || 'uz';
+    try {
+      const res = await fetch(`${API_BASE}/blog/posts/${encodeURIComponent(slug)}/?lang=${lang}`);
+      if (!res.ok) throw new Error(`HTTP ${res.status}`);
+      const post = await res.json();
+
+      // update page title
+      document.title = `${post.title} — DGD Consulting`;
+
+      // render meta
+      const fd = fmtDate(post.published_at, post.read_time);
+      metaEl.innerHTML = `
+        ${post.category ? `<span class="chip" style="background: rgba(167,240,184,0.15); color:#a7f0b8; border:1px solid rgba(167,240,184,0.25);">${post.category.name}</span>` : ''}
+        <span>${fd.date || ''}</span>
+        <span>· ${fd.readTime}</span>
+      `;
+
+      // render title
+      titleEl.textContent = post.title;
+
+      // render cover
+      if (post.cover_image) {
+        coverEl.src = post.cover_image;
+        coverEl.alt = post.title;
+        coverEl.classList.remove('hidden');
+      } else {
+        coverEl.classList.add('hidden');
+      }
+
+      // render content (HTML from CKEditor)
+      contentEl.innerHTML = post.content || `<p style="color: rgba(11,20,16,0.5);">${t('blog.notFoundDesc')}</p>`;
+      contentEl.classList.remove('hidden');
+      errorEl.classList.add('hidden');
+    } catch (err) {
+      console.error('Failed to load article:', err);
+      titleEl.style.display = 'none';
+      metaEl.style.display = 'none';
+      coverEl.classList.add('hidden');
+      contentEl.classList.add('hidden');
+      errorEl.classList.remove('hidden');
+    }
+  }
+
+  // initial language + article load
+  const initialLang = localStorage.getItem('dgd-lang') || 'uz';
+  setLanguage(initialLang);
+  loadArticle(currentSlug);
+</script>
+</body>
+</html>
