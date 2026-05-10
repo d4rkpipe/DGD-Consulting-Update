@@ -427,6 +427,31 @@
   /* chip */
   .chip{ display:inline-flex; align-items:center; gap:8px; padding:6px 12px; border-radius:999px; font-size:12px; font-family:'JetBrains Mono', monospace; letter-spacing:.05em; }
 
+  /* additional services (CRM, core box, sample bag, storage setup) */
+  .add-svc{
+    display: flex; align-items: center; gap: 14px;
+    padding: 14px 18px;
+    background: rgba(255,255,255,0.03);
+    border: 1px solid rgba(255,255,255,0.08);
+    border-radius: 14px;
+    transition: border-color .25s ease, background .25s ease, transform .25s ease;
+  }
+  .add-svc:hover{
+    border-color: rgba(167,240,184,0.30);
+    background: rgba(255,255,255,0.05);
+    transform: translateX(2px);
+  }
+  .add-svc-icon{
+    width: 36px; height: 36px; border-radius: 10px;
+    background: rgba(167,240,184,0.08);
+    border: 1px solid rgba(167,240,184,0.15);
+    display: grid; place-items: center;
+    color: #a7f0b8;
+    flex-shrink: 0;
+  }
+  .add-svc h4{ font-size: 15px; font-weight: 600; color: #fff; line-height: 1.3; }
+  .add-svc p{ font-size: 13px; color: rgba(255,255,255,0.62); margin-top: 2px; line-height: 1.45; }
+
   /* NEW services cards — outcome + stage chips */
   .svc-new{
     background: rgba(255,255,255,0.03);
@@ -1380,6 +1405,41 @@
 
     </div>
 
+    <!-- Additional Supply & Support -->
+    <div class="reveal mt-14 max-w-[1100px]">
+      <div class="font-mono text-[11px] uppercase tracking-widest text-white/45 mb-5" data-i18n="services.additionalLabel">Additional Supply &amp; Support</div>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
+        <article class="add-svc">
+          <span class="add-svc-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/><polyline points="7.5 4.21 12 6.81 16.5 4.21"/><polyline points="7.5 19.79 7.5 14.6 3 12"/><polyline points="21 12 16.5 14.6 16.5 19.79"/><polyline points="3.27 6.96 12 12.01 20.73 6.96"/><line x1="12" y1="22.08" x2="12" y2="12"/></svg></span>
+          <div class="min-w-0">
+            <h4 data-i18n="services.a1.title">CRM supply</h4>
+            <p data-i18n="services.a1.desc">Core Reference Materials (certified standards, blanks, duplicates) for QA/QC programmes.</p>
+          </div>
+        </article>
+        <article class="add-svc">
+          <span class="add-svc-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="6" width="18" height="13" rx="2"/><path d="M3 10h18M9 6V4h6v2"/></svg></span>
+          <div class="min-w-0">
+            <h4 data-i18n="services.a2.title">Core box supply</h4>
+            <p data-i18n="services.a2.desc">Durable, labelled core trays for organised drill core storage and long-term archiving.</p>
+          </div>
+        </article>
+        <article class="add-svc">
+          <span class="add-svc-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M6 7l1-3h10l1 3"/><path d="M5 7h14l-1.5 13a2 2 0 0 1-2 1.8h-7a2 2 0 0 1-2-1.8L5 7z"/><path d="M10 11v6M14 11v6"/></svg></span>
+          <div class="min-w-0">
+            <h4 data-i18n="services.a3.title">Sample bag supply</h4>
+            <p data-i18n="services.a3.desc">Pre-printed geological sample bags meeting chain-of-custody and laboratory requirements.</p>
+          </div>
+        </article>
+        <article class="add-svc">
+          <span class="add-svc-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 21h18M5 21V10l7-5 7 5v11"/><path d="M9 14h6M9 17h6M9 11h6"/></svg></span>
+          <div class="min-w-0">
+            <h4 data-i18n="services.a4.title">Core storage facility setup</h4>
+            <p data-i18n="services.a4.desc">Assistance in designing and establishing compliant drill core storage facilities.</p>
+          </div>
+        </article>
+      </div>
+    </div>
+
     <!-- bottom CTA -->
     <div class="reveal mt-14 flex flex-wrap items-center gap-4">
       <a href="#contact" class="btn-dgd"><span data-i18n="services.btnContact">Get in touch</span>
@@ -2246,6 +2306,15 @@
       "services.s11.title": "MRE, Scoping Study va PFS/FS hisobotlarini tayyorlash",
       "services.s11.desc": "JORC Code yoki NI 43-101 standartiga muvofiq Mineral Resurs Baholash va texnik-iqtisodiy tadqiqotlarni (Scoping, Pre-Feasibility, Feasibility) tayyorlash — Kompetent shaxs tomonidan yozilgan yoki ko'rib chiqilgan.",
       "services.s11.outcome": "Bankka topshirishga tayyor, investor darajasidagi texnik hisobotlar — loyiha moliyalashtirishi va rivojlantirish qarorlari uchun asos.",
+      "services.additionalLabel": "Qo'shimcha ta'minot va qo'llab-quvvatlash",
+      "services.a1.title": "CRM yetkazib berish",
+      "services.a1.desc": "QA/QC dasturlari uchun Core Reference Materials (sertifikatlangan standartlar, blanklar, dublikatlar).",
+      "services.a2.title": "Core box yetkazib berish",
+      "services.a2.desc": "Tartibli kern saqlash va uzoq muddatli arxivlash uchun mustahkam, belgilangan core trays.",
+      "services.a3.title": "Namuna xaltalari yetkazib berish",
+      "services.a3.desc": "Saqlash zanjiri va laboratoriya talablariga mos oldindan bosilgan geologik namuna xaltalari.",
+      "services.a4.title": "Kern saqlash inshooti barpo etish",
+      "services.a4.desc": "Talabga mos kern saqlash inshootlarini loyihalashtirish va barpo etishda yordam.",
       "services.btnContact": "Bog'lanish",
       "services.btnSee": "Qanday ishlashimizni ko'ring",
 
@@ -2435,6 +2504,15 @@
       "services.s11.title": "Подготовка отчётов MRE, Scoping Study и PFS/FS",
       "services.s11.desc": "Подготовка отчётов по оценке минеральных ресурсов и технико-экономических исследований (Scoping, Pre-Feasibility, Feasibility), соответствующих JORC Code или NI 43-101, выполненных или проверенных Компетентным Лицом.",
       "services.s11.outcome": "Bankable, инвестиционного уровня технические отчёты, обеспечивающие финансирование проекта и принятие решений о развитии.",
+      "services.additionalLabel": "Дополнительные поставки и поддержка",
+      "services.a1.title": "Поставка СОК (CRM)",
+      "services.a1.desc": "Сертифицированные стандарты, бланки и дубликаты для программ QA/QC.",
+      "services.a2.title": "Поставка керновых ящиков",
+      "services.a2.desc": "Прочные маркированные кернохранилища для организованного хранения керна и долгосрочного архивирования.",
+      "services.a3.title": "Поставка пробных мешков",
+      "services.a3.desc": "Предварительно маркированные геологические пробные мешки, соответствующие требованиям цепочки хранения и лаборатории.",
+      "services.a4.title": "Создание кернохранилища",
+      "services.a4.desc": "Помощь в проектировании и создании керновых хранилищ, соответствующих стандартам.",
       "services.btnContact": "Связаться",
       "services.btnSee": "Как мы работаем",
 
@@ -2624,6 +2702,15 @@
       "services.s11.title": "MRE, Scoping Study &amp; PFS/FS Report Preparation",
       "services.s11.desc": "Preparation of Mineral Resource Estimates and technical-economic studies (Scoping, Pre-Feasibility, Feasibility) compliant with JORC Code or NI 43-101, authored or reviewed by a Competent Person.",
       "services.s11.outcome": "Bankable, investor-grade technical reports enabling project financing and development decisions.",
+      "services.additionalLabel": "Additional Supply &amp; Support",
+      "services.a1.title": "CRM supply",
+      "services.a1.desc": "Core Reference Materials (certified standards, blanks, duplicates) for QA/QC programmes.",
+      "services.a2.title": "Core box supply",
+      "services.a2.desc": "Durable, labelled core trays for organised drill core storage and long-term archiving.",
+      "services.a3.title": "Sample bag supply",
+      "services.a3.desc": "Pre-printed geological sample bags meeting chain-of-custody and laboratory requirements.",
+      "services.a4.title": "Core storage facility setup",
+      "services.a4.desc": "Assistance in designing and establishing compliant drill core storage facilities.",
       "services.btnContact": "Get in touch",
       "services.btnSee": "See how we work",
 
@@ -2813,6 +2900,15 @@
       "services.s11.title": "MRE, Scoping Study ve PFS/FS Rapor Hazırlama",
       "services.s11.desc": "JORC Code veya NI 43-101 ile uyumlu Mineral Kaynak Tahminleri ve teknik-ekonomik çalışmaların (Scoping, Pre-Feasibility, Feasibility) Yetkili Kişi tarafından hazırlanması veya gözden geçirilmesi.",
       "services.s11.outcome": "Bankable, yatırım sınıfı teknik raporlar — proje finansmanı ve gelişim kararlarını mümkün kılar.",
+      "services.additionalLabel": "Ek Tedarik ve Destek",
+      "services.a1.title": "CRM tedariki",
+      "services.a1.desc": "QA/QC programları için Sertifikalı Referans Malzemeler (standartlar, blanklar, dubliketler).",
+      "services.a2.title": "Karot kutusu tedariki",
+      "services.a2.desc": "Düzenli sondaj karotu depolama ve uzun süreli arşivleme için dayanıklı, etiketli karot tepsileri.",
+      "services.a3.title": "Numune torbası tedariki",
+      "services.a3.desc": "Saklama zinciri ve laboratuvar gereksinimlerini karşılayan ön baskılı jeolojik numune torbaları.",
+      "services.a4.title": "Karot saklama tesisi kurulumu",
+      "services.a4.desc": "Standartlara uygun karot saklama tesislerinin tasarlanması ve kurulmasına yardım.",
       "services.btnContact": "İletişime geç",
       "services.btnSee": "Nasıl çalıştığımızı gör",
 
