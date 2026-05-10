@@ -35,7 +35,7 @@ build/
 # Vercel
 .vercel
 
-# Python (kelajakda backend uchun)
+# Python / Django backend
 __pycache__/
 *.py[cod]
 *$py.class
@@ -43,6 +43,13 @@ __pycache__/
 venv/
 env/
 *.egg-info/
+# Django specific
+backend/db.sqlite3
+backend/db.sqlite3-journal
+backend/media/
+backend/staticfiles/
+backend/.env
+*.log
 
 # Temp / scraps
 scraps/

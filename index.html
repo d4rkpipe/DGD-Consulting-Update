@@ -1590,26 +1590,198 @@
   prevBtn?.addEventListener('click', () => track.scrollBy({ left: -stepBy(), behavior: 'smooth' }));
   nextBtn?.addEventListener('click', () => track.scrollBy({ left:  stepBy(), behavior: 'smooth' }));
 
-  // ===== form =====
-  const form = document.getElementById('contactForm');
-  const status = document.getElementById('formStatus');
-  form?.addEventListener('submit', (e) => {
-    e.preventDefault();
-    status.classList.remove('hidden');
-    status.textContent = (window.__t && window.__t('contact.fStatus')) || 'Thank you — your brief has been received. We will respond within one business day.';
-    form.reset();
+  // ===== Dynamic content from API =====
+  const _api = (path) => fetch(`${API_BASE}${path}`).then(r => r.ok ? r.json() : Promise.reject(r.status));
+
+  // Format date short e.g. "Apr 2026 · 7 daq. o'qish"
+  const _fmtBlogDate = (iso, readTime) => {
+    if (!iso) return '';
+    const d = new Date(iso);
+    const lang = localStorage.getItem('dgd-lang') || 'uz';
+    const monthMap = {
+      uz: ['Yan','Fev','Mar','Apr','May','Iyun','Iyul','Avg','Sen','Okt','Noy','Dek'],
+      ru: ['Янв','Фев','Мар','Апр','Май','Июн','Июл','Авг','Сен','Окт','Ноя','Дек'],
+      en: ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'],
+      tr: ['Oca','Şub','Mar','Nis','May','Haz','Tem','Ağu','Eyl','Eki','Kas','Ara'],
+    };
+    const minLabel = { uz: "daq. o'qish", ru: 'мин', en: 'min read', tr: 'dk okuma' }[lang] || 'min';
+    const m = (monthMap[lang] || monthMap.uz)[d.getMonth()];
+    return `${m} ${d.getFullYear()} · ${readTime} ${minLabel}`;
+  };
+
+  // Build a blog card HTML from API data
+  const _buildBlogCard = (post) => {
+    const cover = post.cover_image
+      ? `<img src="${post.cover_image}" alt="${post.title}" class="absolute inset-0 w-full h-full object-cover"/>`
+      : `<div class="absolute inset-0" style="background: linear-gradient(135deg, #0b3a17, #16a34a 60%, #cdeed5);"></div>`;
+    const cat = post.category ? post.category.name : '';
+    return `
+      <article class="lift snap-start shrink-0 w-[88%] sm:w-[420px] lg:w-[440px] bg-white rounded-3xl overflow-hidden border border-dgd-700/10 flex flex-col">
+        <div class="aspect-[4/3] relative overflow-hidden">
+          ${cover}
+          <div class="absolute top-4 left-4 chip" style="background: rgba(255,255,255,0.85); color:#085A1C;">${cat}</div>
+          <div class="absolute bottom-4 left-4 right-4 font-mono text-[11px] uppercase tracking-widest text-white/85">${_fmtBlogDate(post.published_at, post.read_time)}</div>
+        </div>
+        <div class="p-7 flex flex-col flex-1">
+          <h3 class="font-display font-bold text-dgd-700 leading-tight" style="font-size: 26px;">${post.title}</h3>
+          <p class="text-dgd-700/85 mt-3 leading-[1.7] text-[14.5px]">${post.excerpt}</p>
+          <div class="hairline mt-auto mb-5 pt-5"></div>
+          <a href="#" class="text-dgd-700 font-semibold inline-flex items-center gap-2 ulink"><span>${window.__t?.('blogs.read') || "Maqolani o'qish"}</span>
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+          </a>
+        </div>
+      </article>`;
+  };
+
+  // Load blog posts from API, fall back to static cards on error
+  async function loadBlogPosts() {
+    if (!track) return;
+    try {
+      const lang = localStorage.getItem('dgd-lang') || 'uz';
+      const data = await _api(`/blog/posts/?lang=${lang}`);
+      const posts = data.results || data;
+      if (!posts.length) return;
+      track.innerHTML = posts.map(_buildBlogCard).join('');
+      track.querySelectorAll('.lift').forEach(el => el.classList.add('reveal','in'));
+    } catch (err) {
+      console.warn('Blog API unavailable, keeping static cards:', err);
+    }
+  }
+
+  // Load partners from API, replace logos
+  async function loadPartners() {
+    const tracks = document.querySelectorAll('.partners-track');
+    if (!tracks.length) return;
+    try {
+      const partners = await _api('/partners/');
+      if (!partners.length) return;
+      const html = partners.map(p =>
+        `<span class="partner-slot"><img src="${p.logo}" alt="${p.name}" class="partner-logo"/></span>`
+      ).join('');
+      // duplicate the set so the marquee loop is seamless
+      tracks.forEach(t => {
+        t.innerHTML = `
+          <span class="flex items-center gap-10 md:gap-14 shrink-0">${html}</span>
+          <span class="flex items-center gap-10 md:gap-14 shrink-0" aria-hidden="true">${html}</span>`;
+      });
+    } catch (err) {
+      console.warn('Partners API unavailable, keeping static logos:', err);
+    }
+  }
+
+  loadBlogPosts();
+  loadPartners();
+
+  // Reload blog posts when language changes
+  window.addEventListener('storage', (e) => {
+    if (e.key === 'dgd-lang') loadBlogPosts();
   });
 
-  // ===== newsletter form =====
+  // ===== API base URL =====
+  const API_BASE = (location.hostname === 'localhost' || location.hostname === '127.0.0.1')
+    ? 'http://localhost:8002/api'
+    : '/api';
+
+  // ===== Contact form — POST to API =====
+  const form = document.getElementById('contactForm');
+  const status = document.getElementById('formStatus');
+  form?.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const btn = form.querySelector('button[type="submit"]');
+    if (btn) btn.disabled = true;
+
+    const fd = new FormData(form);
+    const payload = {
+      name:    fd.get('name')    || '',
+      company: fd.get('company') || '',
+      phone:   fd.get('phone')   || '',
+      service: 'other',  // backend uses choice keys; mapping below
+      notes:   fd.get('notes')   || '',
+    };
+    // Map the selected option to a backend choice key
+    const serviceMap = {
+      'Geological consulting':              'geological_consulting',
+      'Geologik konsalting':                'geological_consulting',
+      'Геологический консалтинг':           'geological_consulting',
+      'Jeolojik danışmanlık':               'geological_consulting',
+      'Comprehensive project preparation':  'comprehensive_project',
+      'Kompleks loyiha tayyorlash':         'comprehensive_project',
+      'Подготовка комплексных проектов':    'comprehensive_project',
+      'Geological exploration works':       'exploration_works',
+      'Geologik tadqiqot ishlari':          'exploration_works',
+      'MRE report preparation':             'mre_report',
+      'MRE hisobot tayyorlash':             'mre_report',
+      'Geochemical research':               'geochemical_research',
+      'Geokimyoviy tadqiqot':               'geochemical_research',
+      'Geophysical research':               'geophysical_research',
+      'Geofizik tadqiqot':                  'geophysical_research',
+      'Special structural studies':         'structural_studies',
+      'Maxsus strukturaviy tadqiqotlar':    'structural_studies',
+      'Satellite image processing':         'satellite_processing',
+      "Sun'iy yo'ldosh tasvirini qayta ishlash": 'satellite_processing',
+      'AI / ML deposit prediction':         'ai_ml_prediction',
+      'AI / ML kon bashorati':              'ai_ml_prediction',
+      'QA/QC and CRM support':              'qaqc_crm',
+      "QA/QC va CRM qo'llab-quvvatlash":    'qaqc_crm',
+    };
+    const serviceText = fd.get('service') || '';
+    payload.service = serviceMap[serviceText] || 'other';
+
+    const showStatus = (msg, ok) => {
+      status.classList.remove('hidden');
+      status.textContent = msg;
+      status.style.background = ok ? 'rgba(8,90,28,0.08)' : 'rgba(220,53,69,0.08)';
+      status.style.color      = ok ? 'var(--dgd)'         : '#c33';
+    };
+
+    try {
+      const res = await fetch(`${API_BASE}/contact/`, {
+        method:  'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body:    JSON.stringify(payload),
+      });
+      if (!res.ok) throw new Error(`HTTP ${res.status}`);
+      showStatus(window.__t?.('contact.fStatus') || 'Rahmat — sizning brifingiz qabul qilindi.', true);
+      form.reset();
+    } catch (err) {
+      showStatus('Xatolik yuz berdi. Iltimos, keyinroq qayta urinib ko\'ring.', false);
+      console.error('Contact form error:', err);
+    } finally {
+      if (btn) btn.disabled = false;
+    }
+  });
+
+  // ===== Newsletter form — POST to API =====
   const newsForm = document.getElementById('newsletterForm');
   const newsStatus = document.getElementById('newsletterStatus');
-  newsForm?.addEventListener('submit', (e) => {
+  newsForm?.addEventListener('submit', async (e) => {
     e.preventDefault();
-    if (newsStatus) {
+    const btn = newsForm.querySelector('button[type="submit"]');
+    const emailInput = newsForm.querySelector('input[type="email"]');
+    if (btn) btn.disabled = true;
+
+    const show = (msg, ok) => {
+      if (!newsStatus) return;
       newsStatus.classList.remove('hidden');
-      newsStatus.textContent = (window.__t && window.__t('footer.newsThanks')) || 'Thank you for subscribing!';
+      newsStatus.textContent = msg;
+      newsStatus.style.color = ok ? '#a7f0b8' : '#ffb4b4';
+    };
+
+    try {
+      const res = await fetch(`${API_BASE}/contact/newsletter/subscribe/`, {
+        method:  'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body:    JSON.stringify({ email: emailInput.value }),
+      });
+      if (!res.ok) throw new Error(`HTTP ${res.status}`);
+      show(window.__t?.('footer.newsThanks') || 'Rahmat! Obuna muvaffaqiyatli amalga oshirildi.', true);
+      newsForm.reset();
+    } catch (err) {
+      show('Obuna xatosi. Iltimos, keyinroq qayta urinib ko\'ring.', false);
+      console.error('Newsletter error:', err);
+    } finally {
+      if (btn) btn.disabled = false;
     }
-    newsForm.reset();
   });
 
   // ===== i18n: translations =====
@@ -2205,6 +2377,9 @@
     });
 
     localStorage.setItem('dgd-lang', lang);
+
+    // Reload API-driven content in the new language
+    if (typeof loadBlogPosts === 'function') loadBlogPosts();
   }
 
   // toggle dropdown
