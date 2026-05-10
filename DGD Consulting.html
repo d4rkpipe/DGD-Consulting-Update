@@ -239,6 +239,68 @@
   .lang-item .lang-check{ opacity:0; color:#a7f0b8; transition: opacity .2s; }
   .lang-item.active .lang-check{ opacity:1; }
 
+  /* footer */
+  .footer-divider{
+    width: 44px; height: 2px;
+    background: #a7f0b8; border-radius: 2px;
+    margin-bottom: 1.25rem;
+  }
+  .footer-link{
+    color: rgba(255,255,255,0.65);
+    font-size: 14.5px; line-height: 1.5;
+    transition: color .2s ease, padding-left .25s ease;
+    display: inline-block;
+  }
+  .footer-link:hover{ color: #a7f0b8; padding-left: 6px; }
+  .footer-social{
+    width: 40px; height: 40px;
+    display: grid; place-items: center;
+    border-radius: 10px;
+    background: rgba(167,240,184,0.08);
+    border: 1px solid rgba(167,240,184,0.15);
+    color: #a7f0b8;
+    transition: all .25s ease;
+  }
+  .footer-social:hover{
+    background: #a7f0b8;
+    border-color: #a7f0b8;
+    color: #062f10;
+    transform: translateY(-2px);
+    box-shadow: 0 8px 18px -6px rgba(167,240,184,0.55);
+  }
+  .footer-input{
+    width: 100%;
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(255,255,255,0.15);
+    border-radius: 12px;
+    padding: 12px 16px;
+    color: #fff; font-size: 14.5px;
+    transition: border-color .25s ease, background .25s ease;
+  }
+  .footer-input::placeholder{ color: rgba(255,255,255,0.4); }
+  .footer-input:focus{
+    outline: none;
+    border-color: rgba(167,240,184,0.5);
+    background: rgba(255,255,255,0.07);
+  }
+  .footer-submit{
+    width: 100%;
+    background: #16a34a;
+    color: #fff;
+    font-weight: 700;
+    padding: 14px 16px;
+    border-radius: 12px;
+    text-transform: uppercase;
+    letter-spacing: .08em;
+    font-size: 12.5px;
+    transition: background .25s ease, transform .2s ease, box-shadow .25s ease;
+  }
+  .footer-submit:hover{
+    background: #0a7325;
+    transform: translateY(-2px);
+    box-shadow: 0 14px 28px -10px rgba(22,163,74,0.6);
+  }
+
   /* mobile language pills */
   .lang-pill{
     padding: 6px 12px; border-radius: 999px;
@@ -879,7 +941,7 @@
 
     <div id="blog-track" class="reveal flex gap-6 overflow-x-auto snap-x-mandatory no-scrollbar pb-6 -mx-6 px-6">
       <!-- card 1 -->
-      <article class="lift snap-start shrink-0 w-[88%] sm:w-[420px] lg:w-[440px] bg-white rounded-3xl overflow-hidden border border-dgd-700/10">
+      <article class="lift snap-start shrink-0 w-[88%] sm:w-[420px] lg:w-[440px] bg-white rounded-3xl overflow-hidden border border-dgd-700/10 flex flex-col">
         <div class="aspect-[4/3] relative overflow-hidden">
           <div class="absolute inset-0" style="background:
             linear-gradient(135deg, #0b3a17, #16a34a 60%, #cdeed5);"></div>
@@ -895,10 +957,10 @@
           <div class="absolute top-4 left-4 chip" style="background: rgba(255,255,255,0.85); color:#085A1C;" data-i18n="blogs.b1.cat">Method</div>
           <div class="absolute bottom-4 left-4 right-4 font-mono text-[11px] uppercase tracking-widest text-white/85" data-i18n="blogs.b1.date">Apr 2026 · 7 min read</div>
         </div>
-        <div class="p-7">
+        <div class="p-7 flex flex-col flex-1">
           <h3 class="font-display font-bold text-dgd-700 leading-tight" style="font-size: 26px;" data-i18n="blogs.b1.title">From outcrop to ore body: a modern targeting workflow</h3>
           <p class="text-dgd-700/85 mt-3 leading-[1.7] text-[14.5px]" data-i18n="blogs.b1.desc">How we combine geochemistry, structural mapping and gradient-boosted ML to compress months of fieldwork into a defensible target ranking.</p>
-          <div class="hairline my-5"></div>
+          <div class="hairline mt-auto mb-5 pt-5"></div>
           <a href="#" class="text-dgd-700 font-semibold inline-flex items-center gap-2 ulink"><span data-i18n="blogs.read">Read article</span>
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
           </a>
@@ -906,7 +968,7 @@
       </article>
 
       <!-- card 2 -->
-      <article class="lift snap-start shrink-0 w-[88%] sm:w-[420px] lg:w-[440px] bg-white rounded-3xl overflow-hidden border border-dgd-700/10">
+      <article class="lift snap-start shrink-0 w-[88%] sm:w-[420px] lg:w-[440px] bg-white rounded-3xl overflow-hidden border border-dgd-700/10 flex flex-col">
         <div class="aspect-[4/3] relative overflow-hidden">
           <div class="absolute inset-0" style="background:
             radial-gradient(120% 80% at 20% 0%, #16a34a, transparent 60%),
@@ -939,10 +1001,10 @@
           <div class="absolute top-4 left-4 chip" style="background: rgba(255,255,255,0.85); color:#085A1C;" data-i18n="blogs.b2.cat">AI / ML</div>
           <div class="absolute bottom-4 left-4 right-4 font-mono text-[11px] uppercase tracking-widest text-white/85" data-i18n="blogs.b2.date">Mar 2026 · 5 min read</div>
         </div>
-        <div class="p-7">
+        <div class="p-7 flex flex-col flex-1">
           <h3 class="font-display font-bold text-dgd-700 leading-tight" style="font-size: 26px;" data-i18n="blogs.b2.title">Why your next geologist is half model, half map</h3>
           <p class="text-dgd-700/85 mt-3 leading-[1.7] text-[14.5px]" data-i18n="blogs.b2.desc">Machine learning is not replacing field expertise — it is amplifying it. A practical look at deploying CNN classifiers on multispectral satellite stacks.</p>
-          <div class="hairline my-5"></div>
+          <div class="hairline mt-auto mb-5 pt-5"></div>
           <a href="#" class="text-dgd-700 font-semibold inline-flex items-center gap-2 ulink"><span data-i18n="blogs.read">Read article</span>
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
           </a>
@@ -950,7 +1012,7 @@
       </article>
 
       <!-- card 3 -->
-      <article class="lift snap-start shrink-0 w-[88%] sm:w-[420px] lg:w-[440px] bg-white rounded-3xl overflow-hidden border border-dgd-700/10">
+      <article class="lift snap-start shrink-0 w-[88%] sm:w-[420px] lg:w-[440px] bg-white rounded-3xl overflow-hidden border border-dgd-700/10 flex flex-col">
         <div class="aspect-[4/3] relative overflow-hidden">
           <div class="absolute inset-0" style="background:
             linear-gradient(180deg, #cdeed5 0%, #16a34a 50%, #062f10 100%);"></div>
@@ -966,10 +1028,10 @@
           <div class="absolute top-4 left-4 chip" style="background: rgba(255,255,255,0.85); color:#085A1C;" data-i18n="blogs.b3.cat">Reporting</div>
           <div class="absolute bottom-4 left-4 right-4 font-mono text-[11px] uppercase tracking-widest text-white/85" data-i18n="blogs.b3.date">Feb 2026 · 9 min read</div>
         </div>
-        <div class="p-7">
+        <div class="p-7 flex flex-col flex-1">
           <h3 class="font-display font-bold text-dgd-700 leading-tight" style="font-size: 26px;" data-i18n="blogs.b3.title">JORC-ready: building MRE reports investors actually trust</h3>
           <p class="text-dgd-700/85 mt-3 leading-[1.7] text-[14.5px]" data-i18n="blogs.b3.desc">A field-tested checklist for producing MRE documentation that survives technical due diligence — from data validation to competent-person review.</p>
-          <div class="hairline my-5"></div>
+          <div class="hairline mt-auto mb-5 pt-5"></div>
           <a href="#" class="text-dgd-700 font-semibold inline-flex items-center gap-2 ulink"><span data-i18n="blogs.read">Read article</span>
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
           </a>
@@ -1098,49 +1160,6 @@
           </form>
         </div>
 
-        <!-- Map -->
-        <div class="reveal reveal-delay-1 mt-6 relative">
-          <!-- glow halo -->
-          <div aria-hidden="true" class="absolute -inset-3 rounded-[28px] pointer-events-none" style="background: radial-gradient(closest-side, rgba(22,163,74,0.45), transparent 70%); filter: blur(28px); opacity:.7;"></div>
-          <div class="relative rounded-3xl overflow-hidden border border-[#a7f0b8]/25 bg-[#073716]" style="box-shadow: 0 0 0 1px rgba(8,90,28,0.45) inset, 0 30px 60px -20px rgba(8,90,28,0.55), 0 0 80px -10px rgba(22,163,74,0.45);">
-            <!-- top label bar -->
-            <div class="flex items-center justify-between px-5 py-3 bg-[#062f10]/90 backdrop-blur border-b border-[#a7f0b8]/15">
-              <div class="flex items-center gap-3">
-                <span class="w-2 h-2 rounded-full" style="background:#a7f0b8; box-shadow: 0 0 10px #a7f0b8;"></span>
-                <span class="font-mono text-[11px] uppercase tracking-widest text-white/85" data-i18n="contact.mapHq">DGD HQ · Tashkent, Uzbekistan</span>
-              </div>
-              <a href="https://yandex.com/maps/10335/tashkent/?ll=69.279737%2C41.311081&z=12" target="_blank" rel="noopener" class="font-mono text-[11px] uppercase tracking-widest text-[#a7f0b8] hover:text-white transition flex items-center gap-2">
-                <span data-i18n="contact.mapOpen">Open in Yandex</span>
-                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
-              </a>
-            </div>
-            <!-- iframe wrapper -->
-            <div class="relative" style="aspect-ratio: 16/10;">
-              <iframe
-                title="DGD Consulting on Yandex Maps — Tashkent, Uzbekistan"
-                src="https://yandex.com/map-widget/v1/?ll=69.279737%2C41.311081&z=12&pt=69.279737%2C41.311081%2Cpm2gnm"
-                width="100%"
-                height="100%"
-                frameborder="0"
-                allowfullscreen="true"
-                style="position:absolute; inset:0; border:0; filter: contrast(1.02) saturate(1.05);"></iframe>
-              <!-- decorative crosshair / corner brackets -->
-              <div class="absolute inset-0 pointer-events-none">
-                <span class="absolute top-3 left-3 w-5 h-5 border-t-2 border-l-2" style="border-color:#a7f0b8;"></span>
-                <span class="absolute top-3 right-3 w-5 h-5 border-t-2 border-r-2" style="border-color:#a7f0b8;"></span>
-                <span class="absolute bottom-3 left-3 w-5 h-5 border-b-2 border-l-2" style="border-color:#a7f0b8;"></span>
-                <span class="absolute bottom-3 right-3 w-5 h-5 border-b-2 border-r-2" style="border-color:#a7f0b8;"></span>
-              </div>
-            </div>
-            <!-- bottom coords bar -->
-            <div class="flex items-center justify-between px-5 py-3 bg-[#062f10]/90 border-t border-[#a7f0b8]/15 font-mono text-[11px] uppercase tracking-widest text-white/55">
-              <span>41.3110° N</span>
-              <span class="hidden sm:inline">Office · By appointment</span>
-              <span>69.2797° E</span>
-            </div>
-          </div>
-        </div>
-
         <!-- old stylized map (hidden, kept off DOM) -->
         <div class="hidden">
           <div class="absolute inset-0 grid place-items-center">
@@ -1206,16 +1225,131 @@
       </div>
     </div>
 
-    <!-- footer line -->
-    <div class="mt-20 pt-8 border-t border-white/10 flex flex-wrap items-center justify-between gap-4 text-white/55 text-sm">
-      <div class="flex items-center gap-3">
-        <img src="assets/logo.png" alt="DGD Consulting" class="logo-img w-7 h-7"/>
-        <span data-i18n="footer.copy">© 2026 DGD Consulting LLC — All rights reserved.</span>
+    <!-- ============== MAP — FULL WIDTH BELOW CONTACT GRID ============== -->
+    <div class="reveal reveal-delay-1 mt-16 md:mt-20 relative">
+      <!-- bigger glow halo -->
+      <div aria-hidden="true" class="absolute -inset-5 rounded-[40px] pointer-events-none" style="background: radial-gradient(closest-side, rgba(22,163,74,0.55), transparent 70%); filter: blur(46px); opacity:.7;"></div>
+      <div class="relative rounded-3xl overflow-hidden border border-[#a7f0b8]/30 bg-[#073716]" style="box-shadow: 0 0 0 1px rgba(8,90,28,0.5) inset, 0 40px 80px -20px rgba(8,90,28,0.65), 0 0 100px -10px rgba(22,163,74,0.55);">
+        <!-- top label bar -->
+        <div class="flex items-center justify-between px-5 py-3.5 bg-[#062f10]/95 backdrop-blur border-b border-[#a7f0b8]/15">
+          <div class="flex items-center gap-3">
+            <span class="relative flex w-2.5 h-2.5">
+              <span class="absolute inset-0 rounded-full pin-pulse" style="background:#a7f0b8;"></span>
+              <span class="relative w-2.5 h-2.5 rounded-full" style="background:#a7f0b8; box-shadow: 0 0 12px #a7f0b8;"></span>
+            </span>
+            <span class="font-mono text-[11px] uppercase tracking-widest text-white/90" data-i18n="contact.mapHq">DGD HQ · Tashkent, Uzbekistan</span>
+          </div>
+          <a href="https://yandex.com/maps/?ll=69.190148%2C41.217477&z=17&pt=69.190148%2C41.217477%2Cpm2gnm" target="_blank" rel="noopener" class="font-mono text-[11px] uppercase tracking-widest text-[#a7f0b8] hover:text-white transition flex items-center gap-2">
+            <span data-i18n="contact.mapOpen">Open in Yandex</span>
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+          </a>
+        </div>
+        <!-- iframe wrapper — wide cinematic landscape -->
+        <div class="relative" style="aspect-ratio: 12/5; min-height: 380px;">
+          <iframe
+            title="DGD Consulting on Yandex Maps — Yangihayot, Tashkent"
+            src="https://yandex.com/map-widget/v1/?ll=69.190148%2C41.217477&z=17&pt=69.190148%2C41.217477%2Cpm2gnm"
+            width="100%"
+            height="100%"
+            frameborder="0"
+            allowfullscreen="true"
+            style="position:absolute; inset:0; border:0; filter: contrast(1.04) saturate(1.08);"></iframe>
+          <!-- larger corner brackets -->
+          <div class="absolute inset-0 pointer-events-none">
+            <span class="absolute top-4 left-4 w-8 h-8 border-t-2 border-l-2" style="border-color:#a7f0b8;"></span>
+            <span class="absolute top-4 right-4 w-8 h-8 border-t-2 border-r-2" style="border-color:#a7f0b8;"></span>
+            <span class="absolute bottom-4 left-4 w-8 h-8 border-b-2 border-l-2" style="border-color:#a7f0b8;"></span>
+            <span class="absolute bottom-4 right-4 w-8 h-8 border-b-2 border-r-2" style="border-color:#a7f0b8;"></span>
+          </div>
+          <!-- floating address pill -->
+          <div class="absolute top-4 left-1/2 -translate-x-1/2 pointer-events-none px-4 py-2 rounded-full bg-[#062f10]/90 backdrop-blur-md border border-[#a7f0b8]/30 flex items-center gap-2 shadow-lg">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#a7f0b8" stroke-width="2"><circle cx="12" cy="10" r="3"/><path d="M12 2C7.6 2 4 5.6 4 10c0 6 8 12 8 12s8-6 8-12c0-4.4-3.6-8-8-8z"/></svg>
+            <span class="font-mono text-[10px] tracking-widest uppercase text-[#a7f0b8]">Yangihayot · Navruz 10</span>
+          </div>
+        </div>
+        <!-- bottom coords bar -->
+        <div class="flex items-center justify-between px-5 py-3 bg-[#062f10]/95 border-t border-[#a7f0b8]/15 font-mono text-[11px] uppercase tracking-widest text-white/55">
+          <span>41.217477° N</span>
+          <span class="hidden sm:inline">Office · By appointment</span>
+          <span>69.190148° E</span>
+        </div>
       </div>
-      <div class="font-mono text-[11px] uppercase tracking-widest" data-i18n="footer.tagline">Designed in Tashkent · Built for the field</div>
     </div>
+
   </div>
 </section>
+
+<!-- ============== FOOTER ============== -->
+<footer id="footer" class="relative bg-[#051e0c] text-white overflow-hidden">
+  <!-- subtle ambient glow -->
+  <div class="absolute inset-0 pointer-events-none" style="background: radial-gradient(900px 400px at 50% 0%, rgba(22,163,74,0.10), transparent 70%);"></div>
+
+  <div class="relative max-w-[1400px] mx-auto px-6 lg:px-10 py-16 md:py-20">
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-10 lg:gap-12">
+
+      <!-- Column 1: Brand -->
+      <div class="lg:col-span-4">
+        <a href="#top" class="flex items-center gap-3 group mb-5">
+          <img src="assets/logo.png" alt="DGD Consulting" class="logo-img w-12 h-12"/>
+          <span class="font-display font-bold text-2xl tracking-tight">DGD <span class="opacity-80 font-medium">Consulting</span></span>
+        </a>
+        <p class="text-white/60 leading-[1.7] text-[14.5px] max-w-[330px]" data-i18n="footer.about">Geologik tadqiqot va kon ishlari bo'yicha konsalting — Toshkent, O'zbekiston.</p>
+        <div class="flex items-center gap-2.5 mt-7">
+          <a href="https://t.me/ErgashovZafarjonGeo" target="_blank" rel="noopener noreferrer" aria-label="Telegram" class="footer-social">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M21.9 4.5L19 19.3c-.2 1-.8 1.2-1.6.8l-4.4-3.2-2.1 2c-.2.2-.4.4-.9.4l.3-4.5 8.2-7.4c.4-.3-.1-.5-.6-.2L7.7 12.6 3.4 11.3c-.9-.3-.9-.9.2-1.4l16.9-6.5c.8-.3 1.5.2 1.4 1.1z"/></svg>
+          </a>
+          <a href="https://www.linkedin.com/company/dgd-consulting-uzbekistan/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn" class="footer-social">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M4.98 3.5C4.98 4.88 3.87 6 2.5 6S0 4.88 0 3.5 1.12 1 2.5 1s2.48 1.12 2.48 2.5zM.22 8h4.56v14H.22V8zm7.78 0h4.37v1.92h.06c.61-1.15 2.1-2.36 4.32-2.36 4.62 0 5.47 3.04 5.47 7v7.44h-4.56v-6.6c0-1.57-.03-3.6-2.19-3.6-2.2 0-2.54 1.71-2.54 3.49V22H8V8z"/></svg>
+          </a>
+          <a href="https://www.youtube.com/" target="_blank" rel="noopener noreferrer" aria-label="YouTube" class="footer-social">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M23.5 6.5a3 3 0 0 0-2.1-2.1C19.5 4 12 4 12 4s-7.5 0-9.4.4A3 3 0 0 0 .5 6.5C.1 8.4.1 12 .1 12s0 3.6.4 5.5a3 3 0 0 0 2.1 2.1c1.9.4 9.4.4 9.4.4s7.5 0 9.4-.4a3 3 0 0 0 2.1-2.1c.4-1.9.4-5.5.4-5.5s0-3.6-.4-5.5zM9.7 15.6V8.4l6.3 3.6-6.3 3.6z"/></svg>
+          </a>
+        </div>
+      </div>
+
+      <!-- Column 2: Company -->
+      <div class="lg:col-span-2">
+        <h4 class="font-display font-bold text-[19px] tracking-tight mb-2" data-i18n="footer.companyTitle">Kompaniya</h4>
+        <div class="footer-divider"></div>
+        <ul class="space-y-3">
+          <li><a href="#about" class="footer-link" data-i18n="nav.about">Biz haqimizda</a></li>
+          <li><a href="#services" class="footer-link" data-i18n="nav.services">Xizmatlar</a></li>
+          <li><a href="#blogs" class="footer-link" data-i18n="nav.blogs">Bloglar</a></li>
+          <li><a href="#contact" class="footer-link" data-i18n="nav.contact">Bog'lanish</a></li>
+        </ul>
+      </div>
+
+      <!-- Column 3: Services -->
+      <div class="lg:col-span-3">
+        <h4 class="font-display font-bold text-[19px] tracking-tight mb-2" data-i18n="footer.servicesTitle">Xizmatlar</h4>
+        <div class="footer-divider"></div>
+        <ul class="space-y-3">
+          <li><a href="#services" class="footer-link" data-i18n="footer.svc1">Geologik konsalting</a></li>
+          <li><a href="#services" class="footer-link" data-i18n="footer.svc2">MRE hisobotlar</a></li>
+          <li><a href="#services" class="footer-link" data-i18n="footer.svc3">Geofizik tadqiqot</a></li>
+          <li><a href="#services" class="footer-link" data-i18n="footer.svc4">AI / ML kon bashorati</a></li>
+        </ul>
+      </div>
+
+      <!-- Column 4: Newsletter -->
+      <div class="lg:col-span-3">
+        <h4 class="font-display font-bold text-[19px] tracking-tight mb-2" data-i18n="footer.newsTitle">Yangiliklar</h4>
+        <div class="footer-divider"></div>
+        <p class="text-white/60 leading-[1.6] text-[14px] mb-5" data-i18n="footer.newsDesc">Eng so'nggi yangiliklarni olish uchun obuna bo'ling.</p>
+        <form id="newsletterForm" class="space-y-3">
+          <input type="email" required placeholder="Email *" data-i18n-placeholder="footer.newsEmail" class="footer-input"/>
+          <button type="submit" class="footer-submit" data-i18n="footer.newsSubmit">Obuna bo'lish</button>
+          <div id="newsletterStatus" class="hidden text-[13px] text-[#a7f0b8] pt-1" data-i18n="footer.newsThanks">Rahmat! Obuna muvaffaqiyatli amalga oshirildi.</div>
+        </form>
+      </div>
+    </div>
+
+    <!-- Bottom line -->
+    <div class="mt-14 pt-7 border-t border-white/10 text-white/50 text-sm">
+      <div data-i18n="footer.copy">© 2026 DGD Consulting LLC — All rights reserved.</div>
+    </div>
+  </div>
+</footer>
 
 <script>
   // ===== sticky header behavior =====
@@ -1316,6 +1450,18 @@
     status.classList.remove('hidden');
     status.textContent = (window.__t && window.__t('contact.fStatus')) || 'Thank you — your brief has been received. We will respond within one business day.';
     form.reset();
+  });
+
+  // ===== newsletter form =====
+  const newsForm = document.getElementById('newsletterForm');
+  const newsStatus = document.getElementById('newsletterStatus');
+  newsForm?.addEventListener('submit', (e) => {
+    e.preventDefault();
+    if (newsStatus) {
+      newsStatus.classList.remove('hidden');
+      newsStatus.textContent = (window.__t && window.__t('footer.newsThanks')) || 'Thank you for subscribing!';
+    }
+    newsForm.reset();
   });
 
   // ===== i18n: translations =====
@@ -1432,6 +1578,18 @@
       "contact.mapHq": "DGD Bosh ofisi · Toshkent, O'zbekiston",
       "contact.mapOpen": "Yandex'da ochish",
 
+      "footer.about": "Geologik tadqiqot va kon ishlari bo'yicha konsalting — Toshkent, O'zbekiston.",
+      "footer.companyTitle": "Kompaniya",
+      "footer.servicesTitle": "Xizmatlar",
+      "footer.newsTitle": "Yangiliklar",
+      "footer.newsDesc": "Eng so'nggi yangiliklarni olish uchun obuna bo'ling.",
+      "footer.newsEmail": "Email *",
+      "footer.newsSubmit": "Obuna bo'lish",
+      "footer.newsThanks": "Rahmat! Obuna muvaffaqiyatli amalga oshirildi.",
+      "footer.svc1": "Geologik konsalting",
+      "footer.svc2": "MRE hisobotlar",
+      "footer.svc3": "Geofizik tadqiqot",
+      "footer.svc4": "AI / ML kon bashorati",
       "footer.copy": "© 2026 DGD Consulting MChJ — Barcha huquqlar himoyalangan.",
       "footer.tagline": "Toshkentda dizayn qilingan · Dala uchun qurilgan"
     },
@@ -1548,6 +1706,18 @@
       "contact.mapHq": "Главный офис DGD · Ташкент, Узбекистан",
       "contact.mapOpen": "Открыть в Yandex",
 
+      "footer.about": "Консалтинг по геологоразведке и горнодобыче — Ташкент, Узбекистан.",
+      "footer.companyTitle": "Компания",
+      "footer.servicesTitle": "Услуги",
+      "footer.newsTitle": "Рассылка",
+      "footer.newsDesc": "Подпишитесь, чтобы получать последние новости.",
+      "footer.newsEmail": "Email *",
+      "footer.newsSubmit": "Подписаться",
+      "footer.newsThanks": "Спасибо! Вы успешно подписались.",
+      "footer.svc1": "Геологический консалтинг",
+      "footer.svc2": "Отчёты MRE",
+      "footer.svc3": "Геофизические исследования",
+      "footer.svc4": "AI / ML прогноз месторождений",
       "footer.copy": "© 2026 DGD Consulting LLC — Все права защищены.",
       "footer.tagline": "Спроектировано в Ташкенте · Создано для поля"
     },
@@ -1664,6 +1834,18 @@
       "contact.mapHq": "DGD HQ · Tashkent, Uzbekistan",
       "contact.mapOpen": "Open in Yandex",
 
+      "footer.about": "Geological exploration and mining consulting — Tashkent, Uzbekistan.",
+      "footer.companyTitle": "Company",
+      "footer.servicesTitle": "Services",
+      "footer.newsTitle": "Newsletter",
+      "footer.newsDesc": "Subscribe to get the latest news from us.",
+      "footer.newsEmail": "Email *",
+      "footer.newsSubmit": "Subscribe",
+      "footer.newsThanks": "Thank you! You're successfully subscribed.",
+      "footer.svc1": "Geological consulting",
+      "footer.svc2": "MRE reports",
+      "footer.svc3": "Geophysical research",
+      "footer.svc4": "AI / ML deposit prediction",
       "footer.copy": "© 2026 DGD Consulting LLC — All rights reserved.",
       "footer.tagline": "Designed in Tashkent · Built for the field"
     },
@@ -1780,6 +1962,18 @@
       "contact.mapHq": "DGD Genel Merkezi · Taşkent, Özbekistan",
       "contact.mapOpen": "Yandex'te aç",
 
+      "footer.about": "Jeolojik araştırma ve madencilik danışmanlığı — Taşkent, Özbekistan.",
+      "footer.companyTitle": "Şirket",
+      "footer.servicesTitle": "Hizmetler",
+      "footer.newsTitle": "Bülten",
+      "footer.newsDesc": "En son haberleri almak için abone olun.",
+      "footer.newsEmail": "E-posta *",
+      "footer.newsSubmit": "Abone ol",
+      "footer.newsThanks": "Teşekkürler! Aboneliğiniz başarıyla tamamlandı.",
+      "footer.svc1": "Jeolojik danışmanlık",
+      "footer.svc2": "MRE raporları",
+      "footer.svc3": "Jeofizik araştırma",
+      "footer.svc4": "AI / ML yatak tahmini",
       "footer.copy": "© 2026 DGD Consulting LLC — Tüm hakları saklıdır.",
       "footer.tagline": "Taşkent'te tasarlandı · Saha için inşa edildi"
     }
