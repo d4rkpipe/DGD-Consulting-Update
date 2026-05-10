@@ -427,6 +427,28 @@
   /* chip */
   .chip{ display:inline-flex; align-items:center; gap:8px; padding:6px 12px; border-radius:999px; font-size:12px; font-family:'JetBrains Mono', monospace; letter-spacing:.05em; }
 
+  /* value cards (qadriyatlar section) */
+  .value-icon{
+    width:48px; height:48px; border-radius:14px;
+    display:grid; place-items:center;
+    background: linear-gradient(135deg, rgba(167,240,184,0.12), rgba(167,240,184,0.03));
+    border:1px solid rgba(167,240,184,0.18);
+    color:#a7f0b8;
+    transition: transform .5s cubic-bezier(.2,.7,.2,1), background .5s ease;
+  }
+  .value-card:hover .value-icon{
+    transform: rotate(-6deg) scale(1.08);
+    background: linear-gradient(135deg, rgba(167,240,184,0.20), rgba(167,240,184,0.06));
+  }
+  .value-card{
+    transition: transform .4s ease, border-color .4s ease, box-shadow .4s ease;
+  }
+  .value-card:hover{
+    transform: translateY(-4px);
+    border-color: rgba(167,240,184,0.30);
+    box-shadow: 0 24px 48px -16px rgba(8,90,28,0.45);
+  }
+
   /* gradient dot on AI card */
   .ai-glow{
     position:absolute; inset:-20%;
@@ -487,6 +509,7 @@
       <!-- CENTER: Navigation -->
       <nav class="hidden lg:flex items-center justify-center gap-9">
         <a href="#about" class="text-white/85 hover:text-white text-[15px] ulink" data-i18n="nav.about">About</a>
+        <a href="#values" class="text-white/85 hover:text-white text-[15px] ulink" data-i18n="nav.values">Values</a>
         <a href="#services" class="text-white/85 hover:text-white text-[15px] ulink" data-i18n="nav.services">Services</a>
         <a href="#blogs" class="text-white/85 hover:text-white text-[15px] ulink" data-i18n="nav.blogs">Blogs</a>
         <a href="#contact" class="text-white/85 hover:text-white text-[15px] ulink" data-i18n="nav.contact">Contact</a>
@@ -544,6 +567,7 @@
     <div id="mobile-menu" class="lg:hidden hidden border-t border-white/10 bg-[#062f10]">
       <div class="px-6 py-5 flex flex-col gap-3">
         <a href="#about" class="text-white/90 py-2" data-i18n="nav.about">About</a>
+        <a href="#values" class="text-white/90 py-2" data-i18n="nav.values">Values</a>
         <a href="#services" class="text-white/90 py-2" data-i18n="nav.services">Services</a>
         <a href="#blogs" class="text-white/90 py-2" data-i18n="nav.blogs">Blogs</a>
         <a href="#contact" class="text-white/90 py-2" data-i18n="nav.contact">Contact</a>
@@ -702,6 +726,58 @@
         <div class="counter-num text-dgd-700" style="font-size: clamp(48px, 5.5vw, 84px);" data-counter data-target="98" data-suffix="%">0</div>
         <div class="font-mono text-[11px] uppercase tracking-widest text-dgd-ink/55 mt-2" data-i18n="about.counter4">QA/QC sample compliance</div>
       </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============== VALUES (Qadriyatlar) ============== -->
+<section id="values" class="relative py-24 md:py-32 overflow-hidden" style="background: linear-gradient(180deg, #0b1410 0%, #062f10 100%);">
+  <!-- ambient glow -->
+  <div class="absolute inset-0 pointer-events-none" style="background:
+    radial-gradient(900px 500px at 80% -10%, rgba(22,163,74,0.14), transparent 60%),
+    radial-gradient(700px 500px at 10% 110%, rgba(22,163,74,0.10), transparent 60%);"></div>
+
+  <div class="max-w-[1400px] mx-auto px-6 lg:px-10 text-white relative z-10">
+    <!-- header -->
+    <div class="reveal mb-12 max-w-[820px]">
+      <div class="eyebrow text-white/70 mb-5"><span style="background:#a7d8b2; height:1px; width:28px; display:inline-block;"></span><span data-i18n="values.eyebrow">02 · Qadriyatlar</span></div>
+      <p class="text-white/90 leading-[1.5]" style="font-size: clamp(18px, 2.4vw, 28px);" data-i18n="values.title">Har bir qarorimiz, har bir hisobotimiz va har bir maydon ishimiz uchta asosiy tamoyilga tayanadi:</p>
+    </div>
+
+    <!-- value cards -->
+    <div class="grid grid-cols-1 gap-5 md:grid-cols-3 md:gap-6">
+      <!-- v1: Respect for Nature -->
+      <article class="value-card reveal glass-dark rounded-3xl p-7 border border-white/10">
+        <div class="value-icon mb-6">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M11 20A7 7 0 0 1 9.8 6.1C15.5 5 17 4.48 19.8 2c1 5 .5 10.5-3 14a8 8 0 0 1-5.8 3.5"/><path d="M2 21c0-3 1.85-5.36 5.08-6"/></svg>
+        </div>
+        <h3 class="font-display font-bold text-white text-[19px] mb-3" data-i18n="values.v1.title">Tabiatga hurmat</h3>
+        <p class="text-white/70 text-[14.5px] leading-[1.65]" data-i18n="values.v1.desc">Geologik tadqiqotlarni atrof-muhitga minimal ta'sir bilan olib boramiz. Yer resurslaridan mas'uliyat bilan foydalanish — kompromissiz majburiyatimiz.</p>
+        <div class="hairline my-5" style="background: rgba(255,255,255,0.10);"></div>
+        <p class="text-white/55 italic text-[13px] leading-[1.5]" data-i18n="values.v1.quote">"Yer bizni boqadi — biz uni asraymiz."</p>
+      </article>
+
+      <!-- v2: Risk Mitigation -->
+      <article class="value-card reveal reveal-delay-1 glass-dark rounded-3xl p-7 border border-white/10">
+        <div class="value-icon mb-6">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="M9 12l2 2 4-4"/></svg>
+        </div>
+        <h3 class="font-display font-bold text-white text-[19px] mb-3" data-i18n="values.v2.title">Risklarni kamaytirish</h3>
+        <p class="text-white/70 text-[14.5px] leading-[1.65]" data-i18n="values.v2.desc">Ko'p bosqichli tahlil va ehtiyotkorona rejalashtirish orqali texnik, moliyaviy va operatsion risklarni minimal darajaga tushiramiz.</p>
+        <div class="hairline my-5" style="background: rgba(255,255,255,0.10);"></div>
+        <p class="text-white/55 italic text-[13px] leading-[1.5]" data-i18n="values.v2.quote">"Puxta tayyorgarlik — eng yaxshi risk menejmenti."</p>
+      </article>
+
+      <!-- v3: Transparent Accountability -->
+      <article class="value-card reveal reveal-delay-2 glass-dark rounded-3xl p-7 border border-white/10">
+        <div class="value-icon mb-6">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="8" y1="13" x2="8" y2="17"/><line x1="12" y1="11" x2="12" y2="17"/><line x1="16" y1="15" x2="16" y2="17"/></svg>
+        </div>
+        <h3 class="font-display font-bold text-white text-[19px] mb-3" data-i18n="values.v3.title">Shaffof hisobdorlik</h3>
+        <p class="text-white/70 text-[14.5px] leading-[1.65]" data-i18n="values.v3.desc">Dala kuzatishlaridan yakuniy xulosalargacha — barcha natijalar aniq, tekshirilgan va xalqaro standartlarga muvofiq taqdim etiladi.</p>
+        <div class="hairline my-5" style="background: rgba(255,255,255,0.10);"></div>
+        <p class="text-white/55 italic text-[13px] leading-[1.5]" data-i18n="values.v3.quote">"Ishonchli ma'lumot — ishonchli hamkorlik."</p>
+      </article>
     </div>
   </div>
 </section>
@@ -1503,10 +1579,23 @@
   const translations = {
     uz: {
       "nav.about": "Biz haqimizda",
+      "nav.values": "Qadriyatlar",
       "nav.services": "Xizmatlar",
       "nav.blogs": "Bloglar",
       "nav.contact": "Bog'lanish",
       "nav.lang": "Til",
+
+      "values.eyebrow": "02 · Qadriyatlar",
+      "values.title": "Har bir qarorimiz, har bir hisobotimiz va har bir maydon ishimiz uchta asosiy tamoyilga tayanadi:",
+      "values.v1.title": "Tabiatga hurmat",
+      "values.v1.desc": "Geologik tadqiqotlarni atrof-muhitga minimal ta'sir bilan olib boramiz. Yer resurslaridan mas'uliyat bilan foydalanish — kompromissiz majburiyatimiz.",
+      "values.v1.quote": "\"Yer bizni boqadi — biz uni asraymiz.\"",
+      "values.v2.title": "Risklarni kamaytirish",
+      "values.v2.desc": "Ko'p bosqichli tahlil va ehtiyotkorona rejalashtirish orqali texnik, moliyaviy va operatsion risklarni minimal darajaga tushiramiz.",
+      "values.v2.quote": "\"Puxta tayyorgarlik — eng yaxshi risk menejmenti.\"",
+      "values.v3.title": "Shaffof hisobdorlik",
+      "values.v3.desc": "Dala kuzatishlaridan yakuniy xulosalargacha — barcha natijalar aniq, tekshirilgan va xalqaro standartlarga muvofiq taqdim etiladi.",
+      "values.v3.quote": "\"Ishonchli ma'lumot — ishonchli hamkorlik.\"",
 
       "hero.eyebrow": "DGD Consulting · Toshkent, O'zbekiston",
       "hero.title": "Zamonaviy <em class=\"not-italic\">geologik tadqiqot</em> va kon ishlari uchun ilg'or yechimlar",
@@ -1529,7 +1618,7 @@
       "about.counter3": "Faol konsessiya loyihalari",
       "about.counter4": "QA/QC namuna muvofiqligi",
 
-      "services.eyebrow": "02 · Xizmatlar",
+      "services.eyebrow": "03 · Xizmatlar",
       "services.title": "Olti yo'nalish, bir uzluksiz ish jarayoni — outcrop'dan MRE'gacha.",
       "services.desc": "Har bir xizmat xalqaro hisobot standartlariga muvofiq taqdim etiladi, to'liq saqlash zanjiri ma'lumotlari va auditdan o'tadigan yakuniy hujjat bilan birga.",
       "services.s1.title": "Geologik konsalting xizmatlari",
@@ -1558,7 +1647,7 @@
       "services.btnContact": "Bog'lanish",
       "services.btnSee": "Qanday ishlashimizni ko'ring",
 
-      "blogs.eyebrow": "03 · Dala yozuvlari",
+      "blogs.eyebrow": "04 · Dala yozuvlari",
       "blogs.title": "Dalalardan so'nggi yangiliklar.",
       "blogs.read": "Maqolani o'qish",
       "blogs.b1.cat": "Metod",
@@ -1574,7 +1663,7 @@
       "blogs.b3.title": "JORC-tayyor: investorlar haqiqatdan ishonadigan MRE hisobotlari",
       "blogs.b3.desc": "Texnik tekshiruvdan o'tadigan MRE hujjatlarini ishlab chiqarish uchun dalada sinovdan o'tgan tekshiruv ro'yxati — ma'lumotlarni tekshirishdan kompetent shaxs ko'rib chiqishigacha.",
 
-      "contact.eyebrow": "04 · Bog'lanish",
+      "contact.eyebrow": "05 · Bog'lanish",
       "contact.title": "Keling, <em class=\"not-italic\" style=\"color:#a7f0b8;\">keyingi kashfiyotni</em> birga xaritalashtiramiz.",
       "contact.desc": "Loyihangiz, zaminingiz va xavfsizlantirmoqchi bo'lgan qaroringiz haqida bizga ayting. Biz bir ish kuni ichida javob beramiz.",
       "contact.phone": "Telefon",
@@ -1628,10 +1717,23 @@
 
     ru: {
       "nav.about": "О нас",
+      "nav.values": "Ценности",
       "nav.services": "Услуги",
       "nav.blogs": "Блог",
       "nav.contact": "Контакты",
       "nav.lang": "Язык",
+
+      "values.eyebrow": "02 · Наши ценности",
+      "values.title": "Каждое наше решение, каждый отчёт и каждая полевая работа основаны на трёх главных принципах:",
+      "values.v1.title": "Уважение к природе",
+      "values.v1.desc": "Мы проводим геологические исследования с минимальным воздействием на окружающую среду. Ответственное использование ресурсов Земли — наше бескомпромиссное обязательство.",
+      "values.v1.quote": "«Земля кормит нас — мы её бережём.»",
+      "values.v2.title": "Снижение рисков",
+      "values.v2.desc": "Благодаря многоэтапному анализу и тщательному планированию мы минимизируем технические, финансовые и операционные риски.",
+      "values.v2.quote": "«Тщательная подготовка — лучшее управление рисками.»",
+      "values.v3.title": "Прозрачная подотчётность",
+      "values.v3.desc": "От полевых наблюдений до окончательных выводов — все результаты являются точными, проверенными и представлены в соответствии с международными стандартами.",
+      "values.v3.quote": "«Надёжные данные — надёжное партнёрство.»",
 
       "hero.eyebrow": "DGD Consulting · Ташкент, Узбекистан",
       "hero.title": "Современные решения для <em class=\"not-italic\">геологоразведки</em> и горнодобычи",
@@ -1654,7 +1756,7 @@
       "about.counter3": "Активных концессионных проектов",
       "about.counter4": "Соответствие проб QA/QC",
 
-      "services.eyebrow": "02 · Услуги",
+      "services.eyebrow": "03 · Услуги",
       "services.title": "Шесть дисциплин, один непрерывный процесс — от обнажения до MRE.",
       "services.desc": "Каждая услуга предоставляется в соответствии с международными стандартами отчётности, с полной цепочкой ответственности за данные и финальным документом, выдерживающим аудит.",
       "services.s1.title": "Геологические консультационные услуги",
@@ -1683,7 +1785,7 @@
       "services.btnContact": "Связаться",
       "services.btnSee": "Как мы работаем",
 
-      "blogs.eyebrow": "03 · Полевые заметки",
+      "blogs.eyebrow": "04 · Полевые заметки",
       "blogs.title": "Свежее с полей.",
       "blogs.read": "Читать статью",
       "blogs.b1.cat": "Метод",
@@ -1699,7 +1801,7 @@
       "blogs.b3.title": "JORC-готовый: MRE-отчёты, которым доверяют инвесторы",
       "blogs.b3.desc": "Полевой чек-лист подготовки документации MRE, выдерживающей техническую проверку — от валидации данных до проверки компетентным лицом.",
 
-      "contact.eyebrow": "04 · Связаться",
+      "contact.eyebrow": "05 · Связаться",
       "contact.title": "Давайте вместе наметим <em class=\"not-italic\" style=\"color:#a7f0b8;\">следующее открытие</em>.",
       "contact.desc": "Расскажите о проекте, рельефе и решении, риски которого вы снижаете. Мы ответим в течение одного рабочего дня.",
       "contact.phone": "Телефон",
@@ -1753,10 +1855,23 @@
 
     en: {
       "nav.about": "About",
+      "nav.values": "Values",
       "nav.services": "Services",
       "nav.blogs": "Blogs",
       "nav.contact": "Contact",
       "nav.lang": "Language",
+
+      "values.eyebrow": "02 · Our Core Values",
+      "values.title": "Every decision, every report, and every fieldwork we undertake is based on three core principles:",
+      "values.v1.title": "Respect for Nature",
+      "values.v1.desc": "We conduct geological surveys with minimal impact on the environment. Responsible use of the Earth's resources is our uncompromising commitment.",
+      "values.v1.quote": "\"Earth feeds us — we protect it.\"",
+      "values.v2.title": "Risk Mitigation",
+      "values.v2.desc": "Through multi-stage analysis and careful planning, we minimize technical, financial, and operational risks.",
+      "values.v2.quote": "\"Thorough preparation — the best risk management.\"",
+      "values.v3.title": "Transparent Accountability",
+      "values.v3.desc": "From field observations to final conclusions, all results are accurate, verified, and presented in accordance with international standards.",
+      "values.v3.quote": "\"Reliable data — reliable partnership.\"",
 
       "hero.eyebrow": "DGD Consulting · Tashkent, Uzbekistan",
       "hero.title": "Advanced Solutions for Modern <em class=\"not-italic\">Geological Exploration</em> &amp; Mining",
@@ -1779,7 +1894,7 @@
       "about.counter3": "Active concession projects",
       "about.counter4": "QA/QC sample compliance",
 
-      "services.eyebrow": "02 · Services",
+      "services.eyebrow": "03 · Services",
       "services.title": "Six disciplines, one continuous workflow — from outcrop to MRE.",
       "services.desc": "Each service is delivered to international reporting standards, paired with full chain-of-custody data and a final document that holds up under audit.",
       "services.s1.title": "Geological consulting services",
@@ -1808,7 +1923,7 @@
       "services.btnContact": "Get in touch",
       "services.btnSee": "See how we work",
 
-      "blogs.eyebrow": "03 · Field notes",
+      "blogs.eyebrow": "04 · Field notes",
       "blogs.title": "Latest from the field.",
       "blogs.read": "Read article",
       "blogs.b1.cat": "Method",
@@ -1824,7 +1939,7 @@
       "blogs.b3.title": "JORC-ready: building MRE reports investors actually trust",
       "blogs.b3.desc": "A field-tested checklist for producing MRE documentation that survives technical due diligence — from data validation to competent-person review.",
 
-      "contact.eyebrow": "04 · Get in touch",
+      "contact.eyebrow": "05 · Get in touch",
       "contact.title": "Let's map the <em class=\"not-italic\" style=\"color:#a7f0b8;\">next discovery</em> together.",
       "contact.desc": "Tell us about your project, your terrain, and the decision you're trying to de-risk. We'll respond within one business day.",
       "contact.phone": "Phone",
@@ -1878,10 +1993,23 @@
 
     tr: {
       "nav.about": "Hakkımızda",
+      "nav.values": "Değerler",
       "nav.services": "Hizmetler",
       "nav.blogs": "Blog",
       "nav.contact": "İletişim",
       "nav.lang": "Dil",
+
+      "values.eyebrow": "02 · Temel Değerlerimiz",
+      "values.title": "Her kararımız, her raporumuz ve her saha çalışmamız üç temel ilkeye dayanır:",
+      "values.v1.title": "Doğaya Saygı",
+      "values.v1.desc": "Jeolojik araştırmaları çevre üzerinde minimum etkiyle yürütüyoruz. Dünya kaynaklarının sorumlu kullanımı bizim ödün vermez taahhüdümüzdür.",
+      "values.v1.quote": "\"Toprak bizi besler — biz onu koruruz.\"",
+      "values.v2.title": "Risk Azaltma",
+      "values.v2.desc": "Çok aşamalı analiz ve dikkatli planlama yoluyla teknik, finansal ve operasyonel riskleri minimize ediyoruz.",
+      "values.v2.quote": "\"İyi hazırlık — en iyi risk yönetimi.\"",
+      "values.v3.title": "Şeffaf Hesap Verebilirlik",
+      "values.v3.desc": "Saha gözlemlerinden nihai sonuçlara kadar — tüm sonuçlar doğru, doğrulanmış ve uluslararası standartlara uygun olarak sunulur.",
+      "values.v3.quote": "\"Güvenilir veri — güvenilir ortaklık.\"",
 
       "hero.eyebrow": "DGD Consulting · Taşkent, Özbekistan",
       "hero.title": "Modern <em class=\"not-italic\">jeolojik araştırma</em> ve madencilik için ileri çözümler",
@@ -1904,7 +2032,7 @@
       "about.counter3": "Aktif imtiyaz projesi",
       "about.counter4": "QA/QC numune uyumluluğu",
 
-      "services.eyebrow": "02 · Hizmetler",
+      "services.eyebrow": "03 · Hizmetler",
       "services.title": "Altı disiplin, tek bir kesintisiz iş akışı — mostraadan MRE'ye.",
       "services.desc": "Her hizmet uluslararası raporlama standartlarına göre sunulur, tam veri zinciri ve denetimden geçecek nihai belge eşliğinde.",
       "services.s1.title": "Jeolojik danışmanlık hizmetleri",
@@ -1933,7 +2061,7 @@
       "services.btnContact": "İletişime geç",
       "services.btnSee": "Nasıl çalıştığımızı gör",
 
-      "blogs.eyebrow": "03 · Saha notları",
+      "blogs.eyebrow": "04 · Saha notları",
       "blogs.title": "Sahadan en yeni içerikler.",
       "blogs.read": "Makaleyi oku",
       "blogs.b1.cat": "Yöntem",
@@ -1949,7 +2077,7 @@
       "blogs.b3.title": "JORC'a hazır: yatırımcıların gerçekten güvendiği MRE raporları oluşturma",
       "blogs.b3.desc": "Teknik incelemeden geçen MRE belgelerini üretmek için sahada test edilmiş bir kontrol listesi — veri doğrulamadan yetkili kişi incelemesine.",
 
-      "contact.eyebrow": "04 · İletişim",
+      "contact.eyebrow": "05 · İletişim",
       "contact.title": "<em class=\"not-italic\" style=\"color:#a7f0b8;\">Bir sonraki keşfi</em> birlikte haritalayalım.",
       "contact.desc": "Projeniz, araziniz ve risklerini azaltmaya çalıştığınız karar hakkında bize anlatın. Bir iş günü içinde yanıt veriyoruz.",
       "contact.phone": "Telefon",
