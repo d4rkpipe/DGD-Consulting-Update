@@ -717,9 +717,9 @@
       <!-- CENTER: Navigation -->
       <nav class="hidden lg:flex items-center justify-center gap-9">
         <a href="#about" class="text-white/85 hover:text-white text-[15px] ulink" data-i18n="nav.about">About</a>
+        <a href="#blogs" class="text-white/85 hover:text-white text-[15px] ulink" data-i18n="nav.blogs">Blogs</a>
         <a href="#values" class="text-white/85 hover:text-white text-[15px] ulink" data-i18n="nav.values">Values</a>
         <a href="#services" class="text-white/85 hover:text-white text-[15px] ulink" data-i18n="nav.services">Services</a>
-        <a href="#blogs" class="text-white/85 hover:text-white text-[15px] ulink" data-i18n="nav.blogs">Blogs</a>
         <a href="#contact" class="text-white/85 hover:text-white text-[15px] ulink" data-i18n="nav.contact">Contact</a>
       </nav>
 
@@ -775,9 +775,9 @@
     <div id="mobile-menu" class="lg:hidden hidden border-t border-white/10 bg-[#062f10]">
       <div class="px-6 py-5 flex flex-col gap-3">
         <a href="#about" class="text-white/90 py-2" data-i18n="nav.about">About</a>
+        <a href="#blogs" class="text-white/90 py-2" data-i18n="nav.blogs">Blogs</a>
         <a href="#values" class="text-white/90 py-2" data-i18n="nav.values">Values</a>
         <a href="#services" class="text-white/90 py-2" data-i18n="nav.services">Services</a>
-        <a href="#blogs" class="text-white/90 py-2" data-i18n="nav.blogs">Blogs</a>
         <a href="#contact" class="text-white/90 py-2" data-i18n="nav.contact">Contact</a>
         <a href="tel:+998997539095" class="text-white py-2 font-semibold flex items-center gap-2">
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#a7f0b8" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.37 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.33 1.85.57 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
@@ -935,6 +935,126 @@
   </div>
 </section>
 
+<!-- ============== BLOGS ============== -->
+<section id="blogs" class="relative py-28 md:py-36">
+  <div class="max-w-[1400px] mx-auto px-6 lg:px-10">
+    <div class="flex flex-wrap items-end justify-between gap-6 mb-12">
+      <div class="reveal">
+        <div class="eyebrow mb-5" data-i18n="blogs.eyebrow">02 · Field notes</div>
+        <h2 class="font-display font-medium tracking-tight text-dgd-700 leading-[1.05]" style="font-size: clamp(26px, 4.6vw, 56px);" data-i18n="blogs.title">Latest from the field.</h2>
+      </div>
+      <div class="reveal reveal-delay-1 flex items-center gap-3">
+        <button id="blog-prev" aria-label="Previous" class="w-12 h-12 rounded-full border border-dgd-700/25 hover:border-dgd-700 hover:bg-dgd-700 hover:text-white text-dgd-700 grid place-items-center transition">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+        </button>
+        <button id="blog-next" aria-label="Next" class="w-12 h-12 rounded-full border border-dgd-700/25 hover:border-dgd-700 hover:bg-dgd-700 hover:text-white text-dgd-700 grid place-items-center transition">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </button>
+      </div>
+    </div>
+
+    <div id="blog-track" class="reveal flex gap-6 overflow-x-auto snap-x-mandatory no-scrollbar pb-6 -mx-6 px-6">
+      <!-- card 1 -->
+      <article class="lift snap-start shrink-0 w-[88%] sm:w-[420px] lg:w-[440px] bg-white rounded-3xl overflow-hidden border border-dgd-700/10 flex flex-col">
+        <div class="aspect-[4/3] relative overflow-hidden">
+          <div class="absolute inset-0" style="background:
+            linear-gradient(135deg, #0b3a17, #16a34a 60%, #cdeed5);"></div>
+          <svg class="absolute inset-0 w-full h-full opacity-30" viewBox="0 0 400 300" preserveAspectRatio="none">
+            <g fill="none" stroke="white" stroke-width="0.8">
+              <path d="M0,80 Q100,40 200,80 T400,80"/>
+              <path d="M0,120 Q100,80 200,120 T400,120"/>
+              <path d="M0,160 Q100,120 200,160 T400,160"/>
+              <path d="M0,200 Q100,160 200,200 T400,200"/>
+              <path d="M0,240 Q100,200 200,240 T400,240"/>
+            </g>
+          </svg>
+          <div class="absolute top-4 left-4 chip" style="background: rgba(255,255,255,0.85); color:#085A1C;" data-i18n="blogs.b1.cat">Method</div>
+          <div class="absolute bottom-4 left-4 right-4 font-mono text-[11px] uppercase tracking-widest text-white/85" data-i18n="blogs.b1.date">Apr 2026 · 7 min read</div>
+        </div>
+        <div class="p-7 flex flex-col flex-1">
+          <h3 class="font-display font-bold text-dgd-700 leading-tight" style="font-size: 26px;" data-i18n="blogs.b1.title">From outcrop to ore body: a modern targeting workflow</h3>
+          <p class="text-dgd-700/85 mt-3 leading-[1.7] text-[14.5px]" data-i18n="blogs.b1.desc">How we combine geochemistry, structural mapping and gradient-boosted ML to compress months of fieldwork into a defensible target ranking.</p>
+          <div class="hairline mt-auto mb-5 pt-5"></div>
+          <a href="#" class="text-dgd-700 font-semibold inline-flex items-center gap-2 ulink"><span data-i18n="blogs.read">Read article</span>
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+          </a>
+        </div>
+      </article>
+
+      <!-- card 2 -->
+      <article class="lift snap-start shrink-0 w-[88%] sm:w-[420px] lg:w-[440px] bg-white rounded-3xl overflow-hidden border border-dgd-700/10 flex flex-col">
+        <div class="aspect-[4/3] relative overflow-hidden">
+          <div class="absolute inset-0" style="background:
+            radial-gradient(120% 80% at 20% 0%, #16a34a, transparent 60%),
+            radial-gradient(80% 60% at 100% 100%, #062f10, transparent 60%),
+            #085A1C;"></div>
+          <svg class="absolute inset-0 w-full h-full opacity-40" viewBox="0 0 400 300">
+            <g fill="white">
+              <circle cx="60"  cy="60"  r="2"/>
+              <circle cx="120" cy="100" r="2"/>
+              <circle cx="200" cy="80"  r="2"/>
+              <circle cx="280" cy="140" r="2"/>
+              <circle cx="340" cy="60"  r="2"/>
+              <circle cx="80"  cy="200" r="2"/>
+              <circle cx="160" cy="240" r="2"/>
+              <circle cx="240" cy="220" r="2"/>
+              <circle cx="320" cy="260" r="2"/>
+            </g>
+            <g stroke="white" stroke-width="0.6" fill="none" opacity="0.55">
+              <line x1="60" y1="60" x2="120" y2="100"/>
+              <line x1="120" y1="100" x2="200" y2="80"/>
+              <line x1="200" y1="80" x2="280" y2="140"/>
+              <line x1="280" y1="140" x2="340" y2="60"/>
+              <line x1="80" y1="200" x2="160" y2="240"/>
+              <line x1="160" y1="240" x2="240" y2="220"/>
+              <line x1="240" y1="220" x2="320" y2="260"/>
+              <line x1="120" y1="100" x2="160" y2="240"/>
+              <line x1="280" y1="140" x2="240" y2="220"/>
+            </g>
+          </svg>
+          <div class="absolute top-4 left-4 chip" style="background: rgba(255,255,255,0.85); color:#085A1C;" data-i18n="blogs.b2.cat">AI / ML</div>
+          <div class="absolute bottom-4 left-4 right-4 font-mono text-[11px] uppercase tracking-widest text-white/85" data-i18n="blogs.b2.date">Mar 2026 · 5 min read</div>
+        </div>
+        <div class="p-7 flex flex-col flex-1">
+          <h3 class="font-display font-bold text-dgd-700 leading-tight" style="font-size: 26px;" data-i18n="blogs.b2.title">Why your next geologist is half model, half map</h3>
+          <p class="text-dgd-700/85 mt-3 leading-[1.7] text-[14.5px]" data-i18n="blogs.b2.desc">Machine learning is not replacing field expertise — it is amplifying it. A practical look at deploying CNN classifiers on multispectral satellite stacks.</p>
+          <div class="hairline mt-auto mb-5 pt-5"></div>
+          <a href="#" class="text-dgd-700 font-semibold inline-flex items-center gap-2 ulink"><span data-i18n="blogs.read">Read article</span>
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+          </a>
+        </div>
+      </article>
+
+      <!-- card 3 -->
+      <article class="lift snap-start shrink-0 w-[88%] sm:w-[420px] lg:w-[440px] bg-white rounded-3xl overflow-hidden border border-dgd-700/10 flex flex-col">
+        <div class="aspect-[4/3] relative overflow-hidden">
+          <div class="absolute inset-0" style="background:
+            linear-gradient(180deg, #cdeed5 0%, #16a34a 50%, #062f10 100%);"></div>
+          <svg class="absolute inset-0 w-full h-full" viewBox="0 0 400 300" preserveAspectRatio="none">
+            <g fill="none" stroke="rgba(255,255,255,0.45)" stroke-width="1">
+              <path d="M0,220 L60,200 L120,210 L180,170 L240,180 L300,140 L360,150 L400,120"/>
+              <path d="M0,260 L60,250 L120,255 L180,225 L240,235 L300,200 L360,210 L400,180"/>
+            </g>
+            <rect x="100" y="60" width="3" height="180" fill="white" opacity="0.7"/>
+            <rect x="200" y="40" width="3" height="200" fill="white" opacity="0.7"/>
+            <rect x="300" y="80" width="3" height="160" fill="white" opacity="0.7"/>
+          </svg>
+          <div class="absolute top-4 left-4 chip" style="background: rgba(255,255,255,0.85); color:#085A1C;" data-i18n="blogs.b3.cat">Reporting</div>
+          <div class="absolute bottom-4 left-4 right-4 font-mono text-[11px] uppercase tracking-widest text-white/85" data-i18n="blogs.b3.date">Feb 2026 · 9 min read</div>
+        </div>
+        <div class="p-7 flex flex-col flex-1">
+          <h3 class="font-display font-bold text-dgd-700 leading-tight" style="font-size: 26px;" data-i18n="blogs.b3.title">JORC-ready: building MRE reports investors actually trust</h3>
+          <p class="text-dgd-700/85 mt-3 leading-[1.7] text-[14.5px]" data-i18n="blogs.b3.desc">A field-tested checklist for producing MRE documentation that survives technical due diligence — from data validation to competent-person review.</p>
+          <div class="hairline mt-auto mb-5 pt-5"></div>
+          <a href="#" class="text-dgd-700 font-semibold inline-flex items-center gap-2 ulink"><span data-i18n="blogs.read">Read article</span>
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+          </a>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
 <!-- ============== VALUES (Qadriyatlar) ============== -->
 <section id="values" class="relative py-24 md:py-32 overflow-hidden" style="background: linear-gradient(180deg, #0b1410 0%, #062f10 100%);">
   <!-- ambient glow -->
@@ -945,7 +1065,7 @@
   <div class="max-w-[1400px] mx-auto px-6 lg:px-10 text-white relative z-10">
     <!-- header -->
     <div class="reveal mb-12 max-w-[820px]">
-      <div class="eyebrow text-white/70 mb-5"><span style="background:#a7d8b2; height:1px; width:28px; display:inline-block;"></span><span data-i18n="values.eyebrow">02 · Qadriyatlar</span></div>
+      <div class="eyebrow text-white/70 mb-5"><span style="background:#a7d8b2; height:1px; width:28px; display:inline-block;"></span><span data-i18n="values.eyebrow">03 · Qadriyatlar</span></div>
       <p class="text-white/90 leading-[1.5]" style="font-size: clamp(18px, 2.4vw, 28px);" data-i18n="values.title">Har bir qarorimiz, har bir hisobotimiz va har bir maydon ishimiz uchta asosiy tamoyilga tayanadi:</p>
     </div>
 
@@ -996,7 +1116,7 @@
   <div class="max-w-[1400px] mx-auto px-6 lg:px-10 relative z-10">
     <!-- header -->
     <div class="reveal mb-12 max-w-[820px]">
-      <div class="eyebrow text-white/70 mb-5"><span style="background:#a7d8b2; height:1px; width:28px; display:inline-block;"></span><span data-i18n="roadmap.eyebrow">03 · Loyiha yo'l xaritasi</span></div>
+      <div class="eyebrow text-white/70 mb-5"><span style="background:#a7d8b2; height:1px; width:28px; display:inline-block;"></span><span data-i18n="roadmap.eyebrow">04 · Loyiha yo'l xaritasi</span></div>
       <h2 class="font-display font-medium tracking-tight leading-[1.15] text-white" style="font-size: clamp(26px, 4.8vw, 48px);" data-i18n="roadmap.title">Loyiha yo'l xaritasi</h2>
       <p class="text-white/65 mt-4 leading-[1.65] text-[15.5px]" data-i18n="roadmap.intro">Konsept tug'ilishidan kon qurilishi boshlangunga qadar — har bir bosqichda qaysi ishlar bajariladi va qanday natija beriladi.</p>
     </div>
@@ -1211,7 +1331,7 @@
     <div class="grid grid-cols-1 gap-8 lg:grid-cols-12 mb-14 lg:items-end">
       <div class="lg:col-span-7">
         <div class="reveal">
-          <div class="eyebrow text-white/70 mb-5"><span style="background:#a7d8b2; height:1px; width:28px; display:inline-block;"></span><span data-i18n="services.eyebrow">02 · Services</span></div>
+          <div class="eyebrow text-white/70 mb-5"><span style="background:#a7d8b2; height:1px; width:28px; display:inline-block;"></span><span data-i18n="services.eyebrow">05 · Services</span></div>
           <h2 class="font-display font-medium tracking-tight leading-[1.05]" style="font-size: clamp(26px, 4.8vw, 60px);" data-i18n="services.title">
             Six disciplines, one continuous workflow — from outcrop to MRE.
           </h2>
@@ -1471,126 +1591,6 @@
   </div>
 </section>
 
-<!-- ============== BLOGS ============== -->
-<section id="blogs" class="relative py-28 md:py-36">
-  <div class="max-w-[1400px] mx-auto px-6 lg:px-10">
-    <div class="flex flex-wrap items-end justify-between gap-6 mb-12">
-      <div class="reveal">
-        <div class="eyebrow mb-5" data-i18n="blogs.eyebrow">03 · Field notes</div>
-        <h2 class="font-display font-medium tracking-tight text-dgd-700 leading-[1.05]" style="font-size: clamp(26px, 4.6vw, 56px);" data-i18n="blogs.title">Latest from the field.</h2>
-      </div>
-      <div class="reveal reveal-delay-1 flex items-center gap-3">
-        <button id="blog-prev" aria-label="Previous" class="w-12 h-12 rounded-full border border-dgd-700/25 hover:border-dgd-700 hover:bg-dgd-700 hover:text-white text-dgd-700 grid place-items-center transition">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
-        </button>
-        <button id="blog-next" aria-label="Next" class="w-12 h-12 rounded-full border border-dgd-700/25 hover:border-dgd-700 hover:bg-dgd-700 hover:text-white text-dgd-700 grid place-items-center transition">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-        </button>
-      </div>
-    </div>
-
-    <div id="blog-track" class="reveal flex gap-6 overflow-x-auto snap-x-mandatory no-scrollbar pb-6 -mx-6 px-6">
-      <!-- card 1 -->
-      <article class="lift snap-start shrink-0 w-[88%] sm:w-[420px] lg:w-[440px] bg-white rounded-3xl overflow-hidden border border-dgd-700/10 flex flex-col">
-        <div class="aspect-[4/3] relative overflow-hidden">
-          <div class="absolute inset-0" style="background:
-            linear-gradient(135deg, #0b3a17, #16a34a 60%, #cdeed5);"></div>
-          <svg class="absolute inset-0 w-full h-full opacity-30" viewBox="0 0 400 300" preserveAspectRatio="none">
-            <g fill="none" stroke="white" stroke-width="0.8">
-              <path d="M0,80 Q100,40 200,80 T400,80"/>
-              <path d="M0,120 Q100,80 200,120 T400,120"/>
-              <path d="M0,160 Q100,120 200,160 T400,160"/>
-              <path d="M0,200 Q100,160 200,200 T400,200"/>
-              <path d="M0,240 Q100,200 200,240 T400,240"/>
-            </g>
-          </svg>
-          <div class="absolute top-4 left-4 chip" style="background: rgba(255,255,255,0.85); color:#085A1C;" data-i18n="blogs.b1.cat">Method</div>
-          <div class="absolute bottom-4 left-4 right-4 font-mono text-[11px] uppercase tracking-widest text-white/85" data-i18n="blogs.b1.date">Apr 2026 · 7 min read</div>
-        </div>
-        <div class="p-7 flex flex-col flex-1">
-          <h3 class="font-display font-bold text-dgd-700 leading-tight" style="font-size: 26px;" data-i18n="blogs.b1.title">From outcrop to ore body: a modern targeting workflow</h3>
-          <p class="text-dgd-700/85 mt-3 leading-[1.7] text-[14.5px]" data-i18n="blogs.b1.desc">How we combine geochemistry, structural mapping and gradient-boosted ML to compress months of fieldwork into a defensible target ranking.</p>
-          <div class="hairline mt-auto mb-5 pt-5"></div>
-          <a href="#" class="text-dgd-700 font-semibold inline-flex items-center gap-2 ulink"><span data-i18n="blogs.read">Read article</span>
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
-          </a>
-        </div>
-      </article>
-
-      <!-- card 2 -->
-      <article class="lift snap-start shrink-0 w-[88%] sm:w-[420px] lg:w-[440px] bg-white rounded-3xl overflow-hidden border border-dgd-700/10 flex flex-col">
-        <div class="aspect-[4/3] relative overflow-hidden">
-          <div class="absolute inset-0" style="background:
-            radial-gradient(120% 80% at 20% 0%, #16a34a, transparent 60%),
-            radial-gradient(80% 60% at 100% 100%, #062f10, transparent 60%),
-            #085A1C;"></div>
-          <svg class="absolute inset-0 w-full h-full opacity-40" viewBox="0 0 400 300">
-            <g fill="white">
-              <circle cx="60"  cy="60"  r="2"/>
-              <circle cx="120" cy="100" r="2"/>
-              <circle cx="200" cy="80"  r="2"/>
-              <circle cx="280" cy="140" r="2"/>
-              <circle cx="340" cy="60"  r="2"/>
-              <circle cx="80"  cy="200" r="2"/>
-              <circle cx="160" cy="240" r="2"/>
-              <circle cx="240" cy="220" r="2"/>
-              <circle cx="320" cy="260" r="2"/>
-            </g>
-            <g stroke="white" stroke-width="0.6" fill="none" opacity="0.55">
-              <line x1="60" y1="60" x2="120" y2="100"/>
-              <line x1="120" y1="100" x2="200" y2="80"/>
-              <line x1="200" y1="80" x2="280" y2="140"/>
-              <line x1="280" y1="140" x2="340" y2="60"/>
-              <line x1="80" y1="200" x2="160" y2="240"/>
-              <line x1="160" y1="240" x2="240" y2="220"/>
-              <line x1="240" y1="220" x2="320" y2="260"/>
-              <line x1="120" y1="100" x2="160" y2="240"/>
-              <line x1="280" y1="140" x2="240" y2="220"/>
-            </g>
-          </svg>
-          <div class="absolute top-4 left-4 chip" style="background: rgba(255,255,255,0.85); color:#085A1C;" data-i18n="blogs.b2.cat">AI / ML</div>
-          <div class="absolute bottom-4 left-4 right-4 font-mono text-[11px] uppercase tracking-widest text-white/85" data-i18n="blogs.b2.date">Mar 2026 · 5 min read</div>
-        </div>
-        <div class="p-7 flex flex-col flex-1">
-          <h3 class="font-display font-bold text-dgd-700 leading-tight" style="font-size: 26px;" data-i18n="blogs.b2.title">Why your next geologist is half model, half map</h3>
-          <p class="text-dgd-700/85 mt-3 leading-[1.7] text-[14.5px]" data-i18n="blogs.b2.desc">Machine learning is not replacing field expertise — it is amplifying it. A practical look at deploying CNN classifiers on multispectral satellite stacks.</p>
-          <div class="hairline mt-auto mb-5 pt-5"></div>
-          <a href="#" class="text-dgd-700 font-semibold inline-flex items-center gap-2 ulink"><span data-i18n="blogs.read">Read article</span>
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
-          </a>
-        </div>
-      </article>
-
-      <!-- card 3 -->
-      <article class="lift snap-start shrink-0 w-[88%] sm:w-[420px] lg:w-[440px] bg-white rounded-3xl overflow-hidden border border-dgd-700/10 flex flex-col">
-        <div class="aspect-[4/3] relative overflow-hidden">
-          <div class="absolute inset-0" style="background:
-            linear-gradient(180deg, #cdeed5 0%, #16a34a 50%, #062f10 100%);"></div>
-          <svg class="absolute inset-0 w-full h-full" viewBox="0 0 400 300" preserveAspectRatio="none">
-            <g fill="none" stroke="rgba(255,255,255,0.45)" stroke-width="1">
-              <path d="M0,220 L60,200 L120,210 L180,170 L240,180 L300,140 L360,150 L400,120"/>
-              <path d="M0,260 L60,250 L120,255 L180,225 L240,235 L300,200 L360,210 L400,180"/>
-            </g>
-            <rect x="100" y="60" width="3" height="180" fill="white" opacity="0.7"/>
-            <rect x="200" y="40" width="3" height="200" fill="white" opacity="0.7"/>
-            <rect x="300" y="80" width="3" height="160" fill="white" opacity="0.7"/>
-          </svg>
-          <div class="absolute top-4 left-4 chip" style="background: rgba(255,255,255,0.85); color:#085A1C;" data-i18n="blogs.b3.cat">Reporting</div>
-          <div class="absolute bottom-4 left-4 right-4 font-mono text-[11px] uppercase tracking-widest text-white/85" data-i18n="blogs.b3.date">Feb 2026 · 9 min read</div>
-        </div>
-        <div class="p-7 flex flex-col flex-1">
-          <h3 class="font-display font-bold text-dgd-700 leading-tight" style="font-size: 26px;" data-i18n="blogs.b3.title">JORC-ready: building MRE reports investors actually trust</h3>
-          <p class="text-dgd-700/85 mt-3 leading-[1.7] text-[14.5px]" data-i18n="blogs.b3.desc">A field-tested checklist for producing MRE documentation that survives technical due diligence — from data validation to competent-person review.</p>
-          <div class="hairline mt-auto mb-5 pt-5"></div>
-          <a href="#" class="text-dgd-700 font-semibold inline-flex items-center gap-2 ulink"><span data-i18n="blogs.read">Read article</span>
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
-          </a>
-        </div>
-      </article>
-    </div>
-  </div>
-</section>
-
 <!-- ============== CONTACT ============== -->
 <section id="contact" class="relative py-28 md:py-36 bg-[#062f10] text-white overflow-hidden">
   <!-- bg flourish -->
@@ -1605,7 +1605,7 @@
       <!-- left -->
       <div class="lg:col-span-5">
         <div class="reveal">
-          <div class="eyebrow text-white/70 mb-5"><span style="background:#a7d8b2; height:1px; width:28px; display:inline-block;"></span><span data-i18n="contact.eyebrow">04 · Get in touch</span></div>
+          <div class="eyebrow text-white/70 mb-5"><span style="background:#a7d8b2; height:1px; width:28px; display:inline-block;"></span><span data-i18n="contact.eyebrow">06 · Get in touch</span></div>
           <h2 class="font-display font-medium tracking-tight leading-[1.05]" style="font-size: clamp(26px, 5vw, 60px);" data-i18n="contact.title">
             Let's map the <em class="not-italic" style="color:#a7f0b8;">next discovery</em> together.
           </h2>
@@ -2196,7 +2196,7 @@
       "nav.contact": "Bog'lanish",
       "nav.lang": "Til",
 
-      "values.eyebrow": "02 · Qadriyatlar",
+      "values.eyebrow": "03 · Qadriyatlar",
       "values.title": "Har bir qarorimiz, har bir hisobotimiz va har bir dala ishimiz uchta asosiy tamoyilga tayanadi:",
       "values.v1.title": "Tabiatga hurmat",
       "values.v1.desc": "Geologik tadqiqotlarni atrof-muhitga minimal ta'sir bilan olib boramiz. Yer resurslaridan mas'uliyat bilan foydalanish — kompromissiz majburiyatimiz.",
@@ -2208,7 +2208,7 @@
       "values.v3.desc": "Dala kuzatishlaridan yakuniy xulosalargacha — barcha natijalar aniq, tekshirilgan va xalqaro standartlarga muvofiq taqdim etiladi.",
       "values.v3.quote": "\"Ishonchli ma'lumot — ishonchli hamkorlik.\"",
 
-      "roadmap.eyebrow": "03 · Hamkorlik yo'l xaritasi",
+      "roadmap.eyebrow": "04 · Hamkorlik yo'l xaritasi",
       "roadmap.title": "Hamkorlik yo'l xaritasi",
       "roadmap.intro": "Konsept tug'ilishidan kon qurilishi boshlangunga qadar — har bir bosqichda qaysi ishlar bajariladi va qanday natija beriladi.",
       "roadmap.resultLabel": "Natija",
@@ -2269,7 +2269,7 @@
       "about.counter3": "Amalga oshirilayotgan loyihalar",
       "about.counter4": "QA/QC namuna muvofiqligi",
 
-      "services.eyebrow": "04 · Xizmatlar",
+      "services.eyebrow": "05 · Xizmatlar",
       "services.title": "Greenfield Exploration'dan Mine Construction'gacha",
       "services.desc": "Har bir xizmat xalqaro hisobot standartlariga muvofiq taqdim etiladi, to'liq saqlash zanjiri ma'lumotlari va auditdan o'tadigan yakuniy hujjat bilan birga.",
       "services.outcomeLabel": "Natija",
@@ -2318,7 +2318,7 @@
       "services.btnContact": "Bog'lanish",
       "services.btnSee": "Qanday ishlashimizni ko'ring",
 
-      "blogs.eyebrow": "05 · Dala yozuvlari",
+      "blogs.eyebrow": "02 · Dala yozuvlari",
       "blogs.title": "So'nggi yangiliklar",
       "blogs.read": "Maqolani o'qish",
       "blogs.b1.cat": "Metod",
@@ -2394,7 +2394,7 @@
       "nav.contact": "Контакты",
       "nav.lang": "Язык",
 
-      "values.eyebrow": "02 · Наши ценности",
+      "values.eyebrow": "03 · Наши ценности",
       "values.title": "Каждое наше решение, каждый отчёт и каждая полевая работа основаны на трёх главных принципах:",
       "values.v1.title": "Уважение к природе",
       "values.v1.desc": "Мы проводим геологические исследования с минимальным воздействием на окружающую среду. Ответственное использование ресурсов Земли — наше бескомпромиссное обязательство.",
@@ -2406,7 +2406,7 @@
       "values.v3.desc": "От полевых наблюдений до окончательных выводов — все результаты являются точными, проверенными и представлены в соответствии с международными стандартами.",
       "values.v3.quote": "«Надёжные данные — надёжное партнёрство.»",
 
-      "roadmap.eyebrow": "03 · Дорожная карта партнёрства",
+      "roadmap.eyebrow": "04 · Дорожная карта партнёрства",
       "roadmap.title": "Дорожная карта партнёрства",
       "roadmap.intro": "От рождения концепции до начала строительства рудника — какие работы выполняются на каждом этапе и какой результат получается.",
       "roadmap.resultLabel": "Результат",
@@ -2467,7 +2467,7 @@
       "about.counter3": "Проекты в стадии реализации",
       "about.counter4": "Соответствие проб QA/QC",
 
-      "services.eyebrow": "04 · Услуги",
+      "services.eyebrow": "05 · Услуги",
       "services.title": "От разведки новых месторождений до строительства рудника",
       "services.desc": "Каждая услуга предоставляется в соответствии с международными стандартами отчётности, с полной цепочкой ответственности за данные и финальным документом, выдерживающим аудит.",
       "services.outcomeLabel": "Результат",
@@ -2516,7 +2516,7 @@
       "services.btnContact": "Связаться",
       "services.btnSee": "Как мы работаем",
 
-      "blogs.eyebrow": "05 · Полевые заметки",
+      "blogs.eyebrow": "02 · Полевые заметки",
       "blogs.title": "Свежее с полей.",
       "blogs.read": "Читать статью",
       "blogs.b1.cat": "Метод",
@@ -2592,7 +2592,7 @@
       "nav.contact": "Contact",
       "nav.lang": "Language",
 
-      "values.eyebrow": "02 · Our Core Values",
+      "values.eyebrow": "03 · Our Core Values",
       "values.title": "Every decision, every report, and every fieldwork we undertake is based on three core principles:",
       "values.v1.title": "Respect for Nature",
       "values.v1.desc": "We conduct geological surveys with minimal impact on the environment. Responsible use of the Earth's resources is our uncompromising commitment.",
@@ -2604,7 +2604,7 @@
       "values.v3.desc": "From field observations to final conclusions, all results are accurate, verified, and presented in accordance with international standards.",
       "values.v3.quote": "\"Reliable data — reliable partnership.\"",
 
-      "roadmap.eyebrow": "03 · Partnership Roadmap",
+      "roadmap.eyebrow": "04 · Partnership Roadmap",
       "roadmap.title": "Partnership Roadmap",
       "roadmap.intro": "From concept inception to mine construction — what gets done at each stage and what outcome is delivered.",
       "roadmap.resultLabel": "Outcome",
@@ -2665,7 +2665,7 @@
       "about.counter3": "Projects in progress",
       "about.counter4": "QA/QC sample compliance",
 
-      "services.eyebrow": "04 · Services",
+      "services.eyebrow": "05 · Services",
       "services.title": "From Greenfield Exploration to Mine Construction",
       "services.desc": "Each service is delivered to international reporting standards, paired with full chain-of-custody data and a final document that holds up under audit.",
       "services.outcomeLabel": "Outcome",
@@ -2714,7 +2714,7 @@
       "services.btnContact": "Get in touch",
       "services.btnSee": "See how we work",
 
-      "blogs.eyebrow": "05 · Field notes",
+      "blogs.eyebrow": "02 · Field notes",
       "blogs.title": "Latest from the field.",
       "blogs.read": "Read article",
       "blogs.b1.cat": "Method",
@@ -2790,7 +2790,7 @@
       "nav.contact": "İletişim",
       "nav.lang": "Dil",
 
-      "values.eyebrow": "02 · Temel Değerlerimiz",
+      "values.eyebrow": "03 · Temel Değerlerimiz",
       "values.title": "Her kararımız, her raporumuz ve her saha çalışmamız üç temel ilkeye dayanır:",
       "values.v1.title": "Doğaya Saygı",
       "values.v1.desc": "Jeolojik araştırmaları çevre üzerinde minimum etkiyle yürütüyoruz. Dünya kaynaklarının sorumlu kullanımı bizim ödün vermez taahhüdümüzdür.",
@@ -2802,7 +2802,7 @@
       "values.v3.desc": "Saha gözlemlerinden nihai sonuçlara kadar — tüm sonuçlar doğru, doğrulanmış ve uluslararası standartlara uygun olarak sunulur.",
       "values.v3.quote": "\"Güvenilir veri — güvenilir ortaklık.\"",
 
-      "roadmap.eyebrow": "03 · İşbirliği Yol Haritası",
+      "roadmap.eyebrow": "04 · İşbirliği Yol Haritası",
       "roadmap.title": "İşbirliği Yol Haritası",
       "roadmap.intro": "Konsept doğuşundan maden inşaatının başlamasına kadar — her aşamada hangi işlerin yapıldığı ve hangi sonucun elde edildiği.",
       "roadmap.resultLabel": "Sonuç",
@@ -2863,7 +2863,7 @@
       "about.counter3": "Devam eden projeler",
       "about.counter4": "QA/QC numune uyumluluğu",
 
-      "services.eyebrow": "04 · Hizmetler",
+      "services.eyebrow": "05 · Hizmetler",
       "services.title": "Yeşil Saha Keşfinden Maden İnşaatına",
       "services.desc": "Her hizmet uluslararası raporlama standartlarına göre sunulur, tam veri zinciri ve denetimden geçecek nihai belge eşliğinde.",
       "services.outcomeLabel": "Sonuç",
@@ -2912,7 +2912,7 @@
       "services.btnContact": "İletişime geç",
       "services.btnSee": "Nasıl çalıştığımızı gör",
 
-      "blogs.eyebrow": "05 · Saha notları",
+      "blogs.eyebrow": "02 · Saha notları",
       "blogs.title": "Sahadan en yeni içerikler.",
       "blogs.read": "Makaleyi oku",
       "blogs.b1.cat": "Yöntem",
