@@ -400,6 +400,7 @@
   /* eyebrow */
   .eyebrow{ display:inline-flex; align-items:center; gap:10px; font-family:'JetBrains Mono', monospace; font-size:12px; letter-spacing:.18em; text-transform:uppercase; color: var(--dgd); }
   .eyebrow::before{ content:""; width:28px; height:1px; background: currentColor; }
+  .eyebrow.no-dash::before{ display: none; }
 
   /* service icon container */
   .svc-icon{
@@ -596,8 +597,7 @@
       <!-- Eyebrow: detached, positioned above the image -->
       <div class="absolute left-0 right-0" style="top: clamp(96px, 18vh, 200px);">
         <div class="max-w-[1400px] mx-auto w-full px-6 lg:px-10">
-          <div class="eyebrow" style="color: rgba(255,255,255,0.9); flex-wrap: wrap;">
-            <span style="background: rgba(255,255,255,0.9); height:1px; width:28px; display:inline-block;"></span>
+          <div class="eyebrow no-dash" style="color: rgba(255,255,255,0.9); flex-wrap: wrap;">
             <span data-i18n="hero.eyebrow">DGD Consulting · Tashkent, Uzbekistan</span>
           </div>
         </div>
