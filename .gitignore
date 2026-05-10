@@ -1,0 +1,49 @@
+# Claude Code local config
+.claude/
+
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+._*
+
+# Editor / IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# Logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Environment
+.env
+.env.local
+.env.*.local
+
+# Dependencies (kelajakda Node.js ishlatsangiz)
+node_modules/
+
+# Build / output
+dist/
+build/
+
+# Vercel
+.vercel
+
+# Python (kelajakda backend uchun)
+__pycache__/
+*.py[cod]
+*$py.class
+.venv/
+venv/
+env/
+*.egg-info/
+
+# Temp / scraps
+scraps/
+uploads/
