@@ -1,0 +1,1863 @@
+<!doctype html>
+<html lang="uz">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>DGD Consulting — Advanced Solutions for Modern Geological Exploration & Mining</title>
+<script>
+  // restore language ASAP to reduce flash of unlocalized content
+  (function(){
+    try {
+      var l = localStorage.getItem('dgd-lang');
+      if (l) document.documentElement.lang = l;
+    } catch(e){}
+  })();
+</script>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+  tailwind.config = {
+    theme: {
+      extend: {
+        colors: {
+          dgd: {
+            DEFAULT: '#085A1C',
+            900: '#062f10',
+            800: '#063f15',
+            700: '#085A1C',
+            600: '#0a7325',
+            500: '#16a34a',
+            ink: '#0b1410',
+            cream: '#f7f6f1',
+            line: 'rgba(8,90,28,0.12)',
+          }
+        },
+        fontFamily: {
+          sans: ['"Plus Jakarta Sans"', 'system-ui', 'sans-serif'],
+          display: ['"Plus Jakarta Sans"', 'system-ui', 'sans-serif'],
+          mono: ['"JetBrains Mono"', 'monospace'],
+        },
+      }
+    }
+  }
+</script>
+<style>
+  :root{
+    --dgd:#085A1C;
+    --dgd-deep:#062f10;
+    --dgd-soft:#0a7325;
+    --cream:#f7f6f1;
+    --paper:#ffffff;
+    --ink:#0b1410;
+  }
+  html,body{ background: var(--cream); color: var(--ink); }
+  html{ scroll-behavior:smooth; }
+  body{ font-family:'Plus Jakarta Sans', system-ui, sans-serif; -webkit-font-smoothing:antialiased; }
+  .font-display{ font-family:'Plus Jakarta Sans', system-ui, sans-serif; letter-spacing:-0.02em; }
+  .font-mono{ font-family:'JetBrains Mono', monospace; }
+
+  /* glass */
+  .glass{
+    background: rgba(255,255,255,0.55);
+    backdrop-filter: blur(18px) saturate(140%);
+    -webkit-backdrop-filter: blur(18px) saturate(140%);
+    border: 1px solid rgba(8,90,28,0.10);
+  }
+  .glass-dark{
+    background: rgba(6,47,16,0.55);
+    backdrop-filter: blur(18px) saturate(140%);
+    -webkit-backdrop-filter: blur(18px) saturate(140%);
+    border: 1px solid rgba(255,255,255,0.10);
+  }
+
+  /* reveal */
+  .reveal{ opacity:0; transform: translateY(28px); transition: opacity .9s cubic-bezier(.2,.7,.2,1), transform .9s cubic-bezier(.2,.7,.2,1); }
+  .reveal.in{ opacity:1; transform: translateY(0); }
+  .reveal-delay-1{ transition-delay:.08s; }
+  .reveal-delay-2{ transition-delay:.16s; }
+  .reveal-delay-3{ transition-delay:.24s; }
+  .reveal-delay-4{ transition-delay:.32s; }
+  .reveal-delay-5{ transition-delay:.40s; }
+  .reveal-delay-6{ transition-delay:.48s; }
+
+  /* hover glow */
+  .glow-hover{ transition: transform .5s cubic-bezier(.2,.7,.2,1), box-shadow .5s ease, border-color .5s ease; }
+  .glow-hover:hover{
+    transform: translateY(-4px) scale(1.02);
+    box-shadow: 0 0 0 1px rgba(8,90,28,0.35), 0 30px 60px -20px rgba(8,90,28,0.45), 0 0 80px -10px rgba(8,90,28,0.55);
+    border-color: rgba(8,90,28,0.4);
+  }
+
+  /* marquee */
+  @keyframes marquee { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+  .marquee-track{ animation: marquee 38s linear infinite; }
+  .partners-track{ animation: marquee 32s linear infinite; }
+  .partners-track:hover{ animation-play-state: paused; }
+
+  /* partner logos — uniform fixed-size slot so all logos have equal visual footprint */
+  .partner-slot{
+    display: inline-flex; align-items: center; justify-content: center;
+    width: 170px; height: 80px;
+    flex-shrink: 0;
+    transition: transform .35s ease;
+  }
+  .partner-slot:hover{ transform: scale(1.06); }
+  @media (min-width: 768px){
+    .partner-slot{ width: 220px; height: 100px; }
+  }
+  .partner-logo{
+    max-width: 100%; max-height: 100%;
+    object-fit: contain;
+    opacity: 0.94;
+    filter: drop-shadow(0 0 1px rgba(255,255,255,0.55)) drop-shadow(0 0 4px rgba(255,255,255,0.18));
+    transition: opacity .35s ease, filter .35s ease;
+  }
+  .partner-slot:hover .partner-logo{
+    opacity: 1;
+    filter: drop-shadow(0 0 2px rgba(255,255,255,0.7)) drop-shadow(0 0 8px rgba(167,240,184,0.35));
+  }
+
+  /* AI card neural net */
+  .ai-card{ position:relative; overflow:hidden; }
+  .ai-card .neural{ position:absolute; inset:0; opacity:0; transition: opacity .6s ease; pointer-events:none; }
+  .ai-card:hover .neural{ opacity:1; }
+  .ai-card .neural-pulse{ animation: pulseLine 3s ease-in-out infinite; }
+  @keyframes pulseLine{
+    0%,100%{ stroke-dashoffset: 0; opacity:.35; }
+    50%{ stroke-dashoffset: -40; opacity:.9; }
+  }
+  .ai-card .neural-node{ animation: nodePulse 2.4s ease-in-out infinite; transform-origin:center; }
+  @keyframes nodePulse{
+    0%,100%{ r:2.2; opacity:.6; }
+    50%{ r:3.6; opacity:1; }
+  }
+
+  /* hero parallax */
+  .hero-bg{ will-change: transform; }
+
+  /* dotted topo bg */
+  .topo-bg{
+    background-image:
+      radial-gradient(rgba(8,90,28,0.08) 1px, transparent 1px),
+      radial-gradient(rgba(8,90,28,0.04) 1px, transparent 1px);
+    background-size: 22px 22px, 44px 44px;
+    background-position: 0 0, 11px 11px;
+  }
+
+  /* divider */
+  .hairline{ height:1px; background: linear-gradient(to right, transparent, rgba(8,90,28,0.3), transparent); }
+
+  /* form */
+  .field{
+    width:100%;
+    background: rgba(255,255,255,0.6);
+    border: 1px solid rgba(8,90,28,0.18);
+    border-radius: 14px;
+    padding: 14px 16px;
+    font-size: 15px;
+    color: var(--ink);
+    transition: border-color .25s, box-shadow .25s, background .25s;
+  }
+  .field:focus{
+    outline:none;
+    border-color: var(--dgd);
+    box-shadow: 0 0 0 4px rgba(8,90,28,0.12);
+    background: #fff;
+  }
+
+  /* logo image (transparent PNG — drop-shadow follows alpha mask) */
+  .logo-img{
+    object-fit: contain;
+    filter: drop-shadow(0 4px 14px rgba(8,90,28,0.45));
+    transition: transform .4s cubic-bezier(.2,.7,.2,1), filter .4s ease;
+  }
+  a:hover .logo-img{
+    transform: rotate(-6deg) scale(1.06);
+    filter: drop-shadow(0 6px 20px rgba(167,240,184,0.55));
+  }
+
+  /* phone pill in navbar */
+  .phone-pill{
+    display:inline-flex; align-items:center; gap:10px;
+    padding: 7px 14px 7px 7px; border-radius: 999px;
+    background: rgba(255,255,255,0.06); border:1px solid rgba(255,255,255,0.18);
+    transition: all .25s ease;
+  }
+  .phone-pill:hover{ background: rgba(255,255,255,0.12); border-color: rgba(167,240,184,0.5); }
+  .phone-pill .icon{
+    width:30px; height:30px; border-radius:999px;
+    background:#a7f0b8; color:#062f10;
+    display:grid; place-items:center; flex-shrink:0;
+  }
+
+  /* language switcher */
+  .lang-switcher{ position: relative; }
+  .lang-btn{
+    display:inline-flex; align-items:center; gap:8px;
+    padding: 6px 10px 6px 6px; border-radius: 999px;
+    border: 1px solid rgba(255,255,255,0.18);
+    background: rgba(255,255,255,0.04);
+    transition: all .25s ease;
+    font-family:'JetBrains Mono', monospace;
+  }
+  .lang-btn:hover{ background: rgba(255,255,255,0.10); border-color: rgba(255,255,255,0.30); }
+  .lang-flag, .lang-flag-current{
+    width: 22px; height: 22px; border-radius:999px;
+    overflow:hidden; flex-shrink:0;
+    display:inline-grid; place-items:center;
+    background:#062f10; border:1px solid rgba(255,255,255,0.2);
+  }
+  .lang-flag svg, .lang-flag-current svg{ width:130%; height:130%; display:block; }
+  .lang-arrow{ transition: transform .25s ease; }
+  .lang-switcher.open .lang-arrow{ transform: rotate(180deg); }
+  .lang-dropdown{
+    position:absolute; right:0; top: calc(100% + 8px);
+    width: 200px; padding: 6px;
+    background: rgba(6,47,16,0.95);
+    backdrop-filter: blur(20px) saturate(140%);
+    -webkit-backdrop-filter: blur(20px) saturate(140%);
+    border: 1px solid rgba(167,240,184,0.18);
+    border-radius: 16px;
+    box-shadow: 0 24px 60px -12px rgba(0,0,0,0.55), 0 0 0 1px rgba(0,0,0,0.2);
+    visibility: hidden; opacity: 0; transform: translateY(-6px);
+    transition: opacity .2s ease, transform .2s ease, visibility .2s;
+    z-index: 60;
+  }
+  .lang-switcher.open .lang-dropdown{ visibility:visible; opacity:1; transform: translateY(0); }
+  .lang-item{
+    display:flex; align-items:center; gap:12px; width:100%;
+    padding: 9px 12px; border-radius: 10px;
+    text-align:left; color: rgba(255,255,255,0.85);
+    transition: background .2s ease, color .2s ease;
+    font-size: 14px;
+  }
+  .lang-item:hover{ background: rgba(255,255,255,0.06); color:#fff; }
+  .lang-item.active{ background: rgba(167,240,184,0.10); color:#a7f0b8; }
+  .lang-item .lang-name{ flex:1; }
+  .lang-item .lang-check{ opacity:0; color:#a7f0b8; transition: opacity .2s; }
+  .lang-item.active .lang-check{ opacity:1; }
+
+  /* mobile language pills */
+  .lang-pill{
+    padding: 6px 12px; border-radius: 999px;
+    border: 1px solid rgba(255,255,255,0.20);
+    color: rgba(255,255,255,0.85);
+    font-family:'JetBrains Mono', monospace;
+    font-size: 11px; letter-spacing: .08em; text-transform: uppercase;
+    transition: all .2s ease;
+  }
+  .lang-pill:hover{ border-color: rgba(255,255,255,0.40); }
+  .lang-pill.active{ background:#a7f0b8; color:#062f10; border-color:#a7f0b8; }
+
+  /* horizontal scroll-snap blogs */
+  .snap-x-mandatory{ scroll-snap-type:x mandatory; }
+  .snap-start{ scroll-snap-align:start; }
+  .no-scrollbar::-webkit-scrollbar{ display:none; }
+  .no-scrollbar{ scrollbar-width:none; }
+
+  /* ticker fade edges */
+  .ticker-mask{
+    -webkit-mask-image: linear-gradient(to right, transparent, #000 8%, #000 92%, transparent);
+            mask-image: linear-gradient(to right, transparent, #000 8%, #000 92%, transparent);
+  }
+
+  /* selection */
+  ::selection{ background: rgba(8,90,28,0.85); color:#fff; }
+
+  /* hover lift on blog cards */
+  .lift{ transition: transform .5s ease, box-shadow .5s ease; }
+  .lift:hover{ transform: translateY(-6px); box-shadow: 0 30px 60px -20px rgba(8,90,28,0.35); }
+
+  /* map pin pulse */
+  @keyframes pinPulse {
+    0% { transform: scale(0.9); opacity:.9; }
+    70% { transform: scale(2.6); opacity:0; }
+    100% { transform: scale(2.6); opacity:0; }
+  }
+  .pin-pulse{ animation: pinPulse 2.2s ease-out infinite; }
+
+  /* underline link */
+  .ulink{ position:relative; }
+  .ulink::after{
+    content:""; position:absolute; left:0; right:0; bottom:-4px; height:1px;
+    background: currentColor; transform: scaleX(0); transform-origin:left;
+    transition: transform .35s ease;
+  }
+  .ulink:hover::after{ transform: scaleX(1); }
+
+  /* CTA button */
+  .btn-dgd{
+    display:inline-flex; align-items:center; gap:10px;
+    background: var(--dgd); color:#fff;
+    padding: 14px 22px; border-radius: 999px;
+    font-weight: 600; letter-spacing:.01em;
+    transition: transform .25s ease, box-shadow .35s ease, background .25s ease;
+    box-shadow: 0 12px 30px -10px rgba(8,90,28,0.55);
+  }
+  .btn-dgd:hover{ background:#0a7325; transform: translateY(-2px); box-shadow: 0 18px 40px -10px rgba(8,90,28,0.65); }
+  .btn-ghost{
+    display:inline-flex; align-items:center; gap:10px;
+    background: transparent; color: var(--dgd);
+    padding: 13px 22px; border-radius: 999px;
+    font-weight: 600; border:1px solid rgba(8,90,28,0.3);
+    transition: all .25s ease;
+  }
+  .btn-ghost:hover{ background: rgba(8,90,28,0.06); border-color: var(--dgd); }
+
+  /* eyebrow */
+  .eyebrow{ display:inline-flex; align-items:center; gap:10px; font-family:'JetBrains Mono', monospace; font-size:12px; letter-spacing:.18em; text-transform:uppercase; color: var(--dgd); }
+  .eyebrow::before{ content:""; width:28px; height:1px; background: currentColor; }
+
+  /* service icon container */
+  .svc-icon{
+    width:56px; height:56px; border-radius:16px;
+    display:grid; place-items:center;
+    background: linear-gradient(135deg, rgba(8,90,28,0.08), rgba(8,90,28,0.02));
+    border:1px solid rgba(8,90,28,0.15);
+    color: var(--dgd);
+    transition: transform .5s ease, background .5s ease;
+  }
+  .svc-card:hover .svc-icon{ transform: rotate(-6deg) scale(1.06); background: linear-gradient(135deg, rgba(8,90,28,0.18), rgba(8,90,28,0.04)); }
+
+  /* counter */
+  .counter-num{
+    font-family:'Fraunces', serif;
+    font-weight:500;
+    font-variant-numeric: tabular-nums;
+    line-height:.95;
+  }
+
+  /* hero text shadow for legibility */
+  .hero-shadow{ text-shadow: 0 6px 30px rgba(0,0,0,0.55), 0 2px 6px rgba(0,0,0,0.4); }
+
+  /* chip */
+  .chip{ display:inline-flex; align-items:center; gap:8px; padding:6px 12px; border-radius:999px; font-size:12px; font-family:'JetBrains Mono', monospace; letter-spacing:.05em; }
+
+  /* gradient dot on AI card */
+  .ai-glow{
+    position:absolute; inset:-20%;
+    background: radial-gradient(closest-side, rgba(8,90,28,0.35), transparent 70%);
+    filter: blur(20px); opacity:0; transition: opacity .6s ease; pointer-events:none;
+  }
+  .ai-card:hover .ai-glow{ opacity:1; }
+</style>
+</head>
+<body class="bg-dgd-cream text-dgd-ink">
+
+<!-- ============== HEADER ============== -->
+<!-- Reusable flag SVG symbols -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <symbol id="flag-uz" viewBox="0 0 30 20">
+      <rect width="30" height="20" fill="#fff"/>
+      <rect width="30" height="6.4" fill="#1eb53a" y="13.6"/>
+      <rect width="30" height="6.4" fill="#0099b5"/>
+      <rect width="30" height="0.5" y="6.4" fill="#ce1126"/>
+      <rect width="30" height="0.5" y="13.1" fill="#ce1126"/>
+      <circle cx="6.2" cy="3.2" r="1.7" fill="#fff"/>
+      <circle cx="6.7" cy="3.2" r="1.6" fill="#0099b5"/>
+    </symbol>
+    <symbol id="flag-ru" viewBox="0 0 30 20">
+      <rect width="30" height="6.67" fill="#fff"/>
+      <rect width="30" height="6.67" y="6.67" fill="#0039a6"/>
+      <rect width="30" height="6.67" y="13.34" fill="#d52b1e"/>
+    </symbol>
+    <symbol id="flag-en" viewBox="0 0 30 20">
+      <rect width="30" height="20" fill="#012169"/>
+      <path d="M0,0 L30,20 M30,0 L0,20" stroke="#fff" stroke-width="2.5"/>
+      <path d="M0,0 L30,20 M30,0 L0,20" stroke="#c8102e" stroke-width="1.2" clip-path="polygon(0 0, 50% 0, 50% 50%, 0 50%, 0 0, 50% 0, 100% 50%, 50% 50%, 50% 100%, 100% 100%, 50% 100%, 0 50%)"/>
+      <path d="M15,0 V20 M0,10 H30" stroke="#fff" stroke-width="4"/>
+      <path d="M15,0 V20 M0,10 H30" stroke="#c8102e" stroke-width="2.2"/>
+    </symbol>
+    <symbol id="flag-tr" viewBox="0 0 30 20">
+      <rect width="30" height="20" fill="#e30a17"/>
+      <circle cx="11.2" cy="10" r="4.5" fill="#fff"/>
+      <circle cx="12.5" cy="10" r="3.6" fill="#e30a17"/>
+      <polygon points="16.4,10 14.0,10.85 15.45,8.85 15.45,11.15 14.0,9.15" fill="#fff"/>
+    </symbol>
+  </defs>
+</svg>
+
+<header id="site-header" class="fixed top-0 left-0 right-0 z-50 transition-all duration-500">
+  <div id="header-inner" class="transition-all duration-500" style="background: linear-gradient(180deg, rgba(6,47,16,0.55), rgba(6,47,16,0));">
+    <div class="max-w-[1400px] mx-auto grid grid-cols-2 lg:grid-cols-3 items-center px-6 lg:px-10 py-4" id="header-row">
+
+      <!-- LEFT: Logo + Brand -->
+      <a href="#top" class="flex items-center gap-3 group justify-self-start">
+        <img src="assets/logo.png" alt="DGD Consulting" class="logo-img w-11 h-11"/>
+        <span class="text-white font-semibold tracking-tight text-lg leading-tight">
+          DGD <span class="opacity-80 font-normal">Consulting</span>
+        </span>
+      </a>
+
+      <!-- CENTER: Navigation -->
+      <nav class="hidden lg:flex items-center justify-center gap-9">
+        <a href="#about" class="text-white/85 hover:text-white text-[15px] ulink" data-i18n="nav.about">About</a>
+        <a href="#services" class="text-white/85 hover:text-white text-[15px] ulink" data-i18n="nav.services">Services</a>
+        <a href="#blogs" class="text-white/85 hover:text-white text-[15px] ulink" data-i18n="nav.blogs">Blogs</a>
+        <a href="#contact" class="text-white/85 hover:text-white text-[15px] ulink" data-i18n="nav.contact">Contact</a>
+      </nav>
+
+      <!-- RIGHT: Language switcher + Phone -->
+      <div class="hidden lg:flex items-center gap-4 justify-self-end">
+        <!-- Language switcher -->
+        <div id="lang-switcher" class="lang-switcher">
+          <button id="lang-btn" type="button" class="lang-btn" aria-haspopup="true" aria-expanded="false">
+            <span class="lang-flag-current"><svg id="current-flag-svg"><use href="#flag-uz"/></svg></span>
+            <span id="current-lang-code" class="text-white/90 text-[11px] uppercase tracking-wider">UZ</span>
+            <svg class="lang-arrow text-white/70" width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
+          </button>
+          <div id="lang-dropdown" class="lang-dropdown" role="menu">
+            <button data-lang="uz" type="button" class="lang-item" role="menuitem">
+              <span class="lang-flag"><svg><use href="#flag-uz"/></svg></span>
+              <span class="lang-name">O'zbek</span>
+              <span class="lang-check"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 13l4 4L19 7"/></svg></span>
+            </button>
+            <button data-lang="ru" type="button" class="lang-item" role="menuitem">
+              <span class="lang-flag"><svg><use href="#flag-ru"/></svg></span>
+              <span class="lang-name">Русский</span>
+              <span class="lang-check"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 13l4 4L19 7"/></svg></span>
+            </button>
+            <button data-lang="en" type="button" class="lang-item" role="menuitem">
+              <span class="lang-flag"><svg><use href="#flag-en"/></svg></span>
+              <span class="lang-name">English</span>
+              <span class="lang-check"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 13l4 4L19 7"/></svg></span>
+            </button>
+            <button data-lang="tr" type="button" class="lang-item" role="menuitem">
+              <span class="lang-flag"><svg><use href="#flag-tr"/></svg></span>
+              <span class="lang-name">Türkçe</span>
+              <span class="lang-check"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 13l4 4L19 7"/></svg></span>
+            </button>
+          </div>
+        </div>
+
+        <!-- Phone -->
+        <a href="tel:+998997539095" class="phone-pill text-white" style="white-space:nowrap;">
+          <span class="icon">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.37 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.33 1.85.57 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+          </span>
+          <span class="font-semibold tracking-tight text-[15.5px]">+998 99 753 90 95</span>
+        </a>
+      </div>
+
+      <!-- Mobile menu button -->
+      <button id="menu-btn" class="lg:hidden text-white p-2 justify-self-end" aria-label="Open menu">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
+      </button>
+    </div>
+
+    <!-- Mobile menu -->
+    <div id="mobile-menu" class="lg:hidden hidden border-t border-white/10 bg-[#062f10]">
+      <div class="px-6 py-5 flex flex-col gap-3">
+        <a href="#about" class="text-white/90 py-2" data-i18n="nav.about">About</a>
+        <a href="#services" class="text-white/90 py-2" data-i18n="nav.services">Services</a>
+        <a href="#blogs" class="text-white/90 py-2" data-i18n="nav.blogs">Blogs</a>
+        <a href="#contact" class="text-white/90 py-2" data-i18n="nav.contact">Contact</a>
+        <a href="tel:+998997539095" class="text-white py-2 font-semibold flex items-center gap-2">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#a7f0b8" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.37 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.33 1.85.57 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+          +998 99 753 90 95
+        </a>
+        <!-- Mobile language pills -->
+        <div class="pt-4 mt-1 border-t border-white/10 flex items-center gap-2 flex-wrap">
+          <span class="text-white/50 text-[11px] font-mono uppercase tracking-wider mr-1" data-i18n="nav.lang">Language</span>
+          <button data-lang="uz" type="button" class="lang-pill"><svg width="14" height="14" style="display:inline-block;vertical-align:middle;margin-right:4px;"><use href="#flag-uz"/></svg>UZ</button>
+          <button data-lang="ru" type="button" class="lang-pill"><svg width="14" height="14" style="display:inline-block;vertical-align:middle;margin-right:4px;"><use href="#flag-ru"/></svg>RU</button>
+          <button data-lang="en" type="button" class="lang-pill"><svg width="14" height="14" style="display:inline-block;vertical-align:middle;margin-right:4px;"><use href="#flag-en"/></svg>EN</button>
+          <button data-lang="tr" type="button" class="lang-pill"><svg width="14" height="14" style="display:inline-block;vertical-align:middle;margin-right:4px;"><use href="#flag-tr"/></svg>TR</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<a id="top"></a>
+
+<!-- ============== HERO ============== -->
+<section id="hero" class="relative">
+  <div class="relative w-full overflow-hidden" style="height: 100vh; min-height: 640px; background:#062f10;">
+
+    <!-- parallax bg image (panorama fully visible + blurred backdrop fills empty space) -->
+    <div id="hero-bg" class="hero-bg absolute inset-0 overflow-hidden">
+
+      <!-- LAYER 1: Blurred backdrop — same image, blown up & blurred to fill top/bottom space -->
+      <div aria-hidden="true" class="absolute" style="inset:-8%; filter: blur(48px) saturate(1.18) brightness(0.92); will-change: filter;">
+        <img src="assets/hero.jpg" alt="" class="w-full h-full object-cover" style="display:block; object-position: center;"/>
+      </div>
+
+      <!-- LAYER 2: Subtle green tint on backdrop so it harmonises with brand color -->
+      <div class="absolute inset-0 pointer-events-none" style="background:
+        radial-gradient(ellipse 80% 60% at 50% 50%, rgba(8,90,28,0.22) 0%, rgba(6,47,16,0.55) 70%, rgba(6,47,16,0.78) 100%);"></div>
+
+      <!-- LAYER 3: Crisp main image, fully visible (object-contain) -->
+      <img src="assets/hero.jpg" alt="Geological exploration landscape — mountains, rivers, mining operations and environmental restoration" class="absolute inset-0 w-full h-full object-contain" style="display:block; object-position: center 56%;"/>
+
+      <!-- LAYER 4: Soft vignette + left darken for text legibility -->
+      <div class="absolute inset-0 pointer-events-none" style="background:
+        linear-gradient(to right, rgba(6,47,16,0.55) 0%, rgba(6,47,16,0.18) 36%, rgba(6,47,16,0.0) 60%),
+        linear-gradient(180deg, rgba(6,47,16,0.35) 0%, rgba(6,47,16,0.0) 22%, rgba(6,47,16,0.0) 75%, rgba(6,47,16,0.55) 100%);"></div>
+    </div>
+
+    <!-- foreground text -->
+    <div id="hero-fg" class="absolute inset-0 will-change-transform">
+
+      <!-- Eyebrow: detached, positioned above the image -->
+      <div class="absolute left-0 right-0" style="top: clamp(96px, 18vh, 200px);">
+        <div class="max-w-[1400px] mx-auto w-full px-6 lg:px-10">
+          <div class="eyebrow" style="color: rgba(255,255,255,0.9); white-space:nowrap;">
+            <span style="background: rgba(255,255,255,0.9); height:1px; width:28px; display:inline-block;"></span>
+            <span data-i18n="hero.eyebrow">DGD Consulting · Tashkent, Uzbekistan</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Main text block: vertically centered (h1 + paragraph + buttons) -->
+      <div class="absolute inset-0 flex items-center">
+        <div class="max-w-[1400px] mx-auto w-full px-6 lg:px-10">
+          <div class="max-w-[760px]">
+          <h1 class="hero-shadow text-white font-display font-bold leading-[1.08] tracking-tight"
+              style="font-size: clamp(28px, 4.4vw, 60px);" data-i18n="hero.title">
+            Advanced Solutions for Modern <em class="not-italic" style="background: linear-gradient(180deg,#ffffff, #b8e6c4); -webkit-background-clip:text; background-clip:text; color:transparent;">Geological Exploration</em> &amp; Mining.
+          </h1>
+          <p class="hero-shadow text-white/85 mt-7 max-w-[540px] text-[17px] leading-[1.7]" data-i18n="hero.subtitle">
+            Field-tested geology, modern data science, and rigorous reporting — from outcrop to MRE, in one continuous workflow.
+          </p>
+          <div class="mt-8 flex flex-wrap items-center gap-4">
+            <a href="#services" class="btn-dgd" style="background:#fff; color:#085A1C;">
+              <span data-i18n="hero.btnExplore">Explore services</span>
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+            </a>
+            <a href="#contact" class="btn-ghost" style="color:#fff; border-color: rgba(255,255,255,0.4);" data-i18n="hero.btnContact">
+              Get in touch
+            </a>
+          </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- bottom strip -->
+    <div id="hero-strip" class="absolute bottom-0 left-0 right-0 will-change-transform">
+      <div class="max-w-[1400px] mx-auto px-6 lg:px-10 pb-6">
+        <div class="flex items-center justify-between text-white/75 font-mono text-[11px] tracking-widest uppercase">
+          <span>41.3°N · 69.3°E</span>
+          <span class="hidden sm:flex items-center gap-2">
+            <span class="inline-block w-2 h-2 rounded-full" style="background:#a7f0b8; box-shadow: 0 0 12px #a7f0b8;"></span>
+            <span data-i18n="hero.scroll">Scroll to explore</span>
+          </span>
+          <span data-i18n="hero.est">Est. 2024</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============== ABOUT ============== -->
+<section id="about" class="relative py-28 md:py-36 topo-bg">
+  <div class="max-w-[1400px] mx-auto px-6 lg:px-10">
+    <div class="grid grid-cols-12 gap-8 lg:gap-14">
+      <div class="col-span-12 lg:col-span-5">
+        <div class="reveal">
+          <div class="eyebrow mb-5" data-i18n="about.eyebrow">01 · About</div>
+          <h2 class="font-display font-medium tracking-tight text-dgd-700 leading-[1.02]" style="font-size: clamp(34px, 4vw, 56px);" data-i18n="about.title">
+            A young firm with the depth of seasoned ground.
+          </h2>
+        </div>
+      </div>
+      <div class="col-span-12 lg:col-span-7">
+        <div class="space-y-6 text-[17px] leading-[1.7] text-dgd-ink/85 max-w-[620px]">
+          <p class="reveal reveal-delay-1" data-i18n="about.p1">
+            DGD Consulting is a young, ambitious project — built around a core of experienced geologists, engineers, and data scientists who have spent careers under the surface. We bring together decades of fieldwork with the energy of a team that believes the next generation of discoveries will be earned by combining classical exploration with modern computation.
+          </p>
+          <p class="reveal reveal-delay-2" data-i18n="about.p2">
+            Our approach is rooted locally and informed globally: we understand the regulatory, geological, and operational nuances of Central Asia, while leaning on international scientific expertise — JORC and CIM-aligned reporting, peer-reviewed methods, and the AI/ML toolchain reshaping resource estimation.
+          </p>
+          <p class="reveal reveal-delay-3 text-dgd-ink/65 italic font-display font-light" style="font-size:18px;" data-i18n="about.quote">
+            “Reduce uncertainty. Respect the land. Report with rigor.”
+          </p>
+          <div class="reveal reveal-delay-4 pt-2">
+            <a href="#contact" class="btn-dgd">
+              <span data-i18n="about.btn">Get in touch</span>
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- counters -->
+    <div class="hairline mt-24 mb-12"></div>
+    <div class="grid grid-cols-2 lg:grid-cols-4 gap-y-12 gap-x-8">
+      <div class="reveal">
+        <div class="counter-num text-dgd-700" style="font-size: clamp(48px, 5.5vw, 84px);" data-counter data-target="1" data-suffix="+">0</div>
+        <div class="font-mono text-[11px] uppercase tracking-widest text-dgd-ink/55 mt-2" data-i18n="about.counter1">Years of combined experience</div>
+      </div>
+      <div class="reveal reveal-delay-1">
+        <div class="counter-num text-dgd-700" style="font-size: clamp(48px, 5.5vw, 84px);" data-counter data-target="7" data-suffix="">0</div>
+        <div class="font-mono text-[11px] uppercase tracking-widest text-dgd-ink/55 mt-2" data-i18n="about.counter2">Geological researches completed</div>
+      </div>
+      <div class="reveal reveal-delay-2">
+        <div class="counter-num text-dgd-700" style="font-size: clamp(48px, 5.5vw, 84px);" data-counter data-target="3" data-suffix="">0</div>
+        <div class="font-mono text-[11px] uppercase tracking-widest text-dgd-ink/55 mt-2" data-i18n="about.counter3">Active concession projects</div>
+      </div>
+      <div class="reveal reveal-delay-3">
+        <div class="counter-num text-dgd-700" style="font-size: clamp(48px, 5.5vw, 84px);" data-counter data-target="98" data-suffix="%">0</div>
+        <div class="font-mono text-[11px] uppercase tracking-widest text-dgd-ink/55 mt-2" data-i18n="about.counter4">QA/QC sample compliance</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============== SERVICES ============== -->
+<section id="services" class="relative py-28 md:py-36 overflow-hidden" style="isolation:isolate; background:#0b1410;">
+  <!-- bg layer -->
+  <div class="absolute inset-0 z-0">
+    <div class="absolute inset-0" style="background:
+      radial-gradient(1200px 600px at 80% -10%, rgba(8,90,28,0.18), transparent 60%),
+      radial-gradient(900px 500px at -10% 110%, rgba(8,90,28,0.16), transparent 60%),
+      linear-gradient(180deg, #0b1410 0%, #062f10 100%);"></div>
+    <!-- topo lines -->
+    <svg class="absolute inset-0 w-full h-full opacity-[0.10]" preserveAspectRatio="none" viewBox="0 0 1400 900">
+      <g fill="none" stroke="#a7d8b2" stroke-width="1">
+        <path d="M0,150 Q350,80 700,150 T1400,150"/>
+        <path d="M0,230 Q350,170 700,230 T1400,230"/>
+        <path d="M0,320 Q350,260 700,320 T1400,320"/>
+        <path d="M0,420 Q350,360 700,420 T1400,420"/>
+        <path d="M0,520 Q350,470 700,520 T1400,520"/>
+        <path d="M0,620 Q350,560 700,620 T1400,620"/>
+        <path d="M0,720 Q350,660 700,720 T1400,720"/>
+        <path d="M0,820 Q350,760 700,820 T1400,820"/>
+      </g>
+    </svg>
+  </div>
+
+  <div class="max-w-[1400px] mx-auto px-6 lg:px-10 text-white relative z-10">
+    <div class="grid grid-cols-12 gap-8 mb-14">
+      <div class="col-span-12 lg:col-span-7">
+        <div class="reveal">
+          <div class="eyebrow text-white/70 mb-5"><span style="background:#a7d8b2; height:1px; width:28px; display:inline-block;"></span><span data-i18n="services.eyebrow">02 · Services</span></div>
+          <h2 class="font-display font-medium tracking-tight leading-[1.02]" style="font-size: clamp(34px, 4.2vw, 60px);" data-i18n="services.title">
+            Six disciplines, one continuous workflow — from outcrop to MRE.
+          </h2>
+        </div>
+      </div>
+      <div class="col-span-12 lg:col-span-5 lg:pt-6">
+        <p class="reveal reveal-delay-1 text-white/70 max-w-[440px] leading-[1.7]" data-i18n="services.desc">
+          Each service is delivered to international reporting standards, paired with full chain-of-custody data and a final document that holds up under audit.
+        </p>
+      </div>
+    </div>
+
+    <!-- service grid -->
+    <div class="grid grid-cols-12 gap-5 md:gap-6">
+      <!-- 1 -->
+      <article class="svc-card glow-hover col-span-12 md:col-span-6 lg:col-span-4 reveal glass-dark rounded-3xl p-7 relative">
+        <div class="flex items-start justify-between mb-7">
+          <div class="svc-icon" style="background: linear-gradient(135deg, rgba(167,216,178,0.15), rgba(167,216,178,0.04)); border-color: rgba(167,216,178,0.2); color:#cdeed5;">
+            <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M21 15a4 4 0 0 1-4 4H8l-5 3V6a4 4 0 0 1 4-4h10a4 4 0 0 1 4 4v9z"/><circle cx="9" cy="11" r="1"/><circle cx="13" cy="11" r="1"/><circle cx="17" cy="11" r="1"/></svg>
+          </div>
+          <span class="font-mono text-[11px] uppercase tracking-widest text-white/40">01</span>
+        </div>
+        <h3 class="font-display text-2xl font-medium leading-tight mb-3" data-i18n="services.s1.title">Geological consulting services</h3>
+        <p class="text-white/65 text-[14.5px] leading-[1.65]" data-i18n="services.s1.desc">Strategic advisory across project lifecycle — from concept screening and concession due diligence to data-room reviews and independent technical opinion.</p>
+      </article>
+
+      <!-- 2 -->
+      <article class="svc-card glow-hover col-span-12 md:col-span-6 lg:col-span-4 reveal reveal-delay-1 glass-dark rounded-3xl p-7 relative">
+        <div class="flex items-start justify-between mb-7">
+          <div class="svc-icon" style="background: linear-gradient(135deg, rgba(167,216,178,0.15), rgba(167,216,178,0.04)); border-color: rgba(167,216,178,0.2); color:#cdeed5;">
+            <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6M9 13h6M9 17h6"/></svg>
+          </div>
+          <span class="font-mono text-[11px] uppercase tracking-widest text-white/40">02</span>
+        </div>
+        <h3 class="font-display text-2xl font-medium leading-tight mb-3" data-i18n="services.s2.title">Preparation of comprehensive projects</h3>
+        <p class="text-white/65 text-[14.5px] leading-[1.65]" data-i18n="services.s2.desc">End-to-end exploration project files — geological models, drilling layouts, sampling protocols, budgets and timelines — packaged for permitting and investor review.</p>
+      </article>
+
+      <!-- 3 -->
+      <article class="svc-card glow-hover col-span-12 md:col-span-6 lg:col-span-4 reveal reveal-delay-2 glass-dark rounded-3xl p-7 relative">
+        <div class="flex items-start justify-between mb-7">
+          <div class="svc-icon" style="background: linear-gradient(135deg, rgba(167,216,178,0.15), rgba(167,216,178,0.04)); border-color: rgba(167,216,178,0.2); color:#cdeed5;">
+            <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 2L4 7v10l8 5 8-5V7z"/><path d="M12 22V12M4 7l8 5 8-5"/></svg>
+          </div>
+          <span class="font-mono text-[11px] uppercase tracking-widest text-white/40">03</span>
+        </div>
+        <h3 class="font-display text-2xl font-medium leading-tight mb-3" data-i18n="services.s3.title">Efficient geological exploration works</h3>
+        <p class="text-white/65 text-[14.5px] leading-[1.65]" data-i18n="services.s3.desc">Field execution and supervision of trenching, mapping, and drilling programs — optimized for cost-per-discovery and accelerated decision points.</p>
+      </article>
+
+      <!-- 4 -->
+      <article class="svc-card glow-hover col-span-12 md:col-span-6 lg:col-span-4 reveal glass-dark rounded-3xl p-7 relative">
+        <div class="flex items-start justify-between mb-7">
+          <div class="svc-icon" style="background: linear-gradient(135deg, rgba(167,216,178,0.15), rgba(167,216,178,0.04)); border-color: rgba(167,216,178,0.2); color:#cdeed5;">
+            <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M3 3v18h18"/><path d="M7 14l4-4 4 4 5-6"/></svg>
+          </div>
+          <span class="font-mono text-[11px] uppercase tracking-widest text-white/40">04</span>
+        </div>
+        <h3 class="font-display text-2xl font-medium leading-tight mb-3" data-i18n="services.s4.title">MRE report preparation</h3>
+        <p class="text-white/65 text-[14.5px] leading-[1.65]" data-i18n="services.s4.desc">Mineral Resource Estimation reports prepared to JORC / CIM standards — block modeling, classification, sensitivity analysis and competent-person sign-off.</p>
+      </article>
+
+      <!-- 5 — large card with sub-services -->
+      <article class="svc-card glow-hover col-span-12 lg:col-span-8 reveal reveal-delay-1 glass-dark rounded-3xl p-7 relative">
+        <div class="flex items-start justify-between mb-6">
+          <div class="flex items-center gap-4">
+            <div class="svc-icon" style="background: linear-gradient(135deg, rgba(167,216,178,0.15), rgba(167,216,178,0.04)); border-color: rgba(167,216,178,0.2); color:#cdeed5;">
+              <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7S2 12 2 12z"/><circle cx="12" cy="12" r="3"/></svg>
+            </div>
+            <h3 class="font-display text-2xl font-medium leading-tight" data-i18n="services.s5.title">Special geological research works</h3>
+          </div>
+          <span class="font-mono text-[11px] uppercase tracking-widest text-white/40">05</span>
+        </div>
+        <p class="text-white/65 text-[14.5px] leading-[1.65] mb-6 max-w-[640px]" data-i18n="services.s5.desc">Specialist studies that complement standard exploration — sharpening targets and de-risking interpretations through multi-method evidence.</p>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
+          <!-- 5.1 -->
+          <div class="rounded-2xl p-4 border border-white/10 bg-white/[0.03] flex items-center gap-4 transition hover:border-white/25 hover:bg-white/[0.06]">
+            <span class="font-mono text-[11px] text-white/40 w-10">5.1</span>
+            <div class="flex-1">
+              <div class="text-white text-[15px] font-medium" data-i18n="services.s5.sub1.title">Geochemical research</div>
+              <div class="text-white/55 text-[13px]" data-i18n="services.s5.sub1.desc">Soil, stream-sediment & rock-chip surveys with multi-element ICP-MS interpretation.</div>
+            </div>
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#cdeed5" stroke-width="1.6"><path d="M9 3h6v4l4 4v8a3 3 0 0 1-3 3H8a3 3 0 0 1-3-3v-8l4-4z"/></svg>
+          </div>
+          <!-- 5.2 -->
+          <div class="rounded-2xl p-4 border border-white/10 bg-white/[0.03] flex items-center gap-4 transition hover:border-white/25 hover:bg-white/[0.06]">
+            <span class="font-mono text-[11px] text-white/40 w-10">5.2</span>
+            <div class="flex-1">
+              <div class="text-white text-[15px] font-medium" data-i18n="services.s5.sub2.title">Geophysical research</div>
+              <div class="text-white/55 text-[13px]" data-i18n="services.s5.sub2.desc">Magnetic, IP/Resistivity, and gravity surveys for sub-surface targeting.</div>
+            </div>
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#cdeed5" stroke-width="1.6"><path d="M3 12h3l3-9 4 18 3-9h5"/></svg>
+          </div>
+          <!-- 5.3 -->
+          <div class="rounded-2xl p-4 border border-white/10 bg-white/[0.03] flex items-center gap-4 transition hover:border-white/25 hover:bg-white/[0.06]">
+            <span class="font-mono text-[11px] text-white/40 w-10">5.3</span>
+            <div class="flex-1">
+              <div class="text-white text-[15px] font-medium" data-i18n="services.s5.sub3.title">Special structural studies</div>
+              <div class="text-white/55 text-[13px]" data-i18n="services.s5.sub3.desc">Detailed fault, fold and shear-zone mapping to constrain mineralization controls.</div>
+            </div>
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#cdeed5" stroke-width="1.6"><path d="M3 20l6-6 4 4 8-8"/><path d="M14 6h7v7"/></svg>
+          </div>
+          <!-- 5.4 -->
+          <div class="rounded-2xl p-4 border border-white/10 bg-white/[0.03] flex items-center gap-4 transition hover:border-white/25 hover:bg-white/[0.06]">
+            <span class="font-mono text-[11px] text-white/40 w-10">5.4</span>
+            <div class="flex-1">
+              <div class="text-white text-[15px] font-medium" data-i18n="services.s5.sub4.title">Satellite image processing</div>
+              <div class="text-white/55 text-[13px]" data-i18n="services.s5.sub4.desc">Multispectral and SAR analysis for alteration mapping and lineament extraction.</div>
+            </div>
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#cdeed5" stroke-width="1.6"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3a14 14 0 0 1 0 18M12 3a14 14 0 0 0 0 18"/></svg>
+          </div>
+          <!-- 5.5 — AI / ML -->
+          <div class="ai-card md:col-span-2 rounded-2xl p-5 border border-white/10 bg-white/[0.03] flex items-center gap-4 relative overflow-hidden cursor-pointer transition">
+            <div class="ai-glow"></div>
+            <!-- neural net animated bg -->
+            <svg class="neural" viewBox="0 0 600 120" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
+              <defs>
+                <linearGradient id="nnLine" x1="0" y1="0" x2="1" y2="0">
+                  <stop offset="0%" stop-color="#16a34a" stop-opacity="0"/>
+                  <stop offset="50%" stop-color="#a7f0b8" stop-opacity="0.9"/>
+                  <stop offset="100%" stop-color="#16a34a" stop-opacity="0"/>
+                </linearGradient>
+              </defs>
+              <!-- topographic contour lines -->
+              <g stroke="#a7f0b8" stroke-width="0.7" fill="none" opacity="0.25">
+                <path d="M0,40 Q150,20 300,40 T600,40"/>
+                <path d="M0,55 Q150,35 300,55 T600,55"/>
+                <path d="M0,70 Q150,50 300,70 T600,70"/>
+                <path d="M0,85 Q150,65 300,85 T600,85"/>
+                <path d="M0,100 Q150,80 300,100 T600,100"/>
+              </g>
+              <!-- nn layers -->
+              <g stroke="url(#nnLine)" stroke-width="1" fill="none" stroke-dasharray="2 4" class="neural-pulse">
+                <line x1="80"  y1="30" x2="220" y2="20"/>
+                <line x1="80"  y1="30" x2="220" y2="60"/>
+                <line x1="80"  y1="30" x2="220" y2="100"/>
+                <line x1="80"  y1="60" x2="220" y2="20"/>
+                <line x1="80"  y1="60" x2="220" y2="60"/>
+                <line x1="80"  y1="60" x2="220" y2="100"/>
+                <line x1="80"  y1="90" x2="220" y2="20"/>
+                <line x1="80"  y1="90" x2="220" y2="60"/>
+                <line x1="80"  y1="90" x2="220" y2="100"/>
+                <line x1="220" y1="20" x2="380" y2="40"/>
+                <line x1="220" y1="20" x2="380" y2="80"/>
+                <line x1="220" y1="60" x2="380" y2="40"/>
+                <line x1="220" y1="60" x2="380" y2="80"/>
+                <line x1="220" y1="100" x2="380" y2="40"/>
+                <line x1="220" y1="100" x2="380" y2="80"/>
+                <line x1="380" y1="40" x2="520" y2="60"/>
+                <line x1="380" y1="80" x2="520" y2="60"/>
+              </g>
+              <g fill="#a7f0b8">
+                <circle class="neural-node" cx="80"  cy="30"  r="2.4"/>
+                <circle class="neural-node" cx="80"  cy="60"  r="2.4" style="animation-delay:.3s"/>
+                <circle class="neural-node" cx="80"  cy="90"  r="2.4" style="animation-delay:.6s"/>
+                <circle class="neural-node" cx="220" cy="20"  r="2.4" style="animation-delay:.2s"/>
+                <circle class="neural-node" cx="220" cy="60"  r="2.4" style="animation-delay:.5s"/>
+                <circle class="neural-node" cx="220" cy="100" r="2.4" style="animation-delay:.8s"/>
+                <circle class="neural-node" cx="380" cy="40"  r="2.4" style="animation-delay:.4s"/>
+                <circle class="neural-node" cx="380" cy="80"  r="2.4" style="animation-delay:.9s"/>
+                <circle class="neural-node" cx="520" cy="60"  r="3.4" style="animation-delay:1.2s"/>
+              </g>
+            </svg>
+
+            <span class="font-mono text-[11px] text-white/40 w-10 relative z-10">5.5</span>
+            <div class="flex-1 relative z-10">
+              <div class="flex items-center gap-2">
+                <div class="text-white text-[15px] font-medium" data-i18n="services.s5.sub5.title">Prediction of new deposits — AI &amp; ML</div>
+                <span class="chip" style="background: rgba(167,240,184,0.15); color:#a7f0b8; border:1px solid rgba(167,240,184,0.25);" data-i18n="services.s5.sub5.badge">NEW</span>
+              </div>
+              <div class="text-white/60 text-[13px]" data-i18n="services.s5.sub5.desc">Random-forest, CNN and gradient-boosting models trained on multi-source geoscience data to rank prospective targets.</div>
+            </div>
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#a7f0b8" stroke-width="1.6" class="relative z-10"><path d="M12 2v4M12 18v4M2 12h4M18 12h4M5 5l3 3M16 16l3 3M5 19l3-3M16 8l3-3"/><circle cx="12" cy="12" r="3"/></svg>
+          </div>
+        </div>
+      </article>
+
+      <!-- 6 -->
+      <article class="svc-card glow-hover col-span-12 lg:col-span-4 reveal reveal-delay-2 glass-dark rounded-3xl p-7 relative">
+        <div class="flex items-start justify-between mb-7">
+          <div class="svc-icon" style="background: linear-gradient(135deg, rgba(167,216,178,0.15), rgba(167,216,178,0.04)); border-color: rgba(167,216,178,0.2); color:#cdeed5;">
+            <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M9 12l2 2 4-4"/><path d="M21 12c0 5-4 9-9 9s-9-4-9-9 4-9 9-9c2.4 0 4.6.95 6.2 2.5"/></svg>
+          </div>
+          <span class="font-mono text-[11px] uppercase tracking-widest text-white/40">06</span>
+        </div>
+        <h3 class="font-display text-2xl font-medium leading-tight mb-3" data-i18n="services.s6.title">QA/QC &amp; CRM support</h3>
+        <p class="text-white/65 text-[14.5px] leading-[1.65]" data-i18n="services.s6.desc">Independent oversight of sampling, lab performance and CRM/blank/duplicate insertion programs — keeping data audit-ready from day one.</p>
+      </article>
+    </div>
+
+    <!-- bottom CTA -->
+    <div class="reveal mt-14 flex flex-wrap items-center gap-4">
+      <a href="#contact" class="btn-dgd"><span data-i18n="services.btnContact">Get in touch</span>
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+      </a>
+      <a href="#blogs" class="text-white/70 hover:text-white text-sm flex items-center gap-2 ulink"><span data-i18n="services.btnSee">See how we work</span>
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+      </a>
+    </div>
+  </div>
+
+  <!-- ========= PARTNERS LOGO MARQUEE ========= -->
+  <div class="mt-20 border-y border-white/10 bg-black/30 ticker-mask overflow-hidden">
+    <div class="partners-track flex items-center gap-10 md:gap-14 py-8 whitespace-nowrap">
+      <!-- duplicated set for seamless loop -->
+      <span class="flex items-center gap-10 md:gap-14 shrink-0">
+        <span class="partner-slot"><img src="assets/partners/ocean.png"        alt="Ocean Recycling & Mining & Chemistry" class="partner-logo"/></span>
+        <span class="partner-slot"><img src="assets/partners/turkaltin.png"    alt="Türk Altın"                            class="partner-logo"/></span>
+        <span class="partner-slot"><img src="assets/partners/caka.png"         alt="CAKA"                                  class="partner-logo"/></span>
+        <span class="partner-slot"><img src="assets/partners/als-minerals.png" alt="ALS Minerals"                          class="partner-logo"/></span>
+      </span>
+      <span class="flex items-center gap-10 md:gap-14 shrink-0" aria-hidden="true">
+        <span class="partner-slot"><img src="assets/partners/ocean.png"        alt="" class="partner-logo"/></span>
+        <span class="partner-slot"><img src="assets/partners/turkaltin.png"    alt="" class="partner-logo"/></span>
+        <span class="partner-slot"><img src="assets/partners/caka.png"         alt="" class="partner-logo"/></span>
+        <span class="partner-slot"><img src="assets/partners/als-minerals.png" alt="" class="partner-logo"/></span>
+      </span>
+    </div>
+  </div>
+</section>
+
+<!-- ============== BLOGS ============== -->
+<section id="blogs" class="relative py-28 md:py-36">
+  <div class="max-w-[1400px] mx-auto px-6 lg:px-10">
+    <div class="flex flex-wrap items-end justify-between gap-6 mb-12">
+      <div class="reveal">
+        <div class="eyebrow mb-5" data-i18n="blogs.eyebrow">03 · Field notes</div>
+        <h2 class="font-display font-medium tracking-tight text-dgd-700 leading-[1.02]" style="font-size: clamp(34px, 4vw, 56px);" data-i18n="blogs.title">Latest from the field.</h2>
+      </div>
+      <div class="reveal reveal-delay-1 flex items-center gap-3">
+        <button id="blog-prev" aria-label="Previous" class="w-12 h-12 rounded-full border border-dgd-700/25 hover:border-dgd-700 hover:bg-dgd-700 hover:text-white text-dgd-700 grid place-items-center transition">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+        </button>
+        <button id="blog-next" aria-label="Next" class="w-12 h-12 rounded-full border border-dgd-700/25 hover:border-dgd-700 hover:bg-dgd-700 hover:text-white text-dgd-700 grid place-items-center transition">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </button>
+      </div>
+    </div>
+
+    <div id="blog-track" class="reveal flex gap-6 overflow-x-auto snap-x-mandatory no-scrollbar pb-6 -mx-6 px-6">
+      <!-- card 1 -->
+      <article class="lift snap-start shrink-0 w-[88%] sm:w-[420px] lg:w-[440px] bg-white rounded-3xl overflow-hidden border border-dgd-700/10">
+        <div class="aspect-[4/3] relative overflow-hidden">
+          <div class="absolute inset-0" style="background:
+            linear-gradient(135deg, #0b3a17, #16a34a 60%, #cdeed5);"></div>
+          <svg class="absolute inset-0 w-full h-full opacity-30" viewBox="0 0 400 300" preserveAspectRatio="none">
+            <g fill="none" stroke="white" stroke-width="0.8">
+              <path d="M0,80 Q100,40 200,80 T400,80"/>
+              <path d="M0,120 Q100,80 200,120 T400,120"/>
+              <path d="M0,160 Q100,120 200,160 T400,160"/>
+              <path d="M0,200 Q100,160 200,200 T400,200"/>
+              <path d="M0,240 Q100,200 200,240 T400,240"/>
+            </g>
+          </svg>
+          <div class="absolute top-4 left-4 chip" style="background: rgba(255,255,255,0.85); color:#085A1C;" data-i18n="blogs.b1.cat">Method</div>
+          <div class="absolute bottom-4 left-4 right-4 font-mono text-[11px] uppercase tracking-widest text-white/85" data-i18n="blogs.b1.date">Apr 2026 · 7 min read</div>
+        </div>
+        <div class="p-7">
+          <h3 class="font-display font-bold text-dgd-700 leading-tight" style="font-size: 26px;" data-i18n="blogs.b1.title">From outcrop to ore body: a modern targeting workflow</h3>
+          <p class="text-dgd-700/85 mt-3 leading-[1.7] text-[14.5px]" data-i18n="blogs.b1.desc">How we combine geochemistry, structural mapping and gradient-boosted ML to compress months of fieldwork into a defensible target ranking.</p>
+          <div class="hairline my-5"></div>
+          <a href="#" class="text-dgd-700 font-semibold inline-flex items-center gap-2 ulink"><span data-i18n="blogs.read">Read article</span>
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+          </a>
+        </div>
+      </article>
+
+      <!-- card 2 -->
+      <article class="lift snap-start shrink-0 w-[88%] sm:w-[420px] lg:w-[440px] bg-white rounded-3xl overflow-hidden border border-dgd-700/10">
+        <div class="aspect-[4/3] relative overflow-hidden">
+          <div class="absolute inset-0" style="background:
+            radial-gradient(120% 80% at 20% 0%, #16a34a, transparent 60%),
+            radial-gradient(80% 60% at 100% 100%, #062f10, transparent 60%),
+            #085A1C;"></div>
+          <svg class="absolute inset-0 w-full h-full opacity-40" viewBox="0 0 400 300">
+            <g fill="white">
+              <circle cx="60"  cy="60"  r="2"/>
+              <circle cx="120" cy="100" r="2"/>
+              <circle cx="200" cy="80"  r="2"/>
+              <circle cx="280" cy="140" r="2"/>
+              <circle cx="340" cy="60"  r="2"/>
+              <circle cx="80"  cy="200" r="2"/>
+              <circle cx="160" cy="240" r="2"/>
+              <circle cx="240" cy="220" r="2"/>
+              <circle cx="320" cy="260" r="2"/>
+            </g>
+            <g stroke="white" stroke-width="0.6" fill="none" opacity="0.55">
+              <line x1="60" y1="60" x2="120" y2="100"/>
+              <line x1="120" y1="100" x2="200" y2="80"/>
+              <line x1="200" y1="80" x2="280" y2="140"/>
+              <line x1="280" y1="140" x2="340" y2="60"/>
+              <line x1="80" y1="200" x2="160" y2="240"/>
+              <line x1="160" y1="240" x2="240" y2="220"/>
+              <line x1="240" y1="220" x2="320" y2="260"/>
+              <line x1="120" y1="100" x2="160" y2="240"/>
+              <line x1="280" y1="140" x2="240" y2="220"/>
+            </g>
+          </svg>
+          <div class="absolute top-4 left-4 chip" style="background: rgba(255,255,255,0.85); color:#085A1C;" data-i18n="blogs.b2.cat">AI / ML</div>
+          <div class="absolute bottom-4 left-4 right-4 font-mono text-[11px] uppercase tracking-widest text-white/85" data-i18n="blogs.b2.date">Mar 2026 · 5 min read</div>
+        </div>
+        <div class="p-7">
+          <h3 class="font-display font-bold text-dgd-700 leading-tight" style="font-size: 26px;" data-i18n="blogs.b2.title">Why your next geologist is half model, half map</h3>
+          <p class="text-dgd-700/85 mt-3 leading-[1.7] text-[14.5px]" data-i18n="blogs.b2.desc">Machine learning is not replacing field expertise — it is amplifying it. A practical look at deploying CNN classifiers on multispectral satellite stacks.</p>
+          <div class="hairline my-5"></div>
+          <a href="#" class="text-dgd-700 font-semibold inline-flex items-center gap-2 ulink"><span data-i18n="blogs.read">Read article</span>
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+          </a>
+        </div>
+      </article>
+
+      <!-- card 3 -->
+      <article class="lift snap-start shrink-0 w-[88%] sm:w-[420px] lg:w-[440px] bg-white rounded-3xl overflow-hidden border border-dgd-700/10">
+        <div class="aspect-[4/3] relative overflow-hidden">
+          <div class="absolute inset-0" style="background:
+            linear-gradient(180deg, #cdeed5 0%, #16a34a 50%, #062f10 100%);"></div>
+          <svg class="absolute inset-0 w-full h-full" viewBox="0 0 400 300" preserveAspectRatio="none">
+            <g fill="none" stroke="rgba(255,255,255,0.45)" stroke-width="1">
+              <path d="M0,220 L60,200 L120,210 L180,170 L240,180 L300,140 L360,150 L400,120"/>
+              <path d="M0,260 L60,250 L120,255 L180,225 L240,235 L300,200 L360,210 L400,180"/>
+            </g>
+            <rect x="100" y="60" width="3" height="180" fill="white" opacity="0.7"/>
+            <rect x="200" y="40" width="3" height="200" fill="white" opacity="0.7"/>
+            <rect x="300" y="80" width="3" height="160" fill="white" opacity="0.7"/>
+          </svg>
+          <div class="absolute top-4 left-4 chip" style="background: rgba(255,255,255,0.85); color:#085A1C;" data-i18n="blogs.b3.cat">Reporting</div>
+          <div class="absolute bottom-4 left-4 right-4 font-mono text-[11px] uppercase tracking-widest text-white/85" data-i18n="blogs.b3.date">Feb 2026 · 9 min read</div>
+        </div>
+        <div class="p-7">
+          <h3 class="font-display font-bold text-dgd-700 leading-tight" style="font-size: 26px;" data-i18n="blogs.b3.title">JORC-ready: building MRE reports investors actually trust</h3>
+          <p class="text-dgd-700/85 mt-3 leading-[1.7] text-[14.5px]" data-i18n="blogs.b3.desc">A field-tested checklist for producing MRE documentation that survives technical due diligence — from data validation to competent-person review.</p>
+          <div class="hairline my-5"></div>
+          <a href="#" class="text-dgd-700 font-semibold inline-flex items-center gap-2 ulink"><span data-i18n="blogs.read">Read article</span>
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+          </a>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ============== CONTACT ============== -->
+<section id="contact" class="relative py-28 md:py-36 bg-[#062f10] text-white overflow-hidden">
+  <!-- bg flourish -->
+  <div class="absolute inset-0 -z-0 pointer-events-none">
+    <div class="absolute inset-0" style="background:
+      radial-gradient(900px 500px at 90% 10%, rgba(22,163,74,0.25), transparent 60%),
+      radial-gradient(700px 500px at 5% 100%, rgba(22,163,74,0.18), transparent 60%);"></div>
+  </div>
+
+  <div class="max-w-[1400px] mx-auto px-6 lg:px-10 relative">
+    <div class="grid grid-cols-12 gap-10 lg:gap-14">
+      <!-- left -->
+      <div class="col-span-12 lg:col-span-5">
+        <div class="reveal">
+          <div class="eyebrow text-white/70 mb-5"><span style="background:#a7d8b2; height:1px; width:28px; display:inline-block;"></span><span data-i18n="contact.eyebrow">04 · Get in touch</span></div>
+          <h2 class="font-display font-medium tracking-tight leading-[1.02]" style="font-size: clamp(34px, 4.4vw, 60px);" data-i18n="contact.title">
+            Let's map the <em class="not-italic" style="color:#a7f0b8;">next discovery</em> together.
+          </h2>
+          <p class="text-white/70 mt-6 leading-[1.7] max-w-[440px]" data-i18n="contact.desc">Tell us about your project, your terrain, and the decision you're trying to de-risk. We'll respond within one business day.</p>
+        </div>
+
+        <!-- contacts -->
+        <div class="reveal reveal-delay-1 mt-10 space-y-4">
+          <a href="tel:+998997539095" class="flex items-center gap-4 group">
+            <span class="w-11 h-11 rounded-full bg-white text-dgd-700 grid place-items-center shrink-0">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.37 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.33 1.85.57 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+            </span>
+            <div>
+              <div class="font-mono text-[11px] uppercase tracking-widest text-white/50" data-i18n="contact.phone">Phone</div>
+              <div class="text-white text-[18px] font-medium group-hover:text-[#a7f0b8] transition">+998 99 753 90 95</div>
+            </div>
+          </a>
+          <a href="mailto:dgdconsulting2023@gmail.com" class="flex items-center gap-4 group">
+            <span class="w-11 h-11 rounded-full bg-white text-dgd-700 grid place-items-center shrink-0">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><path d="M22 6l-10 7L2 6"/></svg>
+            </span>
+            <div class="min-w-0">
+              <div class="font-mono text-[11px] uppercase tracking-widest text-white/50" data-i18n="contact.email">Email</div>
+              <div class="text-white text-[16px] md:text-[17px] font-medium group-hover:text-[#a7f0b8] transition break-all">dgdconsulting2023@gmail.com</div>
+            </div>
+          </a>
+          <div class="flex items-start gap-4">
+            <span class="w-11 h-11 rounded-full bg-white text-dgd-700 grid place-items-center shrink-0 mt-1">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 2C7.6 2 4 5.6 4 10c0 6 8 12 8 12s8-6 8-12c0-4.4-3.6-8-8-8z"/><circle cx="12" cy="10" r="3"/></svg>
+            </span>
+            <div>
+              <div class="font-mono text-[11px] uppercase tracking-widest text-white/50" data-i18n="contact.office">Office</div>
+              <div class="text-white text-[16px] md:text-[17px] font-medium leading-snug" data-i18n="contact.officeVal">Toshkent shahar, Yangihayot tumani, Navro'z ko'chasi, 10-uy, 9-xonadon</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- socials -->
+        <div class="reveal reveal-delay-2 mt-10">
+          <div class="font-mono text-[11px] uppercase tracking-widest text-white/50 mb-3" data-i18n="contact.follow">Follow</div>
+          <div class="flex items-center gap-3 flex-wrap">
+            <a href="https://t.me/ErgashovZafarjonGeo" target="_blank" rel="noopener noreferrer" aria-label="Telegram — Manager" title="Telegram (Manager)" class="w-12 h-12 rounded-full border border-white/30 hover:bg-white hover:text-dgd-700 text-white grid place-items-center transition">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M21.9 4.5L19 19.3c-.2 1-.8 1.2-1.6.8l-4.4-3.2-2.1 2c-.2.2-.4.4-.9.4l.3-4.5 8.2-7.4c.4-.3-.1-.5-.6-.2L7.7 12.6 3.4 11.3c-.9-.3-.9-.9.2-1.4l16.9-6.5c.8-.3 1.5.2 1.4 1.1z"/></svg>
+            </a>
+            <a href="https://www.linkedin.com/company/dgd-consulting-uzbekistan/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn" class="w-12 h-12 rounded-full border border-white/30 hover:bg-white hover:text-dgd-700 text-white grid place-items-center transition">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M4.98 3.5C4.98 4.88 3.87 6 2.5 6S0 4.88 0 3.5 1.12 1 2.5 1s2.48 1.12 2.48 2.5zM.22 8h4.56v14H.22V8zm7.78 0h4.37v1.92h.06c.61-1.15 2.1-2.36 4.32-2.36 4.62 0 5.47 3.04 5.47 7v7.44h-4.56v-6.6c0-1.57-.03-3.6-2.19-3.6-2.2 0-2.54 1.71-2.54 3.49V22H8V8z"/></svg>
+            </a>
+            <a href="https://www.youtube.com/" target="_blank" rel="noopener noreferrer" aria-label="YouTube" class="w-12 h-12 rounded-full border border-white/30 hover:bg-white hover:text-dgd-700 text-white grid place-items-center transition">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M23.5 6.5a3 3 0 0 0-2.1-2.1C19.5 4 12 4 12 4s-7.5 0-9.4.4A3 3 0 0 0 .5 6.5C.1 8.4.1 12 .1 12s0 3.6.4 5.5a3 3 0 0 0 2.1 2.1c1.9.4 9.4.4 9.4.4s7.5 0 9.4-.4a3 3 0 0 0 2.1-2.1c.4-1.9.4-5.5.4-5.5s0-3.6-.4-5.5zM9.7 15.6V8.4l6.3 3.6-6.3 3.6z"/></svg>
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <!-- right: form + map -->
+      <div class="col-span-12 lg:col-span-7">
+        <div class="reveal glass rounded-3xl p-7 md:p-10" style="background: rgba(255,255,255,0.95);">
+          <h3 class="font-display text-dgd-700 font-medium tracking-tight" style="font-size:30px;" data-i18n="contact.formTitle">Send us a brief.</h3>
+          <p class="text-dgd-700/70 mt-2 mb-7 text-[15px]" data-i18n="contact.formDesc">Required fields are marked. We sign NDAs on request before any project disclosure.</p>
+          <form id="contactForm" class="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div class="md:col-span-1">
+              <label class="font-mono text-[11px] uppercase tracking-widest text-dgd-700/70 block mb-2" data-i18n="contact.fName">Name *</label>
+              <input class="field" type="text" name="name" required placeholder="Sarvar K." data-i18n-placeholder="contact.fNamePh"/>
+            </div>
+            <div class="md:col-span-1">
+              <label class="font-mono text-[11px] uppercase tracking-widest text-dgd-700/70 block mb-2" data-i18n="contact.fCompany">Company</label>
+              <input class="field" type="text" name="company" placeholder="Your organization" data-i18n-placeholder="contact.fCompanyPh"/>
+            </div>
+            <div class="md:col-span-1">
+              <label class="font-mono text-[11px] uppercase tracking-widest text-dgd-700/70 block mb-2" data-i18n="contact.fPhone">Phone *</label>
+              <input class="field" type="tel" name="phone" required placeholder="+998 ..." data-i18n-placeholder="contact.fPhonePh"/>
+            </div>
+            <div class="md:col-span-1">
+              <label class="font-mono text-[11px] uppercase tracking-widest text-dgd-700/70 block mb-2" data-i18n="contact.fService">Service type *</label>
+              <select class="field" name="service" required>
+                <option value="" data-i18n="contact.opt0">Select a service…</option>
+                <option data-i18n="contact.opt1">Geological consulting</option>
+                <option data-i18n="contact.opt2">Comprehensive project preparation</option>
+                <option data-i18n="contact.opt3">Geological exploration works</option>
+                <option data-i18n="contact.opt4">MRE report preparation</option>
+                <option data-i18n="contact.opt5">Geochemical research</option>
+                <option data-i18n="contact.opt6">Geophysical research</option>
+                <option data-i18n="contact.opt7">Special structural studies</option>
+                <option data-i18n="contact.opt8">Satellite image processing</option>
+                <option data-i18n="contact.opt9">AI / ML deposit prediction</option>
+                <option data-i18n="contact.opt10">QA/QC and CRM support</option>
+                <option data-i18n="contact.opt11">Other / not sure yet</option>
+              </select>
+            </div>
+            <div class="md:col-span-2">
+              <label class="font-mono text-[11px] uppercase tracking-widest text-dgd-700/70 block mb-2" data-i18n="contact.fNotes">Project notes</label>
+              <textarea class="field" rows="4" name="notes" placeholder="Tell us about the deposit type, location, and what you're trying to figure out…" data-i18n-placeholder="contact.fNotesPh"></textarea>
+            </div>
+            <div class="md:col-span-2 flex items-center justify-between gap-4 flex-wrap pt-2">
+              <span class="font-mono text-[11px] uppercase tracking-widest text-dgd-700/55" data-i18n="contact.fAgree">By submitting you agree to be contacted about your inquiry.</span>
+              <button type="submit" class="btn-dgd">
+                <span data-i18n="contact.fSubmit">Submit brief</span>
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+              </button>
+            </div>
+            <div id="formStatus" class="md:col-span-2 hidden mt-2 text-[14px] rounded-xl px-4 py-3" style="background: rgba(8,90,28,0.08); color: var(--dgd);"></div>
+          </form>
+        </div>
+
+        <!-- Map -->
+        <div class="reveal reveal-delay-1 mt-6 relative">
+          <!-- glow halo -->
+          <div aria-hidden="true" class="absolute -inset-3 rounded-[28px] pointer-events-none" style="background: radial-gradient(closest-side, rgba(22,163,74,0.45), transparent 70%); filter: blur(28px); opacity:.7;"></div>
+          <div class="relative rounded-3xl overflow-hidden border border-[#a7f0b8]/25 bg-[#073716]" style="box-shadow: 0 0 0 1px rgba(8,90,28,0.45) inset, 0 30px 60px -20px rgba(8,90,28,0.55), 0 0 80px -10px rgba(22,163,74,0.45);">
+            <!-- top label bar -->
+            <div class="flex items-center justify-between px-5 py-3 bg-[#062f10]/90 backdrop-blur border-b border-[#a7f0b8]/15">
+              <div class="flex items-center gap-3">
+                <span class="w-2 h-2 rounded-full" style="background:#a7f0b8; box-shadow: 0 0 10px #a7f0b8;"></span>
+                <span class="font-mono text-[11px] uppercase tracking-widest text-white/85" data-i18n="contact.mapHq">DGD HQ · Tashkent, Uzbekistan</span>
+              </div>
+              <a href="https://yandex.com/maps/10335/tashkent/?ll=69.279737%2C41.311081&z=12" target="_blank" rel="noopener" class="font-mono text-[11px] uppercase tracking-widest text-[#a7f0b8] hover:text-white transition flex items-center gap-2">
+                <span data-i18n="contact.mapOpen">Open in Yandex</span>
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+              </a>
+            </div>
+            <!-- iframe wrapper -->
+            <div class="relative" style="aspect-ratio: 16/10;">
+              <iframe
+                title="DGD Consulting on Yandex Maps — Tashkent, Uzbekistan"
+                src="https://yandex.com/map-widget/v1/?ll=69.279737%2C41.311081&z=12&pt=69.279737%2C41.311081%2Cpm2gnm"
+                width="100%"
+                height="100%"
+                frameborder="0"
+                allowfullscreen="true"
+                style="position:absolute; inset:0; border:0; filter: contrast(1.02) saturate(1.05);"></iframe>
+              <!-- decorative crosshair / corner brackets -->
+              <div class="absolute inset-0 pointer-events-none">
+                <span class="absolute top-3 left-3 w-5 h-5 border-t-2 border-l-2" style="border-color:#a7f0b8;"></span>
+                <span class="absolute top-3 right-3 w-5 h-5 border-t-2 border-r-2" style="border-color:#a7f0b8;"></span>
+                <span class="absolute bottom-3 left-3 w-5 h-5 border-b-2 border-l-2" style="border-color:#a7f0b8;"></span>
+                <span class="absolute bottom-3 right-3 w-5 h-5 border-b-2 border-r-2" style="border-color:#a7f0b8;"></span>
+              </div>
+            </div>
+            <!-- bottom coords bar -->
+            <div class="flex items-center justify-between px-5 py-3 bg-[#062f10]/90 border-t border-[#a7f0b8]/15 font-mono text-[11px] uppercase tracking-widest text-white/55">
+              <span>41.3110° N</span>
+              <span class="hidden sm:inline">Office · By appointment</span>
+              <span>69.2797° E</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- old stylized map (hidden, kept off DOM) -->
+        <div class="hidden">
+          <div class="absolute inset-0 grid place-items-center">
+            <!-- Stylized Uzbekistan SVG with pin in Tashkent -->
+            <svg viewBox="0 0 800 360" class="w-full h-full">
+              <defs>
+                <pattern id="dotgrid" width="14" height="14" patternUnits="userSpaceOnUse">
+                  <circle cx="1" cy="1" r="0.8" fill="rgba(167,216,178,0.18)"/>
+                </pattern>
+                <radialGradient id="pinGlow" cx="50%" cy="50%" r="50%">
+                  <stop offset="0%" stop-color="#a7f0b8" stop-opacity="0.9"/>
+                  <stop offset="100%" stop-color="#a7f0b8" stop-opacity="0"/>
+                </radialGradient>
+              </defs>
+              <rect width="800" height="360" fill="url(#dotgrid)"/>
+              <!-- simplified Uzbekistan silhouette (decorative, not geographically exact) -->
+              <path d="M70,200
+                       C90,170 130,160 170,170
+                       C210,180 240,160 280,160
+                       C330,160 350,180 380,165
+                       C420,148 460,160 490,180
+                       C520,195 555,180 590,195
+                       C620,210 645,200 670,215
+                       C695,230 720,225 740,240
+                       C730,260 700,275 670,265
+                       C640,255 610,270 580,260
+                       C550,250 525,260 500,250
+                       C475,240 450,255 425,245
+                       C400,235 380,250 355,245
+                       C325,238 300,255 270,250
+                       C240,245 215,260 190,250
+                       C160,238 130,245 100,235
+                       C75,225 60,220 70,200 Z"
+                    fill="rgba(22,163,74,0.18)" stroke="#a7f0b8" stroke-width="1.4" stroke-linejoin="round" stroke-linecap="round"/>
+
+              <!-- inner regional lines -->
+              <g fill="none" stroke="rgba(167,216,178,0.45)" stroke-width="0.8" stroke-dasharray="3 3">
+                <path d="M180,210 Q300,205 420,215 T660,225"/>
+                <path d="M250,180 Q380,200 520,200 T720,235"/>
+              </g>
+
+              <!-- Tashkent pin -->
+              <g transform="translate(640,205)">
+                <circle r="38" fill="url(#pinGlow)"/>
+                <circle r="9" fill="#a7f0b8" class="pin-pulse" style="transform-origin:center;"/>
+                <circle r="6" fill="#fff"/>
+                <circle r="3" fill="#085A1C"/>
+              </g>
+              <text x="640" y="178" text-anchor="middle" fill="#a7f0b8" font-family="JetBrains Mono, monospace" font-size="11" letter-spacing="2">TASHKENT</text>
+              <text x="640" y="245" text-anchor="middle" fill="rgba(255,255,255,0.55)" font-family="JetBrains Mono, monospace" font-size="9" letter-spacing="2">41.31°N · 69.27°E</text>
+
+              <!-- compass -->
+              <g transform="translate(60,300)" fill="none" stroke="rgba(167,216,178,0.5)">
+                <circle r="18"/>
+                <line x1="0" y1="-18" x2="0" y2="18"/>
+                <line x1="-18" y1="0" x2="18" y2="0"/>
+                <text x="0" y="-22" text-anchor="middle" fill="#a7f0b8" font-family="JetBrains Mono, monospace" font-size="9">N</text>
+              </g>
+              <text x="745" y="345" text-anchor="end" fill="rgba(255,255,255,0.35)" font-family="JetBrains Mono, monospace" font-size="9" letter-spacing="2">UZBEKISTAN · DGD HQ</text>
+            </svg>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- footer line -->
+    <div class="mt-20 pt-8 border-t border-white/10 flex flex-wrap items-center justify-between gap-4 text-white/55 text-sm">
+      <div class="flex items-center gap-3">
+        <img src="assets/logo.png" alt="DGD Consulting" class="logo-img w-7 h-7"/>
+        <span data-i18n="footer.copy">© 2026 DGD Consulting LLC — All rights reserved.</span>
+      </div>
+      <div class="font-mono text-[11px] uppercase tracking-widest" data-i18n="footer.tagline">Designed in Tashkent · Built for the field</div>
+    </div>
+  </div>
+</section>
+
+<script>
+  // ===== sticky header behavior =====
+  const header = document.getElementById('header-inner');
+  const headerRow = document.getElementById('header-row');
+  const onScroll = () => {
+    const y = window.scrollY;
+    if (y > 30) {
+      header.classList.remove('bg-[#062f10]');
+      header.classList.add('backdrop-blur-xl');
+      header.style.background = 'rgba(6,47,16,0.72)';
+      header.style.boxShadow = '0 8px 30px -12px rgba(0,0,0,0.45)';
+      headerRow.style.paddingTop = '12px';
+      headerRow.style.paddingBottom = '12px';
+    } else {
+      header.classList.add('bg-[#062f10]');
+      header.classList.remove('backdrop-blur-xl');
+      header.style.background = '';
+      header.style.boxShadow = '';
+      headerRow.style.paddingTop = '';
+      headerRow.style.paddingBottom = '';
+    }
+    // ===== hero parallax (multi-layer + fade/scale on text) =====
+    const bg    = document.getElementById('hero-bg');
+    const fg    = document.getElementById('hero-fg');
+    const strip = document.getElementById('hero-strip');
+    const heroH = Math.max(window.innerHeight, 640);
+    const p     = Math.max(0, Math.min(1, y / heroH));        // 0..1 across hero
+    if (bg)    bg.style.transform    = `translateY(${y * 0.18}px) scale(${1 + p * 0.04})`;
+    if (fg) {
+      const fadeP = Math.max(0, Math.min(1, y / (heroH * 0.85)));
+      fg.style.transform = `translateY(${y * -0.18}px) scale(${1 - fadeP * 0.08})`;
+      fg.style.opacity   = String(Math.max(0, 1 - fadeP * 1.15));
+    }
+    if (strip) strip.style.transform = `translateY(${y * 0.5}px)`;
+  };
+  window.addEventListener('scroll', onScroll, { passive: true });
+  onScroll();
+
+  // mobile menu
+  const mb = document.getElementById('menu-btn');
+  const mm = document.getElementById('mobile-menu');
+  if (mb) mb.addEventListener('click', () => mm.classList.toggle('hidden'));
+  document.querySelectorAll('#mobile-menu a').forEach(a => a.addEventListener('click', () => mm.classList.add('hidden')));
+
+  // ===== reveal on scroll =====
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.classList.add('in');
+        io.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.12 });
+  document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+
+  // ===== counters =====
+  const counters = document.querySelectorAll('[data-counter]');
+  const ioC = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        const el = e.target;
+        const target = parseInt(el.dataset.target, 10);
+        const suffix = el.dataset.suffix || '';
+        const dur = 1600;
+        const start = performance.now();
+        function tick(now) {
+          const p = Math.min(1, (now - start) / dur);
+          const eased = 1 - Math.pow(1 - p, 3);
+          el.textContent = Math.round(target * eased) + suffix;
+          if (p < 1) requestAnimationFrame(tick);
+        }
+        requestAnimationFrame(tick);
+        ioC.unobserve(el);
+      }
+    });
+  }, { threshold: 0.4 });
+  counters.forEach(c => ioC.observe(c));
+
+  // ===== blogs carousel =====
+  const track = document.getElementById('blog-track');
+  const prevBtn = document.getElementById('blog-prev');
+  const nextBtn = document.getElementById('blog-next');
+  const stepBy = () => {
+    const card = track.querySelector('article');
+    if (!card) return 400;
+    const gap = parseInt(getComputedStyle(track).columnGap || '24', 10);
+    return card.getBoundingClientRect().width + gap;
+  };
+  prevBtn?.addEventListener('click', () => track.scrollBy({ left: -stepBy(), behavior: 'smooth' }));
+  nextBtn?.addEventListener('click', () => track.scrollBy({ left:  stepBy(), behavior: 'smooth' }));
+
+  // ===== form =====
+  const form = document.getElementById('contactForm');
+  const status = document.getElementById('formStatus');
+  form?.addEventListener('submit', (e) => {
+    e.preventDefault();
+    status.classList.remove('hidden');
+    status.textContent = (window.__t && window.__t('contact.fStatus')) || 'Thank you — your brief has been received. We will respond within one business day.';
+    form.reset();
+  });
+
+  // ===== i18n: translations =====
+  const translations = {
+    uz: {
+      "nav.about": "Biz haqimizda",
+      "nav.services": "Xizmatlar",
+      "nav.blogs": "Bloglar",
+      "nav.contact": "Bog'lanish",
+      "nav.lang": "Til",
+
+      "hero.eyebrow": "DGD Consulting · Toshkent, O'zbekiston",
+      "hero.title": "Zamonaviy <em class=\"not-italic\" style=\"background: linear-gradient(180deg,#ffffff, #b8e6c4); -webkit-background-clip:text; background-clip:text; color:transparent;\">geologik tadqiqot</em> va kon ishlari uchun ilg'or yechimlar.",
+      "hero.subtitle": "Maydonda sinovdan o'tgan geologiya, zamonaviy ma'lumotlar fani va qat'iy hisobot — outcrop'dan MRE'gacha bir uzluksiz ish jarayonida.",
+      "hero.btnExplore": "Xizmatlarni ko'rish",
+      "hero.btnContact": "Bog'lanish",
+      "hero.scroll": "Pastga aylantiring",
+      "hero.est": "2024-yildan",
+
+      "about.eyebrow": "01 · Biz haqimizda",
+      "about.title": "Tajribali zamin chuqurligiga ega yosh kompaniya.",
+      "about.p1": "DGD Consulting — bu yosh va shijoatli loyiha. Biz tajribali geologlar, muhandislar va ma'lumotlar olimlari atrofida birlashganmiz, ular o'z faoliyatini yer ostida o'tkazgan. Biz o'nlab yillik dala ishlarini, klassik tadqiqotni zamonaviy hisoblash texnologiyalari bilan birlashtirgan jamoaning energiyasi bilan birga olib kelamiz.",
+      "about.p2": "Bizning yondashuvimiz mahalliy darajada chuqur va xalqaro miqyosda asoslangan: biz Markaziy Osiyoning huquqiy, geologik va operatsion nuanslarini tushunamiz, shu bilan birga xalqaro ilmiy tajribaga — JORC va CIM standartlariga mos hisobotga, ekspert tomonidan tasdiqlangan usullarga va resurslarni baholashni o'zgartirayotgan AI/ML asboblariga tayanamiz.",
+      "about.quote": "\"Noaniqlikni kamaytiring. Yerni hurmat qiling. Aniqlik bilan hisobot bering.\"",
+      "about.btn": "Bog'lanish",
+      "about.counter1": "Yillik birlashgan tajriba",
+      "about.counter2": "Yakunlangan geologik tadqiqotlar",
+      "about.counter3": "Faol konsessiya loyihalari",
+      "about.counter4": "QA/QC namuna muvofiqligi",
+
+      "services.eyebrow": "02 · Xizmatlar",
+      "services.title": "Olti yo'nalish, bir uzluksiz ish jarayoni — outcrop'dan MRE'gacha.",
+      "services.desc": "Har bir xizmat xalqaro hisobot standartlariga muvofiq taqdim etiladi, to'liq saqlash zanjiri ma'lumotlari va auditdan o'tadigan yakuniy hujjat bilan birga.",
+      "services.s1.title": "Geologik konsalting xizmatlari",
+      "services.s1.desc": "Loyiha hayotiy davri bo'ylab strategik maslahat — kontseptual skrining va konsessiya tekshirishidan tortib data-room sharhlari va mustaqil texnik fikrgacha.",
+      "services.s2.title": "Kompleks loyihalarni tayyorlash",
+      "services.s2.desc": "Tadqiqot loyihalari uchun to'liq fayllar — geologik modellar, burg'ulash sxemalari, namuna olish protokollari, byudjetlar va muddatlar — ruxsat olish va investorlar uchun tayyor.",
+      "services.s3.title": "Samarali geologik tadqiqot ishlari",
+      "services.s3.desc": "Trench ochish, xaritalash va burg'ulash dasturlarini dala bajarish va nazorat qilish — kashfiyot xarajati va tezroq qaror qabul qilish uchun optimallashtirilgan.",
+      "services.s4.title": "MRE hisobot tayyorlash",
+      "services.s4.desc": "JORC / CIM standartlariga muvofiq tayyorlangan Mineral Resurs Baholash hisobotlari — blok modellashtirish, tasniflash, sezgirlik tahlili va kompetent shaxs imzosi.",
+      "services.s5.title": "Maxsus geologik tadqiqot ishlari",
+      "services.s5.desc": "Standart tadqiqotni to'ldiruvchi ixtisoslashgan tadqiqotlar — ko'p usulli dalillar orqali maqsadlarni aniqlashtirish va talqinlarni xavfsizlantirish.",
+      "services.s5.sub1.title": "Geokimyoviy tadqiqot",
+      "services.s5.sub1.desc": "Tuproq, daryo cho'kindi va tosh-bo'lakli surveylar ICP-MS ko'p elementli talqini bilan.",
+      "services.s5.sub2.title": "Geofizik tadqiqot",
+      "services.s5.sub2.desc": "Yer osti maqsadlash uchun magnit, IP/qarshilik va tortishish surveylari.",
+      "services.s5.sub3.title": "Maxsus strukturaviy tadqiqotlar",
+      "services.s5.sub3.desc": "Mineralizatsiya nazoratini cheklash uchun yoriq, burma va siljish zonalarini batafsil xaritalash.",
+      "services.s5.sub4.title": "Sun'iy yo'ldosh tasvirini qayta ishlash",
+      "services.s5.sub4.desc": "O'zgarishlarni xaritalash va lineamentlarni ajratib olish uchun multispektral va SAR tahlili.",
+      "services.s5.sub5.title": "Yangi konlarni bashorat qilish — AI &amp; ML",
+      "services.s5.sub5.badge": "YANGI",
+      "services.s5.sub5.desc": "Ko'p manbali geologiya ma'lumotlarida o'rgatilgan Random-forest, CNN va gradient-boosting modellari istiqbolli maqsadlarni baholash uchun.",
+      "services.s6.title": "QA/QC va CRM qo'llab-quvvatlash",
+      "services.s6.desc": "Namuna olish, laboratoriya samaradorligi va CRM/blank/duplikat dasturlarining mustaqil nazorati — birinchi kundan boshlab auditga tayyor ma'lumotlar.",
+      "services.btnContact": "Bog'lanish",
+      "services.btnSee": "Qanday ishlashimizni ko'ring",
+
+      "partners.eyebrow": "05 · Hamkorlar",
+      "partners.title": "Bizga ishongan kompaniyalar.",
+      "partners.desc": "Sanoat liderlari va xalqaro laboratoriyalar bilan birgalikda ishlaymiz.",
+
+      "blogs.eyebrow": "03 · Dala yozuvlari",
+      "blogs.title": "Dalalardan so'nggi yangiliklar.",
+      "blogs.read": "Maqolani o'qish",
+      "blogs.b1.cat": "Metod",
+      "blogs.b1.date": "Apr 2026 · 7 daq. o'qish",
+      "blogs.b1.title": "Outcrop'dan ruda tanasiga: zamonaviy maqsadlash ish jarayoni",
+      "blogs.b1.desc": "Geokimyo, strukturaviy xaritalash va gradient-boosted ML'ni qanday birlashtirib, oylab davom etadigan dala ishlarini aniq maqsad reytingiga qisqartiramiz.",
+      "blogs.b2.cat": "AI / ML",
+      "blogs.b2.date": "Mar 2026 · 5 daq. o'qish",
+      "blogs.b2.title": "Nima uchun keyingi geologingiz yarmi model, yarmi xarita",
+      "blogs.b2.desc": "Mashinaviy o'qitish dala tajribasini almashtirmaydi — uni kuchaytiradi. Multispektral sun'iy yo'ldosh stacklarida CNN klassifikatorlarini joylashtirish.",
+      "blogs.b3.cat": "Hisobot",
+      "blogs.b3.date": "Fev 2026 · 9 daq. o'qish",
+      "blogs.b3.title": "JORC-tayyor: investorlar haqiqatdan ishonadigan MRE hisobotlari",
+      "blogs.b3.desc": "Texnik tekshiruvdan o'tadigan MRE hujjatlarini ishlab chiqarish uchun dalada sinovdan o'tgan tekshiruv ro'yxati — ma'lumotlarni tekshirishdan kompetent shaxs ko'rib chiqishigacha.",
+
+      "contact.eyebrow": "04 · Bog'lanish",
+      "contact.title": "Keling, <em class=\"not-italic\" style=\"color:#a7f0b8;\">keyingi kashfiyotni</em> birga xaritalashtiramiz.",
+      "contact.desc": "Loyihangiz, zaminingiz va xavfsizlantirmoqchi bo'lgan qaroringiz haqida bizga ayting. Biz bir ish kuni ichida javob beramiz.",
+      "contact.phone": "Telefon",
+      "contact.email": "Elektron pochta",
+      "contact.office": "Ofis",
+      "contact.officeVal": "Toshkent shahar, Yangihayot tumani, Navro'z ko'chasi, 10-uy, 9-xonadon",
+      "contact.follow": "Kuzatib boring",
+      "contact.formTitle": "Bizga qisqa brif yuboring.",
+      "contact.formDesc": "Majburiy maydonlar belgilangan. So'rov bo'yicha har qanday loyiha oshkor qilinishidan oldin NDA imzolaymiz.",
+      "contact.fName": "Ism *",
+      "contact.fNamePh": "Sarvar K.",
+      "contact.fCompany": "Kompaniya",
+      "contact.fCompanyPh": "Tashkilotingiz",
+      "contact.fPhone": "Telefon *",
+      "contact.fPhonePh": "+998 ...",
+      "contact.fService": "Xizmat turi *",
+      "contact.fNotes": "Loyiha haqida izoh",
+      "contact.fNotesPh": "Kon turi, joylashuvi va aniqlamoqchi bo'lgan narsangiz haqida ayting…",
+      "contact.fAgree": "Yuborish orqali siz so'rovingiz bo'yicha bog'lanishga rozi bo'lasiz.",
+      "contact.fSubmit": "Brifni yuborish",
+      "contact.fStatus": "Rahmat — sizning brifingiz qabul qilindi. Biz bir ish kuni ichida javob beramiz.",
+      "contact.opt0": "Xizmatni tanlang…",
+      "contact.opt1": "Geologik konsalting",
+      "contact.opt2": "Kompleks loyiha tayyorlash",
+      "contact.opt3": "Geologik tadqiqot ishlari",
+      "contact.opt4": "MRE hisobot tayyorlash",
+      "contact.opt5": "Geokimyoviy tadqiqot",
+      "contact.opt6": "Geofizik tadqiqot",
+      "contact.opt7": "Maxsus strukturaviy tadqiqotlar",
+      "contact.opt8": "Sun'iy yo'ldosh tasvirini qayta ishlash",
+      "contact.opt9": "AI / ML kon bashorati",
+      "contact.opt10": "QA/QC va CRM qo'llab-quvvatlash",
+      "contact.opt11": "Boshqa / hali aniq emas",
+      "contact.mapHq": "DGD Bosh ofisi · Toshkent, O'zbekiston",
+      "contact.mapOpen": "Yandex'da ochish",
+
+      "footer.copy": "© 2026 DGD Consulting MChJ — Barcha huquqlar himoyalangan.",
+      "footer.tagline": "Toshkentda dizayn qilingan · Dala uchun qurilgan"
+    },
+
+    ru: {
+      "nav.about": "О нас",
+      "nav.services": "Услуги",
+      "nav.blogs": "Блог",
+      "nav.contact": "Контакты",
+      "nav.lang": "Язык",
+
+      "hero.eyebrow": "DGD Consulting · Ташкент, Узбекистан",
+      "hero.title": "Современные решения для <em class=\"not-italic\" style=\"background: linear-gradient(180deg,#ffffff, #b8e6c4); -webkit-background-clip:text; background-clip:text; color:transparent;\">геологоразведки</em> и горнодобычи.",
+      "hero.subtitle": "Полевая геология, современная наука о данных и строгая отчётность — от обнажения до MRE в одном непрерывном рабочем процессе.",
+      "hero.btnExplore": "Наши услуги",
+      "hero.btnContact": "Связаться",
+      "hero.scroll": "Прокрутите вниз",
+      "hero.est": "С 2024 г.",
+
+      "about.eyebrow": "01 · О нас",
+      "about.title": "Молодая фирма с глубиной опытного грунта.",
+      "about.p1": "DGD Consulting — молодой амбициозный проект, построенный вокруг команды опытных геологов, инженеров и специалистов по данным, посвятивших карьеру работе под поверхностью. Мы объединяем десятилетия полевого опыта с энергией команды, верящей, что новое поколение открытий рождается на стыке классической разведки и современных вычислений.",
+      "about.p2": "Наш подход локально укоренён и глобально информирован: мы понимаем регуляторные, геологические и операционные нюансы Центральной Азии, опираясь на международную научную экспертизу — отчётность по стандартам JORC и CIM, рецензируемые методы и AI/ML-инструменты, меняющие оценку ресурсов.",
+      "about.quote": "«Снижайте неопределённость. Уважайте землю. Отчитывайтесь со строгостью.»",
+      "about.btn": "Связаться",
+      "about.counter1": "Лет совокупного опыта",
+      "about.counter2": "Геологических исследований",
+      "about.counter3": "Активных концессионных проектов",
+      "about.counter4": "Соответствие проб QA/QC",
+
+      "services.eyebrow": "02 · Услуги",
+      "services.title": "Шесть дисциплин, один непрерывный процесс — от обнажения до MRE.",
+      "services.desc": "Каждая услуга предоставляется в соответствии с международными стандартами отчётности, с полной цепочкой ответственности за данные и финальным документом, выдерживающим аудит.",
+      "services.s1.title": "Геологические консультационные услуги",
+      "services.s1.desc": "Стратегические консультации на всём жизненном цикле проекта — от концептуального скрининга и due diligence концессий до обзора data-room и независимого технического заключения.",
+      "services.s2.title": "Подготовка комплексных проектов",
+      "services.s2.desc": "Полные файлы разведочных проектов — геологические модели, схемы бурения, протоколы опробования, бюджеты и сроки — упакованные для согласований и инвесторов.",
+      "services.s3.title": "Эффективные геологоразведочные работы",
+      "services.s3.desc": "Полевое выполнение и контроль программ канав, картирования и бурения — оптимизация по стоимости открытия и ускорение точек принятия решений.",
+      "services.s4.title": "Подготовка отчёта MRE",
+      "services.s4.desc": "Отчёты по оценке минеральных ресурсов по стандартам JORC / CIM — блочное моделирование, классификация, анализ чувствительности и подпись компетентного лица.",
+      "services.s5.title": "Специальные геологические исследования",
+      "services.s5.desc": "Специализированные исследования, дополняющие стандартную разведку — уточнение целей и снижение рисков интерпретации через мульти-методические доказательства.",
+      "services.s5.sub1.title": "Геохимические исследования",
+      "services.s5.sub1.desc": "Опробование почв, донных отложений и сколов с многоэлементной интерпретацией ICP-MS.",
+      "services.s5.sub2.title": "Геофизические исследования",
+      "services.s5.sub2.desc": "Магнитная, ВП/сопротивление и гравиразведка для подповерхностного нацеливания.",
+      "services.s5.sub3.title": "Специальные структурные исследования",
+      "services.s5.sub3.desc": "Детальное картирование разломов, складок и зон сдвига для контроля минерализации.",
+      "services.s5.sub4.title": "Обработка спутниковых снимков",
+      "services.s5.sub4.desc": "Мультиспектральный и SAR-анализ для картирования изменений и линеаментов.",
+      "services.s5.sub5.title": "Прогноз новых месторождений — AI &amp; ML",
+      "services.s5.sub5.badge": "НОВОЕ",
+      "services.s5.sub5.desc": "Модели Random-forest, CNN и градиентного бустинга, обученные на мультисурс-данных, для ранжирования перспективных целей.",
+      "services.s6.title": "QA/QC и поддержка CRM",
+      "services.s6.desc": "Независимый надзор за опробованием, лабораторной работой и программами вставок CRM/blank/duplicate — данные готовы к аудиту с первого дня.",
+      "services.btnContact": "Связаться",
+      "services.btnSee": "Как мы работаем",
+
+      "partners.eyebrow": "05 · Партнёры",
+      "partners.title": "Компании, которые нам доверяют.",
+      "partners.desc": "Мы работаем вместе с лидерами отрасли и международными лабораториями.",
+
+      "blogs.eyebrow": "03 · Полевые заметки",
+      "blogs.title": "Свежее с полей.",
+      "blogs.read": "Читать статью",
+      "blogs.b1.cat": "Метод",
+      "blogs.b1.date": "Апр 2026 · 7 мин",
+      "blogs.b1.title": "От обнажения к рудному телу: современный воркфлоу нацеливания",
+      "blogs.b1.desc": "Как мы объединяем геохимию, структурное картирование и градиентный бустинг, чтобы сжать месяцы полевой работы в защищаемое ранжирование целей.",
+      "blogs.b2.cat": "AI / ML",
+      "blogs.b2.date": "Мар 2026 · 5 мин",
+      "blogs.b2.title": "Почему ваш следующий геолог наполовину модель, наполовину карта",
+      "blogs.b2.desc": "Машинное обучение не заменяет полевую экспертизу — оно её усиливает. Практический взгляд на CNN-классификаторы по мультиспектральным спутниковым стекам.",
+      "blogs.b3.cat": "Отчётность",
+      "blogs.b3.date": "Фев 2026 · 9 мин",
+      "blogs.b3.title": "JORC-готовый: MRE-отчёты, которым доверяют инвесторы",
+      "blogs.b3.desc": "Полевой чек-лист подготовки документации MRE, выдерживающей техническую проверку — от валидации данных до проверки компетентным лицом.",
+
+      "contact.eyebrow": "04 · Связаться",
+      "contact.title": "Давайте вместе наметим <em class=\"not-italic\" style=\"color:#a7f0b8;\">следующее открытие</em>.",
+      "contact.desc": "Расскажите о проекте, рельефе и решении, риски которого вы снижаете. Мы ответим в течение одного рабочего дня.",
+      "contact.phone": "Телефон",
+      "contact.email": "Электронная почта",
+      "contact.office": "Офис",
+      "contact.officeVal": "г. Ташкент, Янгихаётский район, ул. Навруз, дом 10, кв. 9",
+      "contact.follow": "Подписывайтесь",
+      "contact.formTitle": "Отправьте нам бриф.",
+      "contact.formDesc": "Обязательные поля отмечены. По запросу подписываем NDA до раскрытия деталей проекта.",
+      "contact.fName": "Имя *",
+      "contact.fNamePh": "Сарвар К.",
+      "contact.fCompany": "Компания",
+      "contact.fCompanyPh": "Ваша организация",
+      "contact.fPhone": "Телефон *",
+      "contact.fPhonePh": "+998 ...",
+      "contact.fService": "Тип услуги *",
+      "contact.fNotes": "Описание проекта",
+      "contact.fNotesPh": "Расскажите о типе месторождения, локации и о том, что вы хотите выяснить…",
+      "contact.fAgree": "Отправляя, вы соглашаетесь на связь по вашему запросу.",
+      "contact.fSubmit": "Отправить бриф",
+      "contact.fStatus": "Спасибо — ваш бриф получен. Мы ответим в течение одного рабочего дня.",
+      "contact.opt0": "Выберите услугу…",
+      "contact.opt1": "Геологический консалтинг",
+      "contact.opt2": "Подготовка комплексных проектов",
+      "contact.opt3": "Геологоразведочные работы",
+      "contact.opt4": "Подготовка отчёта MRE",
+      "contact.opt5": "Геохимические исследования",
+      "contact.opt6": "Геофизические исследования",
+      "contact.opt7": "Специальные структурные исследования",
+      "contact.opt8": "Обработка спутниковых снимков",
+      "contact.opt9": "AI / ML прогноз месторождений",
+      "contact.opt10": "QA/QC и поддержка CRM",
+      "contact.opt11": "Другое / пока не определились",
+      "contact.mapHq": "Главный офис DGD · Ташкент, Узбекистан",
+      "contact.mapOpen": "Открыть в Yandex",
+
+      "footer.copy": "© 2026 DGD Consulting LLC — Все права защищены.",
+      "footer.tagline": "Спроектировано в Ташкенте · Создано для поля"
+    },
+
+    en: {
+      "nav.about": "About",
+      "nav.services": "Services",
+      "nav.blogs": "Blogs",
+      "nav.contact": "Contact",
+      "nav.lang": "Language",
+
+      "hero.eyebrow": "DGD Consulting · Tashkent, Uzbekistan",
+      "hero.title": "Advanced Solutions for Modern <em class=\"not-italic\" style=\"background: linear-gradient(180deg,#ffffff, #b8e6c4); -webkit-background-clip:text; background-clip:text; color:transparent;\">Geological Exploration</em> &amp; Mining.",
+      "hero.subtitle": "Field-tested geology, modern data science, and rigorous reporting — from outcrop to MRE, in one continuous workflow.",
+      "hero.btnExplore": "Explore services",
+      "hero.btnContact": "Get in touch",
+      "hero.scroll": "Scroll to explore",
+      "hero.est": "Est. 2024",
+
+      "about.eyebrow": "01 · About",
+      "about.title": "A young firm with the depth of seasoned ground.",
+      "about.p1": "DGD Consulting is a young, ambitious project — built around a core of experienced geologists, engineers, and data scientists who have spent careers under the surface. We bring together decades of fieldwork with the energy of a team that believes the next generation of discoveries will be earned by combining classical exploration with modern computation.",
+      "about.p2": "Our approach is rooted locally and informed globally: we understand the regulatory, geological, and operational nuances of Central Asia, while leaning on international scientific expertise — JORC and CIM-aligned reporting, peer-reviewed methods, and the AI/ML toolchain reshaping resource estimation.",
+      "about.quote": "\"Reduce uncertainty. Respect the land. Report with rigor.\"",
+      "about.btn": "Get in touch",
+      "about.counter1": "Years of combined experience",
+      "about.counter2": "Geological researches completed",
+      "about.counter3": "Active concession projects",
+      "about.counter4": "QA/QC sample compliance",
+
+      "services.eyebrow": "02 · Services",
+      "services.title": "Six disciplines, one continuous workflow — from outcrop to MRE.",
+      "services.desc": "Each service is delivered to international reporting standards, paired with full chain-of-custody data and a final document that holds up under audit.",
+      "services.s1.title": "Geological consulting services",
+      "services.s1.desc": "Strategic advisory across project lifecycle — from concept screening and concession due diligence to data-room reviews and independent technical opinion.",
+      "services.s2.title": "Preparation of comprehensive projects",
+      "services.s2.desc": "End-to-end exploration project files — geological models, drilling layouts, sampling protocols, budgets and timelines — packaged for permitting and investor review.",
+      "services.s3.title": "Efficient geological exploration works",
+      "services.s3.desc": "Field execution and supervision of trenching, mapping, and drilling programs — optimized for cost-per-discovery and accelerated decision points.",
+      "services.s4.title": "MRE report preparation",
+      "services.s4.desc": "Mineral Resource Estimation reports prepared to JORC / CIM standards — block modeling, classification, sensitivity analysis and competent-person sign-off.",
+      "services.s5.title": "Special geological research works",
+      "services.s5.desc": "Specialist studies that complement standard exploration — sharpening targets and de-risking interpretations through multi-method evidence.",
+      "services.s5.sub1.title": "Geochemical research",
+      "services.s5.sub1.desc": "Soil, stream-sediment & rock-chip surveys with multi-element ICP-MS interpretation.",
+      "services.s5.sub2.title": "Geophysical research",
+      "services.s5.sub2.desc": "Magnetic, IP/Resistivity, and gravity surveys for sub-surface targeting.",
+      "services.s5.sub3.title": "Special structural studies",
+      "services.s5.sub3.desc": "Detailed fault, fold and shear-zone mapping to constrain mineralization controls.",
+      "services.s5.sub4.title": "Satellite image processing",
+      "services.s5.sub4.desc": "Multispectral and SAR analysis for alteration mapping and lineament extraction.",
+      "services.s5.sub5.title": "Prediction of new deposits — AI &amp; ML",
+      "services.s5.sub5.badge": "NEW",
+      "services.s5.sub5.desc": "Random-forest, CNN and gradient-boosting models trained on multi-source geoscience data to rank prospective targets.",
+      "services.s6.title": "QA/QC &amp; CRM support",
+      "services.s6.desc": "Independent oversight of sampling, lab performance and CRM/blank/duplicate insertion programs — keeping data audit-ready from day one.",
+      "services.btnContact": "Get in touch",
+      "services.btnSee": "See how we work",
+
+      "partners.eyebrow": "05 · Partners",
+      "partners.title": "Companies that trust us.",
+      "partners.desc": "We work alongside industry leaders and international laboratories.",
+
+      "blogs.eyebrow": "03 · Field notes",
+      "blogs.title": "Latest from the field.",
+      "blogs.read": "Read article",
+      "blogs.b1.cat": "Method",
+      "blogs.b1.date": "Apr 2026 · 7 min read",
+      "blogs.b1.title": "From outcrop to ore body: a modern targeting workflow",
+      "blogs.b1.desc": "How we combine geochemistry, structural mapping and gradient-boosted ML to compress months of fieldwork into a defensible target ranking.",
+      "blogs.b2.cat": "AI / ML",
+      "blogs.b2.date": "Mar 2026 · 5 min read",
+      "blogs.b2.title": "Why your next geologist is half model, half map",
+      "blogs.b2.desc": "Machine learning is not replacing field expertise — it is amplifying it. A practical look at deploying CNN classifiers on multispectral satellite stacks.",
+      "blogs.b3.cat": "Reporting",
+      "blogs.b3.date": "Feb 2026 · 9 min read",
+      "blogs.b3.title": "JORC-ready: building MRE reports investors actually trust",
+      "blogs.b3.desc": "A field-tested checklist for producing MRE documentation that survives technical due diligence — from data validation to competent-person review.",
+
+      "contact.eyebrow": "04 · Get in touch",
+      "contact.title": "Let's map the <em class=\"not-italic\" style=\"color:#a7f0b8;\">next discovery</em> together.",
+      "contact.desc": "Tell us about your project, your terrain, and the decision you're trying to de-risk. We'll respond within one business day.",
+      "contact.phone": "Phone",
+      "contact.email": "Email",
+      "contact.office": "Office",
+      "contact.officeVal": "Tashkent, Yangihayot district, Navro'z St. 10, Apt. 9",
+      "contact.follow": "Follow",
+      "contact.formTitle": "Send us a brief.",
+      "contact.formDesc": "Required fields are marked. We sign NDAs on request before any project disclosure.",
+      "contact.fName": "Name *",
+      "contact.fNamePh": "Sarvar K.",
+      "contact.fCompany": "Company",
+      "contact.fCompanyPh": "Your organization",
+      "contact.fPhone": "Phone *",
+      "contact.fPhonePh": "+998 ...",
+      "contact.fService": "Service type *",
+      "contact.fNotes": "Project notes",
+      "contact.fNotesPh": "Tell us about the deposit type, location, and what you're trying to figure out…",
+      "contact.fAgree": "By submitting you agree to be contacted about your inquiry.",
+      "contact.fSubmit": "Submit brief",
+      "contact.fStatus": "Thank you — your brief has been received. We will respond within one business day.",
+      "contact.opt0": "Select a service…",
+      "contact.opt1": "Geological consulting",
+      "contact.opt2": "Comprehensive project preparation",
+      "contact.opt3": "Geological exploration works",
+      "contact.opt4": "MRE report preparation",
+      "contact.opt5": "Geochemical research",
+      "contact.opt6": "Geophysical research",
+      "contact.opt7": "Special structural studies",
+      "contact.opt8": "Satellite image processing",
+      "contact.opt9": "AI / ML deposit prediction",
+      "contact.opt10": "QA/QC and CRM support",
+      "contact.opt11": "Other / not sure yet",
+      "contact.mapHq": "DGD HQ · Tashkent, Uzbekistan",
+      "contact.mapOpen": "Open in Yandex",
+
+      "footer.copy": "© 2026 DGD Consulting LLC — All rights reserved.",
+      "footer.tagline": "Designed in Tashkent · Built for the field"
+    },
+
+    tr: {
+      "nav.about": "Hakkımızda",
+      "nav.services": "Hizmetler",
+      "nav.blogs": "Blog",
+      "nav.contact": "İletişim",
+      "nav.lang": "Dil",
+
+      "hero.eyebrow": "DGD Consulting · Taşkent, Özbekistan",
+      "hero.title": "Modern <em class=\"not-italic\" style=\"background: linear-gradient(180deg,#ffffff, #b8e6c4); -webkit-background-clip:text; background-clip:text; color:transparent;\">jeolojik araştırma</em> ve madencilik için ileri çözümler.",
+      "hero.subtitle": "Sahada test edilmiş jeoloji, modern veri bilimi ve titiz raporlama — mostraadan MRE'ye kadar tek bir kesintisiz iş akışında.",
+      "hero.btnExplore": "Hizmetleri keşfet",
+      "hero.btnContact": "İletişime geç",
+      "hero.scroll": "Keşfetmek için kaydır",
+      "hero.est": "2024'ten beri",
+
+      "about.eyebrow": "01 · Hakkımızda",
+      "about.title": "Tecrübeli zeminin derinliğine sahip genç bir firma.",
+      "about.p1": "DGD Consulting genç, hırslı bir projedir — kariyerlerini yer altında geçirmiş deneyimli jeologlar, mühendisler ve veri bilimcilerinden oluşan bir çekirdek etrafında inşa edilmiştir. On yıllarca süren saha çalışmasını, klasik araştırmayı modern hesaplamayla birleştirerek yeni nesil keşiflerin kazanılacağına inanan bir ekibin enerjisiyle bir araya getiriyoruz.",
+      "about.p2": "Yaklaşımımız yerel olarak köklü, küresel olarak bilgilidir: Orta Asya'nın düzenleyici, jeolojik ve operasyonel inceliklerini anlıyor, JORC ve CIM uyumlu raporlama, hakemli yöntemler ve kaynak tahminini yeniden şekillendiren AI/ML araç zinciri gibi uluslararası bilimsel uzmanlığa dayanıyoruz.",
+      "about.quote": "\"Belirsizliği azaltın. Toprağa saygı gösterin. Titizlikle raporlayın.\"",
+      "about.btn": "İletişime geç",
+      "about.counter1": "Toplam tecrübe yılı",
+      "about.counter2": "Tamamlanan jeolojik araştırma",
+      "about.counter3": "Aktif imtiyaz projesi",
+      "about.counter4": "QA/QC numune uyumluluğu",
+
+      "services.eyebrow": "02 · Hizmetler",
+      "services.title": "Altı disiplin, tek bir kesintisiz iş akışı — mostraadan MRE'ye.",
+      "services.desc": "Her hizmet uluslararası raporlama standartlarına göre sunulur, tam veri zinciri ve denetimden geçecek nihai belge eşliğinde.",
+      "services.s1.title": "Jeolojik danışmanlık hizmetleri",
+      "services.s1.desc": "Proje yaşam döngüsü boyunca stratejik danışmanlık — kavram taraması ve imtiyaz due diligence'tan veri-odası incelemelerine ve bağımsız teknik görüşe kadar.",
+      "services.s2.title": "Kapsamlı proje hazırlama",
+      "services.s2.desc": "Uçtan uca araştırma proje dosyaları — jeolojik modeller, sondaj düzenleri, numune protokolleri, bütçeler ve zaman çizelgeleri — izin ve yatırımcı incelemesi için paketlenmiş.",
+      "services.s3.title": "Verimli jeolojik araştırma çalışmaları",
+      "services.s3.desc": "Hendek, haritalama ve sondaj programlarının saha uygulaması ve denetimi — keşif başına maliyet ve hızlandırılmış karar noktaları için optimize edilmiş.",
+      "services.s4.title": "MRE rapor hazırlama",
+      "services.s4.desc": "JORC / CIM standartlarına göre hazırlanan Maden Kaynak Tahmini raporları — blok modelleme, sınıflandırma, hassasiyet analizi ve yetkili kişi imzası.",
+      "services.s5.title": "Özel jeolojik araştırma çalışmaları",
+      "services.s5.desc": "Standart araştırmayı tamamlayan uzman çalışmalar — çoklu yöntemli kanıtlar yoluyla hedefleri keskinleştirme ve yorumların risklerini azaltma.",
+      "services.s5.sub1.title": "Jeokimyasal araştırma",
+      "services.s5.sub1.desc": "Toprak, dere sediman ve kaya parçası araştırmaları, çok elementli ICP-MS yorumlamasıyla.",
+      "services.s5.sub2.title": "Jeofizik araştırma",
+      "services.s5.sub2.desc": "Yer altı hedefleme için manyetik, IP/dirençölçüm ve gravite araştırmaları.",
+      "services.s5.sub3.title": "Özel yapısal çalışmalar",
+      "services.s5.sub3.desc": "Mineralleşme kontrollerini sınırlamak için ayrıntılı fay, kıvrım ve makaslama bölgesi haritalaması.",
+      "services.s5.sub4.title": "Uydu görüntü işleme",
+      "services.s5.sub4.desc": "Bozunum haritalaması ve lineament çıkarımı için multispektral ve SAR analizi.",
+      "services.s5.sub5.title": "Yeni yatak tahmini — AI &amp; ML",
+      "services.s5.sub5.badge": "YENİ",
+      "services.s5.sub5.desc": "Çok kaynaklı jeo-bilim verileri üzerinde eğitilmiş Random-forest, CNN ve gradient-boosting modelleri ile umut verici hedefleri sıralama.",
+      "services.s6.title": "QA/QC ve CRM desteği",
+      "services.s6.desc": "Numune alımı, laboratuvar performansı ve CRM/blank/duplicate yerleştirme programlarının bağımsız denetimi — ilk günden itibaren denetime hazır veriler.",
+      "services.btnContact": "İletişime geç",
+      "services.btnSee": "Nasıl çalıştığımızı gör",
+
+      "partners.eyebrow": "05 · Ortaklar",
+      "partners.title": "Bize güvenen şirketler.",
+      "partners.desc": "Sektör liderleri ve uluslararası laboratuvarlarla birlikte çalışıyoruz.",
+
+      "blogs.eyebrow": "03 · Saha notları",
+      "blogs.title": "Sahadan en yeni içerikler.",
+      "blogs.read": "Makaleyi oku",
+      "blogs.b1.cat": "Yöntem",
+      "blogs.b1.date": "Nis 2026 · 7 dk okuma",
+      "blogs.b1.title": "Mostradan cevher kütlesine: modern bir hedefleme iş akışı",
+      "blogs.b1.desc": "Jeokimya, yapısal haritalama ve gradient-boosted ML'yi nasıl birleştirerek aylarca süren saha çalışmasını savunulabilir bir hedef sıralamasına sıkıştırıyoruz.",
+      "blogs.b2.cat": "AI / ML",
+      "blogs.b2.date": "Mar 2026 · 5 dk okuma",
+      "blogs.b2.title": "Bir sonraki jeologunuz neden yarı model, yarı harita",
+      "blogs.b2.desc": "Makine öğrenmesi saha uzmanlığının yerini almıyor — onu güçlendiriyor. Multispektral uydu yığınlarında CNN sınıflandırıcıları konuşlandırmaya pratik bir bakış.",
+      "blogs.b3.cat": "Raporlama",
+      "blogs.b3.date": "Şub 2026 · 9 dk okuma",
+      "blogs.b3.title": "JORC'a hazır: yatırımcıların gerçekten güvendiği MRE raporları oluşturma",
+      "blogs.b3.desc": "Teknik incelemeden geçen MRE belgelerini üretmek için sahada test edilmiş bir kontrol listesi — veri doğrulamadan yetkili kişi incelemesine.",
+
+      "contact.eyebrow": "04 · İletişim",
+      "contact.title": "<em class=\"not-italic\" style=\"color:#a7f0b8;\">Bir sonraki keşfi</em> birlikte haritalayalım.",
+      "contact.desc": "Projeniz, araziniz ve risklerini azaltmaya çalıştığınız karar hakkında bize anlatın. Bir iş günü içinde yanıt veriyoruz.",
+      "contact.phone": "Telefon",
+      "contact.email": "E-posta",
+      "contact.office": "Ofis",
+      "contact.officeVal": "Taşkent, Yangihayot ilçesi, Navruz Caddesi No: 10, Daire: 9",
+      "contact.follow": "Takip edin",
+      "contact.formTitle": "Bize bir brief gönderin.",
+      "contact.formDesc": "Zorunlu alanlar işaretlidir. Talep üzerine, herhangi bir proje açıklamasından önce NDA imzalıyoruz.",
+      "contact.fName": "İsim *",
+      "contact.fNamePh": "Sarvar K.",
+      "contact.fCompany": "Şirket",
+      "contact.fCompanyPh": "Kuruluşunuz",
+      "contact.fPhone": "Telefon *",
+      "contact.fPhonePh": "+998 ...",
+      "contact.fService": "Hizmet türü *",
+      "contact.fNotes": "Proje notları",
+      "contact.fNotesPh": "Yatak türü, konumu ve anlamaya çalıştığınız konu hakkında bize anlatın…",
+      "contact.fAgree": "Göndererek, sorgunuz hakkında iletişime geçilmesini kabul edersiniz.",
+      "contact.fSubmit": "Brief'i gönder",
+      "contact.fStatus": "Teşekkürler — brief'iniz alındı. Bir iş günü içinde yanıt vereceğiz.",
+      "contact.opt0": "Bir hizmet seçin…",
+      "contact.opt1": "Jeolojik danışmanlık",
+      "contact.opt2": "Kapsamlı proje hazırlama",
+      "contact.opt3": "Jeolojik araştırma çalışmaları",
+      "contact.opt4": "MRE rapor hazırlama",
+      "contact.opt5": "Jeokimyasal araştırma",
+      "contact.opt6": "Jeofizik araştırma",
+      "contact.opt7": "Özel yapısal çalışmalar",
+      "contact.opt8": "Uydu görüntü işleme",
+      "contact.opt9": "AI / ML yatak tahmini",
+      "contact.opt10": "QA/QC ve CRM desteği",
+      "contact.opt11": "Diğer / henüz emin değilim",
+      "contact.mapHq": "DGD Genel Merkezi · Taşkent, Özbekistan",
+      "contact.mapOpen": "Yandex'te aç",
+
+      "footer.copy": "© 2026 DGD Consulting LLC — Tüm hakları saklıdır.",
+      "footer.tagline": "Taşkent'te tasarlandı · Saha için inşa edildi"
+    }
+  };
+
+  const LANG_META = {
+    uz: { code: 'UZ', name: "O'zbek",  flag: '#flag-uz' },
+    ru: { code: 'RU', name: 'Русский', flag: '#flag-ru' },
+    en: { code: 'EN', name: 'English', flag: '#flag-en' },
+    tr: { code: 'TR', name: 'Türkçe',  flag: '#flag-tr' }
+  };
+
+  function t(key) {
+    const lang = localStorage.getItem('dgd-lang') || 'uz';
+    return (translations[lang] && translations[lang][key]) || (translations.en && translations.en[key]) || '';
+  }
+  window.__t = t;
+
+  function setLanguage(lang) {
+    if (!translations[lang]) return;
+    const dict = translations[lang];
+
+    // text content (innerHTML to support inline em/strong)
+    document.querySelectorAll('[data-i18n]').forEach(el => {
+      const key = el.getAttribute('data-i18n');
+      if (dict[key] !== undefined) el.innerHTML = dict[key];
+    });
+
+    // input placeholders
+    document.querySelectorAll('[data-i18n-placeholder]').forEach(el => {
+      const key = el.getAttribute('data-i18n-placeholder');
+      if (dict[key] !== undefined) el.setAttribute('placeholder', dict[key]);
+    });
+
+    // update <html lang> + button label + active state
+    document.documentElement.lang = lang;
+    const meta = LANG_META[lang];
+    const codeEl = document.getElementById('current-lang-code');
+    const flagSvg = document.getElementById('current-flag-svg');
+    if (codeEl) codeEl.textContent = meta.code;
+    if (flagSvg) flagSvg.innerHTML = '<use href="' + meta.flag + '"/>';
+
+    document.querySelectorAll('.lang-item, .lang-pill').forEach(b => {
+      b.classList.toggle('active', b.getAttribute('data-lang') === lang);
+    });
+
+    localStorage.setItem('dgd-lang', lang);
+  }
+
+  // toggle dropdown
+  const langSwitcher = document.getElementById('lang-switcher');
+  const langBtn = document.getElementById('lang-btn');
+  langBtn?.addEventListener('click', (e) => {
+    e.stopPropagation();
+    const isOpen = langSwitcher.classList.toggle('open');
+    langBtn.setAttribute('aria-expanded', String(isOpen));
+  });
+  document.addEventListener('click', (e) => {
+    if (langSwitcher && !langSwitcher.contains(e.target)) {
+      langSwitcher.classList.remove('open');
+      langBtn?.setAttribute('aria-expanded', 'false');
+    }
+  });
+
+  // language buttons (dropdown items + mobile pills)
+  document.querySelectorAll('[data-lang]').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const lang = btn.getAttribute('data-lang');
+      setLanguage(lang);
+      langSwitcher?.classList.remove('open');
+      langBtn?.setAttribute('aria-expanded', 'false');
+    });
+  });
+
+  // initial language
+  const initialLang = localStorage.getItem('dgd-lang') || 'uz';
+  setLanguage(initialLang);
+</script>
+
+</body>
+</html>
