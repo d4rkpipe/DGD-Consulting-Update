@@ -1012,8 +1012,7 @@
               <path d="M0,240 Q100,200 200,240 T400,240"/>
             </g>
           </svg>
-          <div class="absolute top-4 left-4 chip" style="background: rgba(255,255,255,0.85); color:#085A1C;" data-i18n="blogs.b1.cat">Method</div>
-          <div class="absolute bottom-4 left-4 right-4 font-mono text-[11px] uppercase tracking-widest text-white/85" data-i18n="blogs.b1.date">Apr 2026 · 7 min read</div>
+          <div class="absolute top-4 left-4 chip" style="background: rgba(255,255,255,0.92); color:#085A1C; font-weight:600;" data-i18n="blogs.b1.cat">Methodology</div>
         </div>
         <div class="p-7 flex flex-col flex-1">
           <h3 class="font-display font-bold text-dgd-700 leading-tight line-clamp-3" style="font-size: 26px; min-height: 94px;" data-i18n="blogs.b1.title">From outcrop to ore body: a modern targeting workflow</h3>
@@ -1056,8 +1055,7 @@
               <line x1="280" y1="140" x2="240" y2="220"/>
             </g>
           </svg>
-          <div class="absolute top-4 left-4 chip" style="background: rgba(255,255,255,0.85); color:#085A1C;" data-i18n="blogs.b2.cat">AI / ML</div>
-          <div class="absolute bottom-4 left-4 right-4 font-mono text-[11px] uppercase tracking-widest text-white/85" data-i18n="blogs.b2.date">Mar 2026 · 5 min read</div>
+          <div class="absolute top-4 left-4 chip" style="background: rgba(255,255,255,0.92); color:#085A1C; font-weight:600;" data-i18n="blogs.b2.cat">AI / ML</div>
         </div>
         <div class="p-7 flex flex-col flex-1">
           <h3 class="font-display font-bold text-dgd-700 leading-tight line-clamp-3" style="font-size: 26px; min-height: 94px;" data-i18n="blogs.b2.title">Why your next geologist is half model, half map</h3>
@@ -1083,8 +1081,7 @@
             <rect x="200" y="40" width="3" height="200" fill="white" opacity="0.7"/>
             <rect x="300" y="80" width="3" height="160" fill="white" opacity="0.7"/>
           </svg>
-          <div class="absolute top-4 left-4 chip" style="background: rgba(255,255,255,0.85); color:#085A1C;" data-i18n="blogs.b3.cat">Reporting</div>
-          <div class="absolute bottom-4 left-4 right-4 font-mono text-[11px] uppercase tracking-widest text-white/85" data-i18n="blogs.b3.date">Feb 2026 · 9 min read</div>
+          <div class="absolute top-4 left-4 chip" style="background: rgba(255,255,255,0.92); color:#085A1C; font-weight:600;" data-i18n="blogs.b3.cat">Reporting</div>
         </div>
         <div class="p-7 flex flex-col flex-1">
           <h3 class="font-display font-bold text-dgd-700 leading-tight line-clamp-3" style="font-size: 26px; min-height: 94px;" data-i18n="blogs.b3.title">JORC-ready: building MRE reports investors actually trust</h3>
@@ -2146,14 +2143,13 @@
       <article class="lift snap-start shrink-0 w-[88%] sm:w-[420px] lg:w-[440px] bg-white rounded-3xl overflow-hidden border border-dgd-700/10 flex flex-col">
         <div class="aspect-[4/3] relative overflow-hidden">
           ${cover}
-          <div class="absolute top-4 left-4 chip" style="background: rgba(255,255,255,0.85); color:#085A1C;">${cat}</div>
-          <div class="absolute bottom-4 left-4 right-4 font-mono text-[11px] uppercase tracking-widest text-white/85">${_fmtBlogDate(post.published_at, post.read_time)}</div>
+          ${cat ? `<div class="absolute top-4 left-4 chip" style="background: rgba(255,255,255,0.92); color:#085A1C; font-weight:600;">${cat}</div>` : ''}
         </div>
         <div class="p-7 flex flex-col flex-1">
           <h3 class="font-display font-bold text-dgd-700 leading-tight line-clamp-3" style="font-size: 26px; min-height: 94px;">${post.title}</h3>
           <p class="text-dgd-700/85 mt-3 leading-[1.7] text-[14.5px] line-clamp-4" style="min-height: 100px;">${post.excerpt}</p>
           <div class="hairline mt-auto mb-5 pt-5"></div>
-          <a href="blog.html?slug=${post.slug}" class="text-dgd-700 font-semibold inline-flex items-center gap-2 ulink"><span>${window.__t?.('blogs.read') || "Maqolani o'qish"}</span>
+          <a href="blog.html?slug=${post.slug}" class="text-dgd-700 font-semibold inline-flex items-center gap-2 ulink"><span>${window.__t?.('blogs.read') || "Read note"}</span>
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
           </a>
         </div>
@@ -2386,7 +2382,7 @@
       "nav.about": "Haqimizda",
       "nav.values": "Qadriyatlar",
       "nav.services": "Xizmatlar",
-      "nav.blogs": "Bloglar",
+      "nav.blogs": "Tushunchalar",
       "nav.contact": "Bog'lanish",
       "nav.lang": "Til",
 
@@ -2513,19 +2509,16 @@
       "services.btnSee": "Qanday ishlashimizni ko'ring",
       "services.partnersLabel": "Hamkorlarimiz",
 
-      "blogs.eyebrow": "02 · Bloglar bo'limi",
-      "blogs.title": "So'nggi yangiliklar",
-      "blogs.read": "Maqolani o'qish",
-      "blogs.b1.cat": "Metod",
-      "blogs.b1.date": "Apr 2026 · 7 daq. o'qish",
+      "blogs.eyebrow": "02 · Tushunchalar va eslatmalar",
+      "blogs.title": "Texnik tushunchalar.",
+      "blogs.read": "Batafsil o'qish",
+      "blogs.b1.cat": "Metodologiya",
       "blogs.b1.title": "Outcrop'dan ruda tanasiga: zamonaviy maqsadlash ish jarayoni",
       "blogs.b1.desc": "Geokimyo, strukturaviy xaritalash va gradient-boosted ML'ni qanday birlashtirib, oylab davom etadigan dala ishlarini aniq maqsad reytingiga qisqartiramiz.",
       "blogs.b2.cat": "AI / ML",
-      "blogs.b2.date": "Mar 2026 · 5 daq. o'qish",
       "blogs.b2.title": "Nima uchun keyingi geologingiz yarmi model, yarmi xarita",
       "blogs.b2.desc": "Mashinaviy o'qitish dala tajribasini almashtirmaydi — uni kuchaytiradi. Multispektral sun'iy yo'ldosh stacklarida CNN klassifikatorlarini joylashtirish.",
-      "blogs.b3.cat": "Hisobot",
-      "blogs.b3.date": "Fev 2026 · 9 daq. o'qish",
+      "blogs.b3.cat": "Hisobot tayyorlash",
       "blogs.b3.title": "JORC-tayyor: investorlar haqiqatdan ishonadigan MRE hisobotlari",
       "blogs.b3.desc": "Texnik tekshiruvdan o'tadigan MRE hujjatlarini ishlab chiqarish uchun dalada sinovdan o'tgan tekshiruv ro'yxati — ma'lumotlarni tekshirishdan kompetent shaxs ko'rib chiqishigacha.",
 
@@ -2585,7 +2578,7 @@
       "nav.about": "О нас",
       "nav.values": "Ценности",
       "nav.services": "Услуги",
-      "nav.blogs": "Блог",
+      "nav.blogs": "Заметки",
       "nav.contact": "Контакты",
       "nav.lang": "Язык",
 
@@ -2712,19 +2705,16 @@
       "services.btnSee": "Как мы работаем",
       "services.partnersLabel": "Наши партнеры",
 
-      "blogs.eyebrow": "02 · Полевые заметки",
-      "blogs.title": "Свежее с полей.",
-      "blogs.read": "Читать статью",
-      "blogs.b1.cat": "Метод",
-      "blogs.b1.date": "Апр 2026 · 7 мин",
+      "blogs.eyebrow": "02 · Аналитика и заметки",
+      "blogs.title": "Технические заметки.",
+      "blogs.read": "Подробнее",
+      "blogs.b1.cat": "Методология",
       "blogs.b1.title": "От обнажения к рудному телу: современный воркфлоу нацеливания",
       "blogs.b1.desc": "Как мы объединяем геохимию, структурное картирование и градиентный бустинг, чтобы сжать месяцы полевой работы в защищаемое ранжирование целей.",
       "blogs.b2.cat": "AI / ML",
-      "blogs.b2.date": "Мар 2026 · 5 мин",
       "blogs.b2.title": "Почему ваш следующий геолог наполовину модель, наполовину карта",
       "blogs.b2.desc": "Машинное обучение не заменяет полевую экспертизу — оно её усиливает. Практический взгляд на CNN-классификаторы по мультиспектральным спутниковым стекам.",
       "blogs.b3.cat": "Отчётность",
-      "blogs.b3.date": "Фев 2026 · 9 мин",
       "blogs.b3.title": "JORC-готовый: MRE-отчёты, которым доверяют инвесторы",
       "blogs.b3.desc": "Полевой чек-лист подготовки документации MRE, выдерживающей техническую проверку — от валидации данных до проверки компетентным лицом.",
 
@@ -2784,7 +2774,7 @@
       "nav.about": "About",
       "nav.values": "Values",
       "nav.services": "Services",
-      "nav.blogs": "Blogs",
+      "nav.blogs": "Insights",
       "nav.contact": "Contact",
       "nav.lang": "Language",
 
@@ -2911,19 +2901,16 @@
       "services.btnSee": "See how we work",
       "services.partnersLabel": "Our partners",
 
-      "blogs.eyebrow": "02 · Field notes",
-      "blogs.title": "Latest from the field.",
-      "blogs.read": "Read article",
-      "blogs.b1.cat": "Method",
-      "blogs.b1.date": "Apr 2026 · 7 min read",
+      "blogs.eyebrow": "02 · Insights & Notes",
+      "blogs.title": "Insights & technical notes.",
+      "blogs.read": "Read note",
+      "blogs.b1.cat": "Methodology",
       "blogs.b1.title": "From outcrop to ore body: a modern targeting workflow",
       "blogs.b1.desc": "How we combine geochemistry, structural mapping and gradient-boosted ML to compress months of fieldwork into a defensible target ranking.",
       "blogs.b2.cat": "AI / ML",
-      "blogs.b2.date": "Mar 2026 · 5 min read",
       "blogs.b2.title": "Why your next geologist is half model, half map",
       "blogs.b2.desc": "Machine learning is not replacing field expertise — it is amplifying it. A practical look at deploying CNN classifiers on multispectral satellite stacks.",
       "blogs.b3.cat": "Reporting",
-      "blogs.b3.date": "Feb 2026 · 9 min read",
       "blogs.b3.title": "JORC-ready: building MRE reports investors actually trust",
       "blogs.b3.desc": "A field-tested checklist for producing MRE documentation that survives technical due diligence — from data validation to competent-person review.",
 
@@ -2983,7 +2970,7 @@
       "nav.about": "Hakkımızda",
       "nav.values": "Değerler",
       "nav.services": "Hizmetler",
-      "nav.blogs": "Blog",
+      "nav.blogs": "Notlar",
       "nav.contact": "İletişim",
       "nav.lang": "Dil",
 
@@ -3110,19 +3097,16 @@
       "services.btnSee": "Nasıl çalıştığımızı gör",
       "services.partnersLabel": "Ortaklarımız",
 
-      "blogs.eyebrow": "02 · Saha notları",
-      "blogs.title": "Sahadan en yeni içerikler.",
-      "blogs.read": "Makaleyi oku",
-      "blogs.b1.cat": "Yöntem",
-      "blogs.b1.date": "Nis 2026 · 7 dk okuma",
+      "blogs.eyebrow": "02 · Analiz ve notlar",
+      "blogs.title": "Teknik notlar.",
+      "blogs.read": "Devamı",
+      "blogs.b1.cat": "Metodoloji",
       "blogs.b1.title": "Mostradan cevher kütlesine: modern bir hedefleme iş akışı",
       "blogs.b1.desc": "Jeokimya, yapısal haritalama ve gradient-boosted ML'yi nasıl birleştirerek aylarca süren saha çalışmasını savunulabilir bir hedef sıralamasına sıkıştırıyoruz.",
       "blogs.b2.cat": "AI / ML",
-      "blogs.b2.date": "Mar 2026 · 5 dk okuma",
       "blogs.b2.title": "Bir sonraki jeologunuz neden yarı model, yarı harita",
       "blogs.b2.desc": "Makine öğrenmesi saha uzmanlığının yerini almıyor — onu güçlendiriyor. Multispektral uydu yığınlarında CNN sınıflandırıcıları konuşlandırmaya pratik bir bakış.",
       "blogs.b3.cat": "Raporlama",
-      "blogs.b3.date": "Şub 2026 · 9 dk okuma",
       "blogs.b3.title": "JORC'a hazır: yatırımcıların gerçekten güvendiği MRE raporları oluşturma",
       "blogs.b3.desc": "Teknik incelemeden geçen MRE belgelerini üretmek için sahada test edilmiş bir kontrol listesi — veri doğrulamadan yetkili kişi incelemesine.",
 
