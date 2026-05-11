@@ -11,11 +11,30 @@
 <meta name="author" content="DGD Consulting LLC" />
 <meta name="theme-color" content="#062f10" />
 
+<!-- Canonical URL — o'zingizning rasmiy domeningiz bilan almashtiring (masalan: https://dgd-consulting.uz) -->
+<link rel="canonical" href="https://dgdconsulting.uz/" />
+
+<!-- hreflang — multilingual SEO (Google'ga 4 til mavjudligini bildiradi) -->
+<link rel="alternate" hreflang="uz" href="https://dgdconsulting.uz/" />
+<link rel="alternate" hreflang="ru" href="https://dgdconsulting.uz/" />
+<link rel="alternate" hreflang="en" href="https://dgdconsulting.uz/" />
+<link rel="alternate" hreflang="tr" href="https://dgdconsulting.uz/" />
+<link rel="alternate" hreflang="x-default" href="https://dgdconsulting.uz/" />
+
+<!-- Robots -->
+<meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
+<meta name="googlebot" content="index, follow" />
+
 <!-- Open Graph (social sharing) -->
 <meta property="og:type" content="website" />
+<meta property="og:site_name" content="DGD Consulting" />
+<meta property="og:url" content="https://dgdconsulting.uz/" />
 <meta property="og:title" content="DGD Consulting — Advanced Solutions for Modern Geological Exploration & Mining" />
 <meta property="og:description" content="Maydonda sinovdan o'tgan geologiya, zamonaviy ma'lumotlar fani va qat'iy hisobot — outcrop'dan MRE'gacha bir uzluksiz ish jarayonida." />
-<meta property="og:image" content="assets/hero.jpg" />
+<meta property="og:image" content="https://dgdconsulting.uz/assets/hero.jpg" />
+<meta property="og:image:width" content="1200" />
+<meta property="og:image:height" content="630" />
+<meta property="og:image:alt" content="DGD Consulting — geological exploration & mining consulting" />
 <meta property="og:locale" content="uz_UZ" />
 <meta property="og:locale:alternate" content="ru_RU" />
 <meta property="og:locale:alternate" content="en_US" />
@@ -25,11 +44,159 @@
 <meta name="twitter:card" content="summary_large_image" />
 <meta name="twitter:title" content="DGD Consulting" />
 <meta name="twitter:description" content="Geologik tadqiqot va kon ishlari bo'yicha konsalting — Toshkent, O'zbekiston." />
-<meta name="twitter:image" content="assets/hero.jpg" />
+<meta name="twitter:image" content="https://dgdconsulting.uz/assets/hero.jpg" />
 
 <!-- Favicon -->
 <link rel="icon" type="image/png" href="assets/logo.png" />
 <link rel="apple-touch-icon" href="assets/logo.png" />
+
+<!-- ========= JSON-LD Schema (SEO uchun strukturalangan ma'lumot) ========= -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Organization",
+      "@id": "https://dgdconsulting.uz/#organization",
+      "name": "DGD Consulting",
+      "legalName": "DGD Consulting LLC",
+      "alternateName": "DGD",
+      "url": "https://dgdconsulting.uz/",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://dgdconsulting.uz/assets/logo.png",
+        "width": 512,
+        "height": 512
+      },
+      "image": "https://dgdconsulting.uz/assets/hero.jpg",
+      "description": "Advanced solutions for modern geological exploration & mining — JORC/CIM-compliant reporting, AI-driven targeting, geochemistry, geophysics and MRE preparation.",
+      "foundingDate": "2023",
+      "email": "dgdconsulting2023@gmail.com",
+      "telephone": "+998-99-753-90-95",
+      "areaServed": [
+        { "@type": "Country", "name": "Uzbekistan" },
+        { "@type": "Place", "name": "Central Asia" }
+      ],
+      "knowsAbout": [
+        "Geological exploration",
+        "Mining consulting",
+        "JORC Code reporting",
+        "NI 43-101 reporting",
+        "Mineral Resource Estimation (MRE)",
+        "Geochemistry",
+        "Geophysics",
+        "AI/ML mineral prospectivity"
+      ],
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "Navro'z ko'chasi, 10-uy, 9-xonadon",
+        "addressLocality": "Toshkent",
+        "addressRegion": "Yangihayot tumani",
+        "postalCode": "100000",
+        "addressCountry": "UZ"
+      },
+      "contactPoint": [{
+        "@type": "ContactPoint",
+        "telephone": "+998-99-753-90-95",
+        "email": "dgdconsulting2023@gmail.com",
+        "contactType": "customer support",
+        "areaServed": "UZ",
+        "availableLanguage": ["Uzbek", "Russian", "English", "Turkish"]
+      }],
+      "sameAs": [
+        "https://www.linkedin.com/company/dgd-consulting-uzbekistan/"
+      ]
+    },
+    {
+      "@type": "ProfessionalService",
+      "@id": "https://dgdconsulting.uz/#localbusiness",
+      "name": "DGD Consulting",
+      "image": "https://dgdconsulting.uz/assets/hero.jpg",
+      "logo": "https://dgdconsulting.uz/assets/logo.png",
+      "url": "https://dgdconsulting.uz/",
+      "telephone": "+998-99-753-90-95",
+      "email": "dgdconsulting2023@gmail.com",
+      "priceRange": "$$",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "Navro'z ko'chasi, 10-uy, 9-xonadon",
+        "addressLocality": "Toshkent",
+        "addressRegion": "Yangihayot tumani",
+        "postalCode": "100000",
+        "addressCountry": "UZ"
+      },
+      "geo": {
+        "@type": "GeoCoordinates",
+        "latitude": 41.217477,
+        "longitude": 69.190148
+      },
+      "openingHoursSpecification": [{
+        "@type": "OpeningHoursSpecification",
+        "dayOfWeek": ["Monday","Tuesday","Wednesday","Thursday","Friday"],
+        "opens": "09:00",
+        "closes": "18:00"
+      }],
+      "areaServed": { "@type": "Country", "name": "Uzbekistan" },
+      "parentOrganization": { "@id": "https://dgdconsulting.uz/#organization" }
+    },
+    {
+      "@type": "WebSite",
+      "@id": "https://dgdconsulting.uz/#website",
+      "url": "https://dgdconsulting.uz/",
+      "name": "DGD Consulting",
+      "description": "Advanced solutions for modern geological exploration & mining",
+      "publisher": { "@id": "https://dgdconsulting.uz/#organization" },
+      "inLanguage": ["uz","ru","en","tr"]
+    },
+    {
+      "@type": "FAQPage",
+      "@id": "https://dgdconsulting.uz/#faq",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "Qaysi xalqaro standartlarga muvofiq hisobotlar tayyorlaysiz?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Biz JORC Code (2012) va NI 43-101 xalqaro standartlariga muvofiq Mineral Resource Estimate (MRE), Scoping, Pre-Feasibility va Feasibility Study (PFS/FS) hisobotlarini tayyorlaymiz. Hisobotlar Competent Person tomonidan tasdiqlanadi."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "DGD Consulting qaysi xizmatlarni taklif qiladi?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Geologik konsalting, kompleks loyiha hujjatlari, burg'ilash va trench ishlari, geologik logging va QA/QC, geokimyoviy va geofizik tadqiqotlar, struktur geologiya, sun'iy yo'ldosh tasvirlari tahlili, 3D geologik modellashtirish, AI/ML asosida resurslarni bashorat qilish, MRE/Scoping/PFS-FS hisobotlari."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Geologik tadqiqot loyihasi necha bosqichdan iborat?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Loyihaning to'liq yo'l xaritasi 6 bosqichdan iborat: 1) Desktop Study, 2) Targeting, 3) Exploration, 4) Mineral Resource Estimate (MRE), 5) Scoping Study, 6) Pre-Feasibility & Feasibility Study (PFS/FS)."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Qayerda joylashgansiz va kim bilan ishlaysiz?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Bosh ofis Toshkent shahar, Yangihayot tumanida joylashgan. Biz O'zbekiston va Markaziy Osiyo bo'ylab kon, qidiruv-tadqiqot va investitsiya kompaniyalari bilan hamkorlik qilamiz."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "AI va Machine Learning qanday foydali?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "AI/ML asosidagi modellar geokimyoviy, geofizik va masofadan zondlash ma'lumotlarini birlashtirib, yangi kon zonalarining ehtimolligini taxmin qilish, prioritet targetlarni avtomatik ranjirlash va burg'ilash xarajatlarini kamaytirish imkonini beradi."
+          }
+        }
+      ]
+    }
+  ]
+}
+</script>
 
 <script>
   // restore language ASAP to reduce flash of unlocalized content
