@@ -2453,6 +2453,8 @@
   });
 
   // ===== API base URL =====
+  // - local dev:   http://localhost:8002/api  (Django runserver)
+  // - production:  /api  (cPanel Python App — same domain, sub-path)
   const API_BASE = (location.hostname === 'localhost' || location.hostname === '127.0.0.1')
     ? 'http://localhost:8002/api'
     : '/api';
