@@ -9,10 +9,12 @@ urlpatterns = [
     path('i18n/', include('django.conf.urls.i18n')),   # for Jazzmin language switcher
 
     # API
-    path('api/services/', include('services.urls')),
-    path('api/blog/',     include('blog.urls')),
-    path('api/contact/',  include('contacts.urls')),
-    path('api/partners/', include('partners.urls')),
+    # Note: 'api/' prefix is added by cPanel Passenger BaseURI in production.
+    # In local dev, set API_BASE in frontend to http://localhost:8002 (no /api).
+    path('services/', include('services.urls')),
+    path('blog/',     include('blog.urls')),
+    path('contact/',  include('contacts.urls')),
+    path('partners/', include('partners.urls')),
 ]
 
 if settings.DEBUG:
