@@ -71,7 +71,7 @@
       "image": "https://dgdconsulting.uz/assets/hero.jpg",
       "description": "Advanced solutions for modern geological exploration & mining — JORC/CIM-compliant reporting, AI-driven targeting, geochemistry, geophysics and MRE preparation.",
       "foundingDate": "2023",
-      "email": "dgdconsulting2023@gmail.com",
+      "email": "info@dgdconsulting.uz",
       "telephone": "+998-99-753-90-95",
       "areaServed": [
         { "@type": "Country", "name": "Uzbekistan" },
@@ -98,7 +98,7 @@
       "contactPoint": [{
         "@type": "ContactPoint",
         "telephone": "+998-99-753-90-95",
-        "email": "dgdconsulting2023@gmail.com",
+        "email": "info@dgdconsulting.uz",
         "contactType": "customer support",
         "areaServed": "UZ",
         "availableLanguage": ["Uzbek", "Russian", "English", "Turkish"]
@@ -115,7 +115,7 @@
       "logo": "https://dgdconsulting.uz/assets/logo.png",
       "url": "https://dgdconsulting.uz/",
       "telephone": "+998-99-753-90-95",
-      "email": "dgdconsulting2023@gmail.com",
+      "email": "info@dgdconsulting.uz",
       "priceRange": "$$",
       "address": {
         "@type": "PostalAddress",
@@ -1916,13 +1916,13 @@
               <div class="text-white text-[18px] font-medium group-hover:text-[#a7f0b8] transition">+998 99 753 90 95</div>
             </div>
           </a>
-          <a href="mailto:dgdconsulting2023@gmail.com" class="flex items-center gap-4 group">
+          <a href="mailto:info@dgdconsulting.uz" class="flex items-center gap-4 group">
             <span class="w-11 h-11 rounded-full bg-white text-dgd-700 grid place-items-center shrink-0">
               <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><path d="M22 6l-10 7L2 6"/></svg>
             </span>
             <div class="min-w-0">
               <div class="font-mono text-[11px] uppercase tracking-widest text-white/50" data-i18n="contact.email">Email</div>
-              <div class="text-white text-[16px] md:text-[17px] font-medium group-hover:text-[#a7f0b8] transition break-all">dgdconsulting2023@gmail.com</div>
+              <div class="text-white text-[16px] md:text-[17px] font-medium group-hover:text-[#a7f0b8] transition break-all">info@dgdconsulting.uz</div>
             </div>
           </a>
           <div class="flex items-start gap-4">
@@ -2292,6 +2292,13 @@
   prevBtn?.addEventListener('click', () => track.scrollBy({ left: -stepBy(), behavior: 'smooth' }));
   nextBtn?.addEventListener('click', () => track.scrollBy({ left:  stepBy(), behavior: 'smooth' }));
 
+  // ===== API base URL =====
+  // - local dev:   http://localhost:8002  (Django runserver, no /api prefix)
+  // - production:  /api  (cPanel Passenger BaseURI adds /api prefix)
+  const API_BASE = (location.hostname === 'localhost' || location.hostname === '127.0.0.1')
+    ? 'http://localhost:8002'
+    : '/api';
+
   // ===== Dynamic content from API =====
   const _api = (path) => fetch(`${API_BASE}${path}`).then(r => r.ok ? r.json() : Promise.reject(r.status));
 
@@ -2349,14 +2356,18 @@
     }
   }
 
-  // Load partners from API, replace logos
+  // Load partners from API, replace logos.
+  // IMPORTANT: only replace static logos if API returns partners WITH real logo URLs.
+  // If all partners come back with null/empty logo, keep the static fallback.
   async function loadPartners() {
     const tracks = document.querySelectorAll('.partners-track');
     if (!tracks.length) return;
     try {
       const partners = await _api('/partners/');
-      if (!partners.length) return;
-      const html = partners.map(p =>
+      // Filter out partners without a usable logo URL
+      const withLogo = (partners || []).filter(p => p && p.logo && p.logo !== 'null');
+      if (!withLogo.length) return;  // keep static fallback
+      const html = withLogo.map(p =>
         `<span class="partner-slot"><img src="${p.logo}" alt="${p.name}" class="partner-logo"/></span>`
       ).join('');
       // duplicate the set so the marquee loop is seamless
@@ -2426,6 +2437,8 @@
       const services = Array.isArray(data) ? data : (data.results || []);
       if (!services.length) return;
       list.innerHTML = services.map(_buildServiceCard).join('');
+      // Dynamic elements skip IntersectionObserver — make them visible immediately
+      list.querySelectorAll('.reveal').forEach(el => el.classList.add('in'));
     } catch (err) {
       console.warn('Services API unavailable, keeping static cards:', err);
     }
@@ -2451,13 +2464,6 @@
     card.setAttribute('data-open', isOpen ? 'false' : 'true');
     head.setAttribute('aria-expanded', isOpen ? 'false' : 'true');
   });
-
-  // ===== API base URL =====
-  // - local dev:   http://localhost:8002  (Django runserver, no /api prefix)
-  // - production:  /api  (cPanel Passenger BaseURI adds /api prefix)
-  const API_BASE = (location.hostname === 'localhost' || location.hostname === '127.0.0.1')
-    ? 'http://localhost:8002'
-    : '/api';
 
   // ===== Contact form — POST to API =====
   const form = document.getElementById('contactForm');
